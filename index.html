@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walking dead: road to survival - Adrenaline Rush Calculator</title>
+<link href="//fonts.googleapis.com/css?family=Teko" rel="stylesheet">
+<link href="/css/app.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="top clearfix text-center">
+      <h2 class="clr-amber" style="margin-right: 12px;">Walking dead: road to survival - Adrenaline Rush Calculator</h2> 
+      <ul class="radio-group inline">
+        <li>
+          <input type="radio" id="ma" name="method" value="1" checked>
+          <label for="ma">Attack</label>
+          <div class="check"></div>
+        </li>
+        <li>
+          <input type="radio" id="md" name="method" value="1.4">
+          <label for="md">Defense <span class="sm">(Bonus AP 40% generate)</span></label>
+          <div class="check"></div> 
+        </li>
+      </ul>
+    </div>
+    <div class="clearfix">
+      <div class="left-side">
+        <h3 class="clr-amber">Leader skill</h3>
+        <ul class="radio-group">
+          <li>
+            <input type="radio" id="ln" name="leader" value="none" checked>
+            <label for="ln">None</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="lall" name="leader" value="all">
+            <label for="lall">All teammates</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="lm" name="leader" value="melee">
+            <label for="lm">All melee teammates</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="lr" name="leader" value="ranged">
+            <label for="lr">All ranged teammates</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="lf" name="leader" value="fast">
+            <label for="lf">All fast teammates</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="ls" name="leader" value="strong">
+            <label for="ls">All strong teammates</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="la" name="leader" value="alert">
+            <label for="la">All alert teammates</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="lt" name="leader" value="tough">
+            <label for="lt">All Tough teammates</label>
+            <div class="check"></div>
+          </li>
+        </ul>
+        <hr>
+        <ul class="radio-group">
+          <li>
+            <input type="radio" id="laph" name="leader-ap" value="10" checked>
+            <label for="laph">Huge Bonus AP when attacking</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="lapv" name="leader-ap" value="8">
+            <label for="lapv">Very large Bonus AP when attacking</label>
+            <div class="check"></div> 
+          </li>
+          <li>
+            <input type="radio" id="lapl" name="leader-ap" value="7">
+            <label for="lapl">Large Bonus AP when attacking</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="lapm" name="leader-ap" value="5">
+            <label for="lapm">Medium Bonus AP when attacking</label>
+            <div class="check"></div> 
+          </li>
+        </ul>
+      </div>
+      <div class="right-side">
+        <table class="tbl-result">
+          <thead>
+            <tr>
+              <th>Name <span class="sm">(optional)</span></th>
+              <th>Trait</th>
+              <th>Weapon bonus AP</th>
+              <th>AP</th>
+              <th>Round</th>
+              <th>AP / turn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 124px;"><input type="text"></td>
+              <td>
+                <select id="t0" name="triat">
+                  <option value="fast">Fast</option>
+                  <option value="strong">Strong</option>
+                  <option value="alert">Alert</option>
+                  <option value="tough">Tough</option>
+                </select>
+              </td>
+              <td>
+                <select id="w0" name="weapon-ap">
+                  <option value="0">None</option>
+                  <option value="10">Huge Bonus AP when attacking</option>
+                  <option value="8">Very large Bonus AP when attacking</option>
+                  <option value="7">Large Bonus AP when attacking</option>
+                  <option value="5">Medium Bonus AP when attacking</option>
+                  <option value="4">Small Bonus AP when attacking</option>
+                  <option value="3">Minor Bonus AP when attacking</option>
+                </select>
+                <div id="sp0">
+                  <div class="checkbox sm">
+                    <label for="chk-ar0">
+                      <input type="checkbox" id="chk-ar0" name="special-ap" value="8"> 
+                      <ins></ins> 
+                      <span style="width: 240px; line-height: 1;">
+                        Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td style="width: 48px;"><input type="number" id="ipt-ap0" class="text-center" name="input-ap" value="0"></td>
+              <td class="text-center"><span id="r0" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt0">20</span></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td>
+                <select id="t1" name="triat">
+                  <option value="fast">Fast</option>
+                  <option value="strong">Strong</option>
+                  <option value="alert">Alert</option>
+                  <option value="tough">Tough</option>
+                </select>
+              </td>
+              <td>
+                <select id="w1" name="weapon-ap">
+                  <option value="0">None</option>
+                  <option value="10">Huge Bonus AP when attacking</option>
+                  <option value="8">Very large Bonus AP when attacking</option>
+                  <option value="7">Large Bonus AP when attacking</option>
+                  <option value="5">Medium Bonus AP when attacking</option>
+                  <option value="4">Small Bonus AP when attacking</option>
+                  <option value="3">Minor Bonus AP when attacking</option>
+                </select>
+                <div id="sp1">
+                  <div class="checkbox sm">
+                    <label for="chk-ar1">
+                      <input type="checkbox" id="chk-ar1" name="special-ap" value="8"> 
+                      <ins></ins> 
+                      <span style="width: 240px; line-height: 1;">
+                        Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td><input type="number" id="ipt-ap1" class="text-center" name="input-ap" value="0"></td>
+              <td class="text-center"><span id="r1" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt1"></span></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td>
+                <select id="t2" name="triat">
+                  <option value="fast">Fast</option>
+                  <option value="strong">Strong</option>
+                  <option value="alert">Alert</option>
+                  <option value="tough">Tough</option>
+                </select>
+              </td>
+              <td>
+                <select id="w2" name="weapon-ap">
+                  <option value="0">None</option>
+                  <option value="10">Huge Bonus AP when attacking</option>
+                  <option value="8">Very large Bonus AP when attacking</option>
+                  <option value="7">Large Bonus AP when attacking</option>
+                  <option value="5">Medium Bonus AP when attacking</option>
+                  <option value="4">Small Bonus AP when attacking</option>
+                  <option value="3">Minor Bonus AP when attacking</option>
+                </select>
+                <div id="sp2" >
+                  <div class="checkbox sm">
+                    <label for="chk-ar2">
+                      <input type="checkbox" id="chk-ar2" name="special-ap" value="8"> 
+                      <ins></ins> 
+                      <span style="width: 240px; line-height: 1;">
+                        Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td><input type="number" id="ipt-ap2" class="text-center" name="input-ap" value="0"></td>
+              <td class="text-center"><span id="r2" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt2"></span></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td>
+                <select id="t3" name="triat">
+                  <option value="fast">Fast</option>
+                  <option value="strong">Strong</option>
+                  <option value="alert">Alert</option>
+                  <option value="tough">Tough</option>
+                </select>
+              </td>
+              <td>
+                <select id="w3" name="weapon-ap">
+                  <option value="0">None</option>
+                  <option value="10">Huge Bonus AP when attacking</option>
+                  <option value="8">Very large Bonus AP when attacking</option>
+                  <option value="7">Large Bonus AP when attacking</option>
+                  <option value="5">Medium Bonus AP when attacking</option>
+                  <option value="4">Small Bonus AP when attacking</option>
+                  <option value="3">Minor Bonus AP when attacking</option>
+                </select>
+                <div id="sp3">
+                  <div class="checkbox sm">
+                    <label for="chk-ar3">
+                      <input type="checkbox" id="chk-ar3" name="special-ap" value="8"> 
+                      <ins></ins> 
+                      <span style="width: 240px; line-height: 1;">
+                        Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td><input type="number" id="ipt-ap3" class="text-center" name="input-ap" value="0"></td>
+              <td class="text-center"><span id="r3" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt3"></span></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td>
+              <td>
+                <select id="t4" name="triat">
+                  <option value="fast">Fast</option>
+                  <option value="strong">Strong</option>
+                  <option value="alert">Alert</option>
+                  <option value="tough">Tough</option>
+                </select>
+              </td>
+              <td>
+                <select id="w4" name="weapon-ap">
+                  <option value="0">None</option>
+                  <option value="10">Huge Bonus AP when attacking</option>
+                  <option value="8">Very large Bonus AP when attacking</option>
+                  <option value="7">Large Bonus AP when attacking</option>
+                  <option value="5">Medium Bonus AP when attacking</option>
+                  <option value="4">Small Bonus AP when attacking</option>
+                  <option value="3">Minor Bonus AP when attacking</option>
+                </select>
+                <div id="sp4">
+                  <div class="checkbox sm">
+                    <label for="chk-ar4">
+                      <input type="checkbox" id="chk-ar4" name="special-ap" value="8"> 
+                      <ins></ins> 
+                      <span style="width: 240px; line-height: 1;">
+                        Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td><input type="number" id="ipt-ap4" class="text-center" name="input-ap" value="0"></td>
+              <td class="text-center"><span id="r4" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt4"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="credit">created by xqrlz</div>
+  </div>
+<script src="/js/app.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48174541-2', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
