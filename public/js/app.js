@@ -134,8 +134,6 @@ for (var i = 0; i < eWeaponAPs.length; i++) {
 
 var _loop3 = function _loop3(i) {
   eInputAPs[i].onkeyup = function () {
-    console.log(1);
-
     report(i, calculateNode(i));
   };
 };
