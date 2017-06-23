@@ -92,10 +92,10 @@ var eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]');
 var eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]');
 var eSpecialAPs = document.querySelectorAll('input[name="special-ap"]');
 var eSelectTraits = document.querySelectorAll('select[name="triat"]');
-var eInputAPs = document.querySelectorAll('input[name="input-ap"]'
+var eInputAPs = document.querySelectorAll('input[name="input-ap"]');
 
 // Events
-);Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPs)).forEach(function (elem) {
+Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPs)).forEach(function (elem) {
   elem.onchange = function () {
     calculateAll();
   };
@@ -133,7 +133,9 @@ for (var i = 0; i < eWeaponAPs.length; i++) {
 }
 
 var _loop3 = function _loop3(i) {
-  eInputAPs[i].onchange = function () {
+  eInputAPs[i].onkeyup = function () {
+    console.log(1);
+
     report(i, calculateNode(i));
   };
 };

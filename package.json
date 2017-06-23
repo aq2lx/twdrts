@@ -1,5 +1,5 @@
 {
-  "name": "xqrlz",
+  "name": "twdrts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.15.3"
-  },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",

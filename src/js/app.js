@@ -123,7 +123,7 @@ for (let i = 0; i < eWeaponAPs.length; i++) {
 }
 
 for (let i = 0; i < eInputAPs.length; i++) { 
-  eInputAPs[i].onchange = function() {
+  eInputAPs[i].onkeyup = function() {
     report(i, calculateNode(i))
   }
 }
