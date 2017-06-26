@@ -24,7 +24,7 @@ body {
   margin: 0;
   font-family: 'Teko', sans-serif;
   font-size: 22px;
-  background-color: #3f3f3f;
+  background-color: #212121;
   color: #fff;
   text-transform: uppercase;
 }
@@ -247,6 +247,7 @@ input, select {
   text-transform: uppercase;
   margin-bottom: 8px;
   border-radius: 4px;
+  border: 0;
 }
 
 input[type=text] {
@@ -364,9 +365,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     width: 158px;
     height: 250px;
     border-radius: 4px;
+    position: relative;
 
     &.fill {
-      border: 1px solid #fff;
+      border: 1px solid #000;
+      background-color: #424242;
     }
   }
 }
@@ -384,4 +387,43 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   text-align: center;
   font-size: 36px;
   color: $green-500;
+}
+
+.fa-star {
+  font-size: 14px;
+  margin: 0 2px;
+}
+
+.fa-chevron-right {
+  font-size: 18px;
+}
+
+.tier-wrapper {
+  position: absolute;
+  top: 40px;
+  right: -4px;
+}
+
+.tier {
+  width: 8px;
+  height: 24px;
+  transform: skew(25deg) rotate(25deg);
+  background: $green-500;
+  display: block;
+  border: 1px solid #000;
+}
+
+.close {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
+  height: 20px;
+  display: block;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid #212121;
+  border-radius: 4px;
+  background-color: #c62828;
+  cursor: pointer;
 }
