@@ -1,9 +1,29 @@
+// Color
+$amber-500: #ffc107;
+$green-500: #8BC34A;
+
+// Mixin
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Reset
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  padding-top: 0.5em;
   font-family: 'Teko', sans-serif;
-  font-size: 1.4em;
+  font-size: 22px;
   background-color: #3f3f3f;
   color: #fff;
   text-transform: uppercase;
@@ -18,19 +38,19 @@ table {
   width: 100%;
 
   th, td {
-    padding: 0 0.5em;
+    padding: 4px 8px;
     vertical-align: top;
   }
 }
 
 h2 {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 h3 {
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 8px;
 }
 
 .sm {
@@ -43,6 +63,10 @@ h3 {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .clearfix:before,
@@ -60,22 +84,26 @@ h3 {
 }
 
 .clr-amber {
-  color: #ffc107;
+  color: $amber-500;
 }
 
 .clr-lime {
   color: #cddc39;
 }
 
+.clr-success {
+  color: $green-500;
+}
+
 .container {
   width: 1170px;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 12px;
+  padding-right: 12px;
   margin: 0 auto;
 }
 
 .top {
-  margin-bottom: 1.5em;
+  margin-bottom: 24px;
 }
 
 .left-side, .right-side {
@@ -97,7 +125,6 @@ h3 {
 
   &.inline {
     li {
-      display: inline-block !important;
       float: left;
     }
   }
@@ -135,8 +162,8 @@ h3 {
     position: absolute;
     border: 3px solid #aaa;
     border-radius: 100%;
-    height: 15px;
-    width: 15px;
+    height: 21px;
+    width: 21px;
     top: 6px;
     left: 0;
     z-index: 5;
@@ -177,7 +204,7 @@ h3 {
         &:before {
           content: '';
           width: 14px;
-          height: 6px;
+          height: 8px;
           position: absolute;
           top: 3px;
           border: 4px solid #3f3f3f;
@@ -198,8 +225,8 @@ h3 {
 
   ins {
     margin-right: 8px;
-    width: 1em;
-    height: 1em;
+    width: 21px;
+    height: 21px;
     border: 3px solid #7e8183;
     border-radius: 4px;
     display: inline-block;
@@ -216,13 +243,15 @@ h3 {
 
 input, select {
   font-family: 'Teko', sans-serif;
-  font-size: 1em;
+  font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 8px;
+  border-radius: 4px;
 }
 
 input[type=text] {
-  padding: 0 .2em;
+  padding: 0 4px;
+  width: 100%;
 }
 
 input::-webkit-outer-spin-button,
@@ -275,36 +304,84 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   margin-top: 4em;
 }
 
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &.active {
+    border: 1px solid #ffc107;
+  }
+}
+
+.btn-group {
+  .btn {
+    float: left;
+    padding: 4px 12px;
+    line-height: 1;
+  }
+}
+
 // Page
 .page-ap {
   .left-side {
-    width: 330px;
+    width: 312px;
   }
 
   .right-side {
-    width: 840px;
+    width: 834px;
   }
 }
 
 .page-scav {
   .left-side {
-    width: 330px;
+    width: 288px;
+    margin-right: 24px;
   }
 
   .right-side {
-    width: 840px;
+    width: 834px;
   }
 }
 
 .camp {
+  @include clearfix();
+
   list-style: none;
   margin: 0;
   padding: 0;
 
   li {
     float: left;
-    margin: 1px;
-    border: 1px solid #ccc;
-    padding: 8px;
+    margin: 4px;
+    border: 1px dashed #757575;
+    width: 158px;
+    height: 250px;
+    border-radius: 4px;
+
+    &.fill {
+      border: 1px solid #fff;
+    }
   }
+}
+
+.btn-addtocamp {
+  font-size: 24px;
+  padding: 4px 12px;
+  background-color: #FFA000;
+  width: 100%;
+  text-align: center;
+}
+
+.summary {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 36px;
+  color: $green-500;
 }

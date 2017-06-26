@@ -4,69 +4,147 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The walking dead: road to survival - 100k scavenger renown points</title>
+<title>100k xp scavenger camp renown points</title>
 <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="public/css/app.css" rel="stylesheet">
 </head>
 <body>
   <div class="page-scav container">
     <div class="top clearfix text-center">
-      <h2 class="clr-amber" style="margin-right: 12px;">The walking dead: road to survival - 100k scavenger renown points</h2> 
+      <h2 class="clr-amber">100k xp scavenger camp renown points</h2> 
     </div>
     <div class="clearfix">
       <div class="left-side">
+        <h3 class="text-center clr-amber">Character</h3>
         <table>
           <tr>
-            <td>
-              Star
+            <td class="text-right">
+              Name <span class="sm">(optional)</span>
+            </td>
+            <td style="width: 160px;">
+              <input type="text">
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              Stars
             </td>
             <td>
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group" role="group">5</div>
-                <div class="btn-group" role="group">4</div>
+              <div class="btn-group">
+                <button class="btn">4</button>
+                <button class="btn active">5</button>
               </div>
             </td>
           </tr>
           <tr>
+            <td class="text-right">
+              Tier
+            </td>
             <td>
+              <div class="btn-group">
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn active">4</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
               Level
             </td>
             <td>
-              <span>80</span>
-              <input type="range" min="1" max="80">
+              <span style="display: inline-block; vertical-align: middle; margin-right: 8px; padding-left: 4px;">1</span>
+              <input type="range" min="1" max="80" value="1" style="width: 90px; display: inline-block; vertical-align: middle;">
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="text-right">
               Current XP
             </td>
             <td>
-              <input type="number">
+              <input type="number" class="text-center" style="width: 80px;" value="0">
             </td>
           </tr>
           <tr>
-            <td colspan="2">
-              <button>Add to camp >></button>
+            <td colspan="2" class="text-right">
+              <button class="btn btn-addtocamp">Add to camp  ></button>
             </td>
           </tr>
         </table>
       </div>
       <div class="right-side">
+        <h3 class="text-center clr-amber">Camp</h3>
         <ul class="camp">
-          <li>
-            lvl: 40 (+12)<br>
-            current xp: 234<br>
-            xp gain: +25000
+          <li class="fill">
+            <table>
+              <tr>
+                <td colspan="2" class="text-center">Panda</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">lvl</td>
+                <td>40 <span class="clr-success">(+12)</span></td>
+              </tr>
+              <tr>
+                <td class="text-right">new xp</td>
+                <td>234</td>
+              </tr>
+              <tr>
+                <td class="text-right">xp gain</td>
+                <td><span class="clr-success">+25000</span></td>
+              </tr>
+              <tr>
+                <td class="text-right">renown</td>
+                <td><span class="clr-success">+1200</span></td>
+              </tr>
+            </table>
+          </li>
+          <li class="fill">
+            <table>
+              <tr>
+                <td colspan="2" class="text-center">Bear</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">lvl</td>
+                <td>50 <span class="clr-success">(+7)</span></td>
+              </tr>
+              <tr>
+                <td class="text-right">new xp</td>
+                <td>120</td>
+              </tr>
+              <tr>
+                <td class="text-right">xp gain</td>
+                <td><span class="clr-success">+25000</span></td>
+              </tr>
+              <tr>
+                <td class="text-right">renown</td>
+                <td><span class="clr-success">+1200</span></td>
+              </tr>
+            </table>
           </li>
           <li>
-            lvl: 50 (+7)<br>
-            current xp: 120<br>
-            xp gain: +25000
+          </li>
+          <li>
+          </li>
+          <li>
           </li>
         </ul>
+        <div class="summary">
+          Total 42,000 Renown points
+        </div>
       </div>
     </div>
-    <div class="credit"></div>
   </div>
 <a href="https://github.com/aq2lx/twdrts" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <script src="public/js/app.js"></script>
