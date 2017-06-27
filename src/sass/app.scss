@@ -87,12 +87,39 @@ h3 {
   color: $amber-500;
 }
 
-.clr-lime {
-  color: #cddc39;
-}
-
 .clr-success {
   color: $green-500;
+}
+
+.navbar {
+  height: 36px;
+  background-color: #000;
+}
+
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav {
+  @include clearfix();
+
+  > li {
+    display: block;
+    float: left;
+
+    > a {
+      color: #fff;
+      text-decoration: none;
+      padding: 7px 16px;
+      display: block;
+      line-height: 1;
+    }
+    &.active a {
+      background-color: #006064;
+    }
+  }
 }
 
 .container {
@@ -103,6 +130,10 @@ h3 {
 }
 
 .top {
+  @include clearfix();
+
+  text-align: center;
+  margin-top: 12px;
   margin-bottom: 24px;
 }
 
@@ -110,6 +141,7 @@ h3 {
   float: left;
 }
 
+// Radio group
 .radio-group {
   list-style: none;
   margin: 0;
@@ -182,6 +214,7 @@ h3 {
   }
 }
 
+// Checkbox
 .checkbox {
   position: relative;
   display: inline-block;
@@ -241,6 +274,7 @@ h3 {
   }
 }
 
+// Input
 input, select {
   font-family: 'Teko', sans-serif;
   font-size: 20px;
@@ -293,18 +327,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: #ccc;
 }
 
-.tbl-result input, .tbl-result select {
-  width: 100%;
-}
-
-.credit { 
-  text-align: center;
-  font-size: 0.75em;
-  text-transform: none;
-  color: #757575;
-  margin-top: 4em;
-}
-
+// Button
 .btn {
   display: inline-block;
   border: 1px solid transparent;
@@ -327,6 +350,18 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     padding: 4px 12px;
     line-height: 1;
   }
+}
+
+.tbl-result input, .tbl-result select {
+  width: 100%;
+}
+
+.credit { 
+  text-align: center;
+  font-size: 0.75em;
+  text-transform: none;
+  color: #757575;
+  margin-top: 4em;
 }
 
 // Page
@@ -377,7 +412,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .btn-addtocamp {
   font-size: 24px;
   padding: 4px 12px;
-  background-color: #FFA000;
+  background-color: #ffa000;
   width: 100%;
   text-align: center;
 }
@@ -387,8 +422,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   text-align: center;
   font-size: 36px;
   color: $green-500;
+  padding: 24px 0;
 }
 
+// Icon
 .fa-star {
   font-size: 14px;
   margin: 0 2px;
@@ -411,6 +448,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: $green-500;
   display: block;
   border: 1px solid #000;
+  margin-top: -2px;
 }
 
 .close {

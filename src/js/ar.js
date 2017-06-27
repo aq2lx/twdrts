@@ -122,7 +122,11 @@ for (let i = 0; i < eWeaponAPs.length; i++) {
   }
 }
 
-for (let i = 0; i < eInputAPs.length; i++) { 
+for (let i = 0; i < eInputAPs.length; i++) {
+  eInputAPs[i].onclick = function() {
+    this.select()
+  }
+
   eInputAPs[i].onkeyup = function() {
     report(i, calculateNode(i))
   }
