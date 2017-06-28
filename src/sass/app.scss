@@ -1,6 +1,6 @@
 // Color
-$amber-500: #ffc107;
-$green-500: #8BC34A;
+$amber-500: #f5be3f;
+$green-500: #89c843;
 
 // Mixin
 @mixin clearfix() {
@@ -37,6 +37,7 @@ button:focus {
 hr {
   border: 0;
   border-bottom: 1px solid #616161;
+  width: 90%;
 }
 
 table {
@@ -45,6 +46,10 @@ table {
   th, td {
     padding: 4px 8px;
     vertical-align: top;
+  }
+
+  th {
+    color: #ede1b1;
   }
 }
 
@@ -56,6 +61,7 @@ h2 {
 h3 {
   margin-top: 0;
   margin-bottom: 8px;
+  color: #ede1b1;
 }
 
 .sm {
@@ -349,7 +355,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #ffc107;
+  background: #ede1b1;
   margin-top: -8px;
 }
 
@@ -374,7 +380,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   border-radius: 4px;
 
   &.active {
-    border: 1px solid #ffc107;
+    border: 1px solid #ede1b1;
   }
 }
 
@@ -429,12 +435,14 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     border: 1px dashed #757575;
     width: 158px;
     height: 250px;
-    border-radius: 4px;
+    border-radius: 6px;
     position: relative;
 
-    &.fill {
-      border: 1px solid #000;
+    .fill {
       background-color: #424242;
+      box-shadow: 0 0 0 1px #000;
+      border-radius: 4px;
+      height: 100%;
     }
   }
 }
@@ -442,9 +450,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .btn-addtocamp {
   font-size: 24px;
   padding: 4px 12px;
-  background-color: #ffa000;
   width: 100%;
   text-align: center;
+  background: #d4d4d4;
+  background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
+  border: solid #000 1px;
+  color: #424242;
 }
 
 .summary {
@@ -452,7 +463,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   text-align: center;
   font-size: 36px;
   color: $green-500;
+  background-color: #424242;
   padding: 24px 0;
+  border-radius: 4px;
+  border: 1px solid #000;
 }
 
 .lbl-lvl {
@@ -470,13 +484,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .tier {
-  width: 8px;
-  height: 24px;
-  transform: skew(25deg) rotate(25deg);
+  width: 9px;
+  height: 32px;
+  transform: skew(0, 45deg);
   background: $green-500;
   display: block;
   border: 1px solid #000;
-  margin-top: -3px;
 }
 
 .close {

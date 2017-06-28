@@ -96,10 +96,12 @@ var addToCamp = function addToCamp(data) {
 
   // Create element
   var newMember = document.createElement('div');
+  newMember.className = 'fill';
 
   // Append child
   newMember.appendChild(addBtnRemove(idx));
   newMember.appendChild(addTier(data.tier));
+  newMember.appendChild(createTable(data));
 
   campNodes[idx].appendChild(newMember);
 
@@ -134,6 +136,70 @@ var addTier = function addTier(tier) {
   }
 
   return wrapper;
+};
+
+// Table
+var createTable = function createTable(data) {
+  var row = void 0;
+  var col = void 0;
+
+  var table = document.createElement('table');
+
+  var addRow = function addRow(colnode) {
+    var row = document.createElement('tr');
+
+    for (var _i4 = 0; _i4 < colnode.length; _i4++) {
+      row.appendChild(colnode[_i4]);
+    }
+
+    return row;
+  };
+
+  var addCol = function addCol(data, className, colspan) {
+    var col = document.createElement('td');
+
+    if (colspan) {
+      col.setAttribute('colspan', colspan);
+    }
+
+    if (className) {
+      col.className = className;
+    }
+
+    if (data === null || data === '') {
+      data = '&nbsp;';
+    }
+
+    col.innerHTML = data;
+
+    return col;
+  };
+
+  var addStar = function addStar(num) {
+    var col = document.createElement('td');
+
+    col.setAttribute('colspan', 2);
+    col.className = 'text-center';
+
+    for (var _i5 = 0; _i5 < num; _i5++) {
+      var _star = document.createElement('i');
+
+      _star.className = 'fa fa-star';
+
+      col.appendChild(_star);
+    }
+
+    return col;
+  };
+
+  table.appendChild(addRow([addCol(data.name, 'text-center', 2)]));
+  table.appendChild(addRow([addStar(data.star)]));
+  table.appendChild(addRow([addCol('lvl', 'text-right'), addCol(data.lvl + ' > ')]));
+  table.appendChild(addRow([addCol('xp', 'text-right'), addCol(data.xp)]));
+  table.appendChild(addRow([addCol('xp gain', 'text-right'), addCol('25,000')]));
+  table.appendChild(addRow([addCol('renown', 'text-right'), addCol('1,200')]));
+
+  return table;
 };
 
 // Remove member

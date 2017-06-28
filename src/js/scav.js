@@ -94,10 +94,12 @@ const addToCamp = function (data) {
 
   // Create element
   const newMember = document.createElement('div')
+  newMember.className = 'fill'
 
   // Append child
   newMember.appendChild(addBtnRemove(idx))
   newMember.appendChild(addTier(data.tier))
+  newMember.appendChild(createTable(data))
 
   campNodes[idx].appendChild(newMember)
 
@@ -132,6 +134,70 @@ const addTier = function (tier) {
   }
 
   return wrapper
+}
+
+// Table
+const createTable = function (data) {
+  let row
+  let col
+
+  const table = document.createElement('table')
+
+  const addRow = function (colnode) {
+    const row = document.createElement('tr')
+
+    for (let i = 0; i < colnode.length; i++) {
+      row.appendChild(colnode[i])
+    }
+
+    return row
+  }
+
+  const addCol = function (data, className, colspan) {
+    const col = document.createElement('td')
+
+    if (colspan) {
+      col.setAttribute('colspan', colspan)
+    }
+
+    if (className) {
+      col.className = className
+    }
+
+    if (data === null || data === '') {
+      data = '&nbsp;'
+    }
+
+    col.innerHTML = data
+
+    return col
+  }
+
+  const addStar = function (num) {
+    const col = document.createElement('td')
+
+    col.setAttribute('colspan', 2)
+    col.className = 'text-center'
+
+    for (let i = 0; i < num; i++) {
+      const star = document.createElement('i')
+
+      star.className = 'fa fa-star'
+
+      col.appendChild(star)
+    }
+
+    return col
+  }
+
+  table.appendChild(addRow([addCol(data.name, 'text-center', 2)]))
+  table.appendChild(addRow([addStar(data.star)]))
+  table.appendChild(addRow([addCol('lvl', 'text-right'), addCol(`${data.lvl} > `)]))
+  table.appendChild(addRow([addCol('xp', 'text-right'), addCol(data.xp)]))
+  table.appendChild(addRow([addCol('xp gain', 'text-right'), addCol('25,000')]))
+  table.appendChild(addRow([addCol('renown', 'text-right'), addCol('1,200')]))
+
+  return table
 }
 
 // Remove member
