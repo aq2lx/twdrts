@@ -146,5 +146,10 @@ for (var i = 0; i < eInputAPs.length; i++) {
   _loop3(i);
 }
 
+// Fast click
+window.addEventListener('load', function () {
+  new FastClick(document.body);
+}, false);
+
 // Initialize
 calculateAll();

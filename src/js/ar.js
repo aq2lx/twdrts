@@ -132,5 +132,10 @@ for (let i = 0; i < eInputAPs.length; i++) {
   }
 }
 
+// Fast click
+window.addEventListener('load', function() {
+    new FastClick(document.body)
+}, false)
+
 // Initialize
 calculateAll()

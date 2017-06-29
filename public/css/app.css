@@ -118,9 +118,9 @@ h3 {
     background-color: #006064; }
 
 .container {
-  width: 1170px;
-  padding-left: 12px;
-  padding-right: 12px;
+  width: 1024px;
+  padding-left: 8px;
+  padding-right: 8px;
   margin: 0 auto; }
 
 .top {
@@ -242,7 +242,8 @@ input::-webkit-inner-spin-button {
   margin: 0; }
 
 input[type="text"], input[type="number"], select {
-  padding: 0 8px; }
+  padding: 0 8px;
+  -webkit-appearance: none; }
 
 input[type=range] {
   -webkit-appearance: none;
@@ -297,10 +298,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   margin-top: 4em; }
 
 .page-ap .left-side {
-  width: 312px; }
+  width: 301px; }
 
 .page-ap .right-side {
-  width: 834px; }
+  width: 707px; }
 
 .page-scav .left-side {
   width: 288px;
