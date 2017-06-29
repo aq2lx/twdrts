@@ -125,7 +125,7 @@ h3 {
 
 .top {
   text-align: center;
-  margin-bottom: 24px; }
+  margin-bottom: 20px; }
   .top:before, .top:after {
     content: "";
     display: table; }
@@ -213,7 +213,7 @@ h3 {
     .checkbox input[type=checkbox]:checked ~ span {
       color: #fafafa; }
   .checkbox ins {
-    margin-right: 8px;
+    margin-right: 4px;
     width: 21px;
     height: 21px;
     border: 3px solid #7e8183;
