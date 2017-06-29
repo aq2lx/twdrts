@@ -33,7 +33,7 @@ gulp.task('css', () => {
 
 // Min
 gulp.task('uglify', () => {
-  return gulp.src('src/js/app.js')
+  return gulp.src(['src/js/ar.js', 'src/js/scav.js'])
              .pipe(babel({
                presets: ['es2015']
              }))
