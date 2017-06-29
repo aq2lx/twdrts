@@ -91,7 +91,7 @@ h3 {
 .navbar {
   height: 36px;
   background-color: #000;
-  min-width: 1170px; }
+  min-width: 1024px; }
 
 .nav {
   list-style: none;
@@ -119,13 +119,12 @@ h3 {
 
 .container {
   width: 1024px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
   margin: 0 auto; }
 
 .top {
   text-align: center;
-  margin-top: 12px;
   margin-bottom: 24px; }
   .top:before, .top:after {
     content: "";
@@ -160,7 +159,7 @@ h3 {
   .radio-group label {
     display: block;
     position: relative;
-    padding: 0 12px 0 32px;
+    padding: 0 12px 0 28px;
     z-index: 9;
     cursor: pointer;
     user-select: none; }
@@ -171,7 +170,7 @@ h3 {
     border-radius: 100%;
     height: 21px;
     width: 21px;
-    top: 6px;
+    top: 4px;
     left: 0;
     z-index: 5; }
     .radio-group .check:before {
@@ -243,7 +242,8 @@ input::-webkit-inner-spin-button {
 
 input[type="text"], input[type="number"], select {
   padding: 0 8px;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  background-color: #fff; }
 
 input[type=range] {
   -webkit-appearance: none;
@@ -298,10 +298,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   margin-top: 4em; }
 
 .page-ap .left-side {
-  width: 301px; }
+  width: 300px; }
 
 .page-ap .right-side {
-  width: 707px; }
+  width: 700px; }
 
 .page-scav .left-side {
   width: 288px;
