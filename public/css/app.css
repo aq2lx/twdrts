@@ -304,11 +304,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   width: 700px; }
 
 .page-scav .left-side {
-  width: 288px;
-  margin-right: 24px; }
+  width: 220px; }
 
 .page-scav .right-side {
-  width: 834px; }
+  width: 780px; }
 
 .camp {
   list-style: none;
@@ -323,7 +322,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     float: left;
     margin: 4px;
     border: 1px dashed #757575;
-    width: 158px;
+    width: 148px;
     height: 250px;
     border-radius: 6px;
     position: relative; }
@@ -348,10 +347,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   text-align: center;
   font-size: 36px;
   color: #89c843;
-  background-color: #424242;
   padding: 24px 0;
   border-radius: 4px;
-  border: 1px solid #000; }
+  border: 1px solid #757575; }
 
 .lbl-lvl {
   display: inline-block;
