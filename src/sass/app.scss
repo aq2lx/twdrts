@@ -155,7 +155,8 @@ h3 {
   height: 40px;
   background-color: #000;
   width: 100%;
-  position: fixed;
+  min-width: 1024px;
+  position: absolute;
   top: 0;
 }
 
