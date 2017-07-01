@@ -20,7 +20,7 @@ $green-500: #89c843;
 }
 
 body {
-  padding: 0;
+  padding: 40px 0 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
   font-size: 22px;
@@ -90,9 +90,30 @@ h3 {
 }
 
 .github-ribbin {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
+}
+
+.github-link {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 11px;
+  color: #fff;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.github-icon {
+  background-image: url('../img/github-mark-light-32px.png');
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: cover;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 .disabled {
@@ -131,9 +152,11 @@ h3 {
 }
 
 .navbar {
-  height: 36px;
+  height: 40px;
   background-color: #000;
-  min-width: 1024px;
+  width: 100%;
+  position: fixed;
+  top: 0;
 }
 
 .nav {
