@@ -28,7 +28,7 @@ xp gain 25000
 ===================
       round 2    
 ===================
-Tyreese (5)
+tyreese (5)
 lvl 69 -> 74
 tier 4
 xp 196 -> 4208 
@@ -54,7 +54,7 @@ xp gain 20768
 ===================
       round 3
 ===================
-Tyreese (5)
+tyreese (5)
 lvl 74 -> 80
 tier 4
 xp 4208 -> max
@@ -77,3 +77,29 @@ lvl 68 -> 70
 tier 4
 xp 1263 -> max
 xp gain 6537
+===================
+      round 4
+===================
+tyreese (5)
+lvl 36 -> 58
+tier 2
+xp 598 -> 727
+xp gain 25000
+-------------------
+cain (5)
+lvl 42 -> 60
+tier 2
+xp 452 -> max
+xp gain 22710
+-------------------
+jose (5)
+lvl 43 -> 55
+tier 3
+xp 1424 -> 1837
+xp gain 25000
+-------------------
+ezekiel (5)
+lvl 59 -> 68
+tier 3
+xp 2074 -> 1263
+xp gain 25000
