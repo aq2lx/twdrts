@@ -111,7 +111,8 @@ h3 {
   height: 40px;
   background-color: #000;
   width: 100%;
-  position: fixed;
+  min-width: 1024px;
+  position: absolute;
   top: 0; }
 
 .nav {
@@ -258,27 +259,36 @@ input, select {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
+  -moz-appearance: none;
   -webkit-appearance: none;
   margin: 0; }
 
-input[type="text"], input[type="number"], select {
+input[type="text"], select {
   padding: 0 8px;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
   background-color: #fff; }
 
-input[type=range] {
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none; }
+
+input[type="range"] {
+  -moz-appearance: none;
   -webkit-appearance: none;
   border: 0;
   width: 160px; }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 160px;
   height: 2px;
   background: #ddd;
   border: none;
   border-radius: 3px; }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
+  -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
   height: 16px;
@@ -287,11 +297,10 @@ input[type=range]::-webkit-slider-thumb {
   background: #ede1b1;
   margin-top: -8px; }
 
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none; }
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc; }
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: #ccc; }
 
 .btn {
   display: inline-block;
