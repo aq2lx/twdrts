@@ -68,7 +68,7 @@ h3 {
   font-family: 'Arial', 'sans-serif';
   font-size: 11px;
   color: #fff;
-  text-transform: capitalize;
+  text-transform: none;
   text-decoration: none; }
 
 .github-icon {
@@ -272,7 +272,8 @@ input[type="text"], select {
 
 input[type="number"] {
   -moz-appearance: textfield;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  padding: 0 8px; }
 
 input[type="range"] {
   -moz-appearance: none;

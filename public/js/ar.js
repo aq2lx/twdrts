@@ -25,7 +25,7 @@ var report = function report(idx, val) {
 
 //Calculate
 var calculateNode = function calculateNode(idx) {
-  return apPerTurn[idx] = Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx) + getApSpecial(idx)) * getMethod());
+  return apPerTurn[idx] = getApSpecial(idx) + Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod());
 };
 
 var calculateAll = function calculateAll() {

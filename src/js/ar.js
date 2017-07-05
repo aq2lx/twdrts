@@ -23,7 +23,7 @@ const report = function (idx, val) {
 
 //Calculate
 const calculateNode = function (idx) {
-  return apPerTurn[idx] = Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx) + getApSpecial(idx)) * getMethod())
+  return apPerTurn[idx] = getApSpecial(idx) + Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
 }
 
 const calculateAll = function () {
