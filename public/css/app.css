@@ -2,7 +2,7 @@
   box-sizing: border-box; }
 
 body {
-  padding: 0;
+  padding: 40px 0 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
   font-size: 22px;
@@ -57,9 +57,28 @@ h3 {
   clear: both; }
 
 .github-ribbin {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0; }
+
+.github-link {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 11px;
+  color: #fff;
+  text-transform: none;
+  text-decoration: none; }
+
+.github-icon {
+  background-image: url("../img/github-mark-light-32px.png");
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: cover;
+  margin-right: 8px;
+  vertical-align: middle; }
 
 .disabled {
   pointer-events: none;
@@ -89,9 +108,12 @@ h3 {
   font-size: 18px; }
 
 .navbar {
-  height: 36px;
+  height: 40px;
   background-color: #000;
-  min-width: 1024px; }
+  width: 100%;
+  min-width: 1024px;
+  position: absolute;
+  top: 0; }
 
 .nav {
   list-style: none;
@@ -237,27 +259,37 @@ input, select {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
+  -moz-appearance: none;
   -webkit-appearance: none;
   margin: 0; }
 
-input[type="text"], input[type="number"], select {
+input[type="text"], select {
   padding: 0 8px;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
   background-color: #fff; }
 
-input[type=range] {
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  padding: 0 8px; }
+
+input[type="range"] {
+  -moz-appearance: none;
   -webkit-appearance: none;
   border: 0;
   width: 160px; }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 160px;
   height: 2px;
   background: #ddd;
   border: none;
   border-radius: 3px; }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
+  -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
   height: 16px;
@@ -266,11 +298,10 @@ input[type=range]::-webkit-slider-thumb {
   background: #ede1b1;
   margin-top: -8px; }
 
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none; }
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc; }
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: #ccc; }
 
 .btn {
   display: inline-block;
