@@ -132,7 +132,7 @@ Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders)
 })
 
 for (let i = 0; i < eSelectTraits.length; i++) { 
-  eSelectTraits[i].onchange = () => {
+  eSelectTraits[i].onchange = function() {
     var elSpecialAp = document.getElementById('sp' + i)
     var chkSpecial = document.getElementById('chk-ar' + i)
 

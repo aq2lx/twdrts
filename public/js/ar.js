@@ -140,7 +140,7 @@ var _loop = function _loop(i) {
 
     chkSpecial.checked = false;
 
-    if (undefined.value != 'fast') {
+    if (this.value != 'fast') {
       elSpecialAp.className = 'hide';
     } else {
       elSpecialAp.className = '';
