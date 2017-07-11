@@ -16,6 +16,16 @@ const reportApPerTurn = function (idx, val) {
   eleApPerTurn.innerHTML = val
 }
 
+const reportApFromSpecialWeapon = function (idx, val) {
+  const eleApFromSpecialWeapon = document.getElementById('sapt' + idx)
+
+  if (val) {
+    eleApFromSpecialWeapon.innerHTML = `(+ ${val})`
+  } else {
+    eleApFromSpecialWeapon.innerHTML = ''
+  }
+}
+
 const report = function (idx, val) {
   reportArRound(idx, val)
   reportApPerTurn(idx, val)
@@ -23,7 +33,11 @@ const report = function (idx, val) {
 
 //Calculate
 const calculateNode = function (idx) {
-  return apPerTurn[idx] = getApSpecial(idx) + Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
+  const apFromSpecialWeapon = getApSpecial(idx)
+
+  reportApFromSpecialWeapon(idx, apFromSpecialWeapon)
+
+  return apPerTurn[idx] = apFromSpecialWeapon + Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
 }
 
 const calculateAll = function () {
