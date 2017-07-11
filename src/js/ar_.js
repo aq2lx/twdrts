@@ -1,66 +1,70 @@
 // Varible
 const apAtttack = 20
+const apPerTurn = [0, 0, 0, 0, 0]
+const apFromSW = [0, 0, 0, 0, 0]
 
 // Report
-const reportArRound = (idx, ap, apsp) => {
+const reportArRound = (idx) => {
   const eleApRound = document.getElementById('r' + idx)
   const eleApFSWRound = document.getElementById('rs' + idx)
   const inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10)
 
-  if (apsp) {
-    let rs = 0
+  let r = 0
+  let rs = 0
+  let sap = 0
+  let saps = apFromSW[idx]
 
-    while (apsp < inputAp) {
-      apsp += ap
-      rs++
-    }
+  while (saps < inputAp) {
+    saps += apPerTurn[idx]
+    rs++
+  }
 
+  while (sap < inputAp) {
+    sap += apPerTurn[idx]
+    r++
+  }
+
+  if (apFromSW[idx]) {
     eleApFSWRound.innerHTML = `${rs} / `
   } else {
     eleApFSWRound.innerHTML = ''
   }
 
-  let r = 0
-  let sap = 0
-
-  while (sap < inputAp) {
-    sap += ap
-    r++
-  }
-
   eleApRound.innerHTML = r
 }
 
-const reportApPerTurn = (idx, ap, apsp) => {
+const reportApPerTurn = (idx) => {
   const eleApPerTurn = document.getElementById('apt' + idx)
 
-  eleApPerTurn.innerHTML = ap + apsp
+  eleApPerTurn.innerHTML = apPerTurn[idx] + apFromSW[idx]
 }
 
-const reportApFromSpecialWeapon = (idx, apsp) => {
+const reportApFromSpecialWeapon = (idx) => {
   const eleApFromSpecialWeapon = document.getElementById('sap' + idx)
 
-  if (apsp) {
-    eleApFromSpecialWeapon.innerHTML = `(+ ${apsp})`
+  if (apFromSW[idx]) {
+    eleApFromSpecialWeapon.innerHTML = `(+ ${apFromSW[idx]})`
   } else {
     eleApFromSpecialWeapon.innerHTML = ''
   }
 }
 
-const report = (idx, ap, apsp) => {
-  reportArRound(idx, ap, apsp)
-  reportApPerTurn(idx, ap, apsp)
-  reportApFromSpecialWeapon(idx, apsp)
+const report = (idx) => {
+  reportArRound(idx)
+  reportApPerTurn(idx)
+  reportApFromSpecialWeapon(idx)
 }
 
 //Calculate
 const calculateNode = (idx) => {
-  return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
+  apPerTurn[idx] = Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
+  apFromSW[idx] = getApSpecial(idx)
 }
 
 const calculateAll = () => {
   for (let i = 0; i <= 4; i++) {
-    report(i, calculateNode(i), getApSpecial(i))
+    calculateNode(i)
+    report(i)
   }
 }
 
@@ -150,7 +154,8 @@ for (let i = 0; i < eSelectTraits.length; i++) {
 
 for (let i = 0; i < eWeaponAPs.length; i++) { 
   eWeaponAPs[i].onchange = function() {
-    report(i, calculateNode(i), getApSpecial(i))
+    calculateNode(i)
+    report(i)
   }
 }
 
@@ -160,7 +165,8 @@ for (let i = 0; i < eInputAPs.length; i++) {
   }
 
   eInputAPs[i].onkeyup = function() {
-    report(i, calculateNode(i), getApSpecial(i))
+    calculateNode(i)
+    report(i)
   }
 }
 

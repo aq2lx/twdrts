@@ -2,47 +2,67 @@
 
 // Varible
 var apAtttack = 20;
-var apPerTurn = [0, 0, 0, 0, 0];
 
 // Report
-var reportArRound = function reportArRound(idx, val) {
+var reportArRound = function reportArRound(idx, ap, apsp) {
   var eleApRound = document.getElementById('r' + idx);
+  var eleApFSWRound = document.getElementById('rs' + idx);
   var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
 
-  eleApRound.innerHTML = Math.ceil(inputAp / val);
+  if (apsp) {
+    var rs = 0;
+
+    while (apsp < inputAp) {
+      apsp += ap;
+      rs++;
+    }
+
+    eleApFSWRound.innerHTML = rs + ' / ';
+  } else {
+    eleApFSWRound.innerHTML = '';
+  }
+
+  var r = 0;
+  var sap = 0;
+
+  while (sap < inputAp) {
+    sap += ap;
+    r++;
+  }
+
+  eleApRound.innerHTML = r;
 };
 
-var reportApPerTurn = function reportApPerTurn(idx, val) {
+var reportApPerTurn = function reportApPerTurn(idx, ap, apsp) {
   var eleApPerTurn = document.getElementById('apt' + idx);
 
-  eleApPerTurn.innerHTML = val;
+  eleApPerTurn.innerHTML = ap + apsp;
 };
 
-var reportApFromSpecialWeapon = function reportApFromSpecialWeapon(idx, val) {
-  if (val) {
-    var eleApFromSpecialWeapon = document.getElementById('sapt' + idx);
+var reportApFromSpecialWeapon = function reportApFromSpecialWeapon(idx, apsp) {
+  var eleApFromSpecialWeapon = document.getElementById('sap' + idx);
 
-    eleApFromSpecialWeapon.innerHTML = '(+ ' + val + ')';
+  if (apsp) {
+    eleApFromSpecialWeapon.innerHTML = '(+ ' + apsp + ')';
+  } else {
+    eleApFromSpecialWeapon.innerHTML = '';
   }
 };
 
-var report = function report(idx, val) {
-  reportArRound(idx, val);
-  reportApPerTurn(idx, val);
+var report = function report(idx, ap, apsp) {
+  reportArRound(idx, ap, apsp);
+  reportApPerTurn(idx, ap, apsp);
+  reportApFromSpecialWeapon(idx, apsp);
 };
 
 //Calculate
 var calculateNode = function calculateNode(idx) {
-  var apFromSpecialWeapon = getApSpecial(idx);
-
-  reportApFromSpecialWeapon(idx, apFromSpecialWeapon);
-
-  return apPerTurn[idx] = apFromSpecialWeapon + Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod());
+  return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod());
 };
 
 var calculateAll = function calculateAll() {
   for (var i = 0; i <= 4; i++) {
-    report(i, calculateNode(i));
+    report(i, calculateNode(i), getApSpecial(i));
   }
 };
 
@@ -120,7 +140,7 @@ var _loop = function _loop(i) {
 
     chkSpecial.checked = false;
 
-    if (this.value != 'fast') {
+    if (undefined.value != 'fast') {
       elSpecialAp.className = 'hide';
     } else {
       elSpecialAp.className = '';
@@ -136,7 +156,7 @@ for (var i = 0; i < eSelectTraits.length; i++) {
 
 var _loop2 = function _loop2(i) {
   eWeaponAPs[i].onchange = function () {
-    report(i, calculateNode(i));
+    report(i, calculateNode(i), getApSpecial(i));
   };
 };
 
@@ -150,7 +170,7 @@ var _loop3 = function _loop3(i) {
   };
 
   eInputAPs[i].onkeyup = function () {
-    report(i, calculateNode(i));
+    report(i, calculateNode(i), getApSpecial(i));
   };
 };
 
