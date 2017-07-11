@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Got Lucky 100k XP Renown Points</title>
+<link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="public/css/app.css" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <div class="container">
+      <ul class="navbar-nav nav">
+        <li>
+          <a href="index.html">Adrenaline Rush Calculator</a>
+        </li>
+        <li class="active">
+          <a href="100k-xp.html">You Got Lucky 100k XP Renown Points</a>
+        </li>
+      </ul>
+    </div>
+    <a href="https://github.com/aq2lx/twdrts" target="_blank" class="github-link"><span class="github-icon"></span>Fork me on GitHub</a>
+  </div>
+  <div class="page-scav container">
+    <div class="top">
+      <h2 class="clr-amber">You Got Lucky 100k XP Renown Points</h2> 
+    </div>
+    <div class="clearfix">
+      <div class="left-side">
+        <h3 class="text-center">Add Team Member</h3>
+        <table>
+          <tr>
+            <td class="text-right">
+              Name
+            </td>
+            <td style="width: 160px;">
+              <input id="ipt-name" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              Stars
+            </td>
+            <td>
+              <div id="g-star" class="btn-group">
+                <button class="btn" data-value="4">4</button>
+                <button class="btn active" data-value="5">5</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              Tier
+            </td>
+            <td>
+              <div id="g-tier" class="btn-group">
+                <button class="btn" data-value="1">1</button>
+                <button class="btn" data-value="2">2</button>
+                <button class="btn" data-value="3">3</button>
+                <button class="btn active" data-value="4">4</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              Level
+            </td>
+            <td>
+              <span id="lbl-lvl" class="lbl-lvl">1</span>
+              <input id="range-lvl" type="range" min="1" max="80" value="1" style="width: 90px; display: inline-block; vertical-align: middle;">
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              XP
+            </td>
+            <td>
+              <input id="ipt-xp" type="number" value="0">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">
+              <button id="btn-addtocamp" class="btn btn-addtocamp">Add to camp <i class="fa fa-chevron-right"></i></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="right-side">
+        <h3 class="text-center">Scavenger Camp</h3>
+        <ul id="camp" class="camp">
+      <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div class="summary">
+          Total Renown points: 42,000
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="public/js/maxlevel.json"></script>
+<script src="public/js/scav.js"></script>
+<script src="public/js/ga.js"></script>
+</body>
+</html>

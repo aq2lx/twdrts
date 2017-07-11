@@ -5,7 +5,7 @@ var star = 5;
 var tier = 4;
 var lvl = 1;
 var xp = 0;
-var countMember = 2;
+var countMember = 0;
 
 // Elements
 var eName = document.getElementById('ipt-name');
@@ -81,8 +81,6 @@ var setMaxLevel = function setMaxLevel() {
 
 // Add to camp
 var addToCamp = function addToCamp(data) {
-  console.log(data);
-
   var idx = void 0;
 
   // Check empty nodes
@@ -93,6 +91,8 @@ var addToCamp = function addToCamp(data) {
       break;
     }
   }
+
+  data.idx = idx;
 
   // Create element
   var newMember = document.createElement('div');
@@ -106,6 +106,8 @@ var addToCamp = function addToCamp(data) {
   campNodes[idx].appendChild(newMember);
 
   countMember++;
+
+  calculate();
 };
 
 // Add element
@@ -155,22 +157,36 @@ var createTable = function createTable(data) {
     return row;
   };
 
-  var addCol = function addCol(data, className, colspan) {
+  var addId = function addId(id) {
+    var span = document.createElement('span');
+
+    span.id = id;
+
+    return span;
+  };
+
+  var addCol = function addCol(data, property) {
     var col = document.createElement('td');
-
-    if (colspan) {
-      col.setAttribute('colspan', colspan);
-    }
-
-    if (className) {
-      col.className = className;
-    }
 
     if (data === null || data === '') {
       data = '&nbsp;';
     }
 
     col.innerHTML = data;
+
+    if (property) {
+      if (property.colspan) {
+        col.setAttribute('colspan', property.colspan);
+      }
+
+      if (property.id) {
+        col.appendChild(addId(property.id));
+      }
+
+      if (property.className) {
+        col.className = property.className;
+      }
+    }
 
     return col;
   };
@@ -192,12 +208,30 @@ var createTable = function createTable(data) {
     return col;
   };
 
-  table.appendChild(addRow([addCol(data.name, 'text-center', 2)]));
+  table.appendChild(addRow([addCol(data.name, {
+    colspan: 2,
+    className: 'text-center'
+  })]));
+
   table.appendChild(addRow([addStar(data.star)]));
-  table.appendChild(addRow([addCol('lvl', 'text-right'), addCol(data.lvl + ' > ')]));
-  table.appendChild(addRow([addCol('xp', 'text-right'), addCol(data.xp)]));
-  table.appendChild(addRow([addCol('xp gain', 'text-right'), addCol('25,000')]));
-  table.appendChild(addRow([addCol('renown', 'text-right'), addCol('1,200')]));
+
+  table.appendChild(addRow([addCol('lvl', {
+    className: 'text-right'
+  }), addCol(data.lvl + ' > ', {
+    id: 'lvl-' + data.idx
+  })]));
+
+  table.appendChild(addRow([addCol('xp', {
+    className: 'text-right'
+  }), addCol(data.xp)]));
+
+  table.appendChild(addRow([addCol('xp gain', {
+    className: 'text-right'
+  }), addCol('25,000')]));
+
+  table.appendChild(addRow([addCol('renown', {
+    className: 'text-right'
+  }), addCol('1,200')]));
 
   return table;
 };
@@ -211,6 +245,13 @@ var removeMember = function removeMember(evt) {
   }
 
   countMember--;
+
+  calculate();
+};
+
+// Calculate
+var calculate = function calculate() {
+  console.log(document.getElementById('lvl-0'));
 };
 
 // Events

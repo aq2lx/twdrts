@@ -3,7 +3,7 @@ let star = 5
 let tier = 4
 let lvl = 1
 let xp = 0
-let countMember = 2
+let countMember = 0
 
 // Elements
 const eName = document.getElementById('ipt-name')
@@ -79,8 +79,6 @@ const setMaxLevel = function () {
 
 // Add to camp
 const addToCamp = function (data) {
-  console.log(data)
-
   let idx
 
   // Check empty nodes
@@ -91,6 +89,8 @@ const addToCamp = function (data) {
       break;
     }
   }
+
+  data.idx = idx
 
   // Create element
   const newMember = document.createElement('div')
@@ -104,6 +104,8 @@ const addToCamp = function (data) {
   campNodes[idx].appendChild(newMember)
 
   countMember++
+
+  calculate()
 }
 
 // Add element
@@ -153,22 +155,36 @@ const createTable = function (data) {
     return row
   }
 
-  const addCol = function (data, className, colspan) {
+  const addId = function (id) {
+    const span = document.createElement('span')
+
+    span.id = id
+
+    return span
+  }
+
+  const addCol = function (data, property) {
     const col = document.createElement('td')
-
-    if (colspan) {
-      col.setAttribute('colspan', colspan)
-    }
-
-    if (className) {
-      col.className = className
-    }
 
     if (data === null || data === '') {
       data = '&nbsp;'
     }
 
     col.innerHTML = data
+
+    if (property) {
+      if (property.colspan) {
+        col.setAttribute('colspan', property.colspan)
+      }
+
+      if (property.id) {
+        col.appendChild(addId(property.id))
+      }
+
+      if (property.className) {
+        col.className = property.className
+      }
+    }
 
     return col
   }
@@ -190,12 +206,48 @@ const createTable = function (data) {
     return col
   }
 
-  table.appendChild(addRow([addCol(data.name, 'text-center', 2)]))
+  table.appendChild(addRow([
+    addCol(data.name, {
+      colspan: 2,
+      className: 'text-center'
+    })
+  ]))
+
   table.appendChild(addRow([addStar(data.star)]))
-  table.appendChild(addRow([addCol('lvl', 'text-right'), addCol(`${data.lvl} > `)]))
-  table.appendChild(addRow([addCol('xp', 'text-right'), addCol(data.xp)]))
-  table.appendChild(addRow([addCol('xp gain', 'text-right'), addCol('25,000')]))
-  table.appendChild(addRow([addCol('renown', 'text-right'), addCol('1,200')]))
+
+  table.appendChild(addRow([
+    addCol('lvl', {
+      className: 'text-right'
+    }),
+
+    addCol(`${data.lvl} > `, {
+      id: `lvl-${data.idx}`
+    })
+  ]))
+
+  table.appendChild(addRow([
+    addCol('xp', {
+      className: 'text-right'
+    }),
+
+    addCol(data.xp)
+  ]))
+
+  table.appendChild(addRow([
+    addCol('xp gain', {
+      className: 'text-right'
+    }),
+
+    addCol('25,000')
+  ]))
+
+  table.appendChild(addRow([
+    addCol('renown', {
+      className: 'text-right'
+    }),
+
+    addCol('1,200')
+  ]))
 
   return table
 }
@@ -209,6 +261,13 @@ const removeMember = function (evt) {
   }
 
   countMember--
+
+  calculate()
+}
+
+// Calculate
+const calculate = function () {
+  console.log(document.getElementById('lvl-0'))
 }
 
 // Events
