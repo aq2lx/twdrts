@@ -62,7 +62,7 @@ var calculateNode = function calculateNode(idx) {
 
 var calculateAll = function calculateAll() {
   for (var i = 0; i <= 4; i++) {
-    report(i, calculateNode(i), getApSpecial(i));
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
   }
 };
 
@@ -101,11 +101,11 @@ var getApWeapon = function getApWeapon(idx) {
   return apWeapon;
 };
 
-var getApSpecial = function getApSpecial(idx) {
+var getApSpecialFast = function getApSpecialFast(idx) {
   var apSpecialPercent = 0;
   var apSpecialPoint = 0;
 
-  var eSpecials = document.querySelectorAll('input[name="special-ap"]:checked');
+  var eSpecials = document.querySelectorAll('input[name="special-apf"]:checked');
   var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
 
   for (var i = 0; i < eSpecials.length; i++) {
@@ -117,17 +117,32 @@ var getApSpecial = function getApSpecial(idx) {
   return apSpecialPoint;
 };
 
+var getApSpecialTough = function getApSpecialTough(idx) {
+  var apSpecialPercent = 0;
+  var apSpecialPoint = 0;
+
+  var eSpecial = document.getElementById('chk-art' + idx);
+  var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
+
+  if (eSpecial.checked) {
+    apSpecialPoint = Math.round(inputAp * parseInt(eSpecial.value, 10) / 100);
+  }
+
+  return apSpecialPoint;
+};
+
 // Elements
 var eMethods = document.querySelectorAll('input[name="method"]');
 var eLeaders = document.querySelectorAll('input[name="leader"]');
 var eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]');
 var eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]');
-var eSpecialAPs = document.querySelectorAll('input[name="special-ap"]');
+var eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]');
+var eSpecialAPts = document.querySelectorAll('input[name="special-apt"]');
 var eSelectTraits = document.querySelectorAll('select[name="triat"]');
 var eInputAPs = document.querySelectorAll('input[name="input-ap"]');
 
 // Events
-Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPs)).forEach(function (elem) {
+Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPfs)).forEach(function (elem) {
   elem.onchange = function () {
     calculateAll();
   };
@@ -135,16 +150,34 @@ Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders)
 
 var _loop = function _loop(i) {
   eSelectTraits[i].onchange = function () {
-    var elSpecialAp = document.getElementById('sp' + i);
-    var chkSpecial = document.getElementById('chk-ar' + i);
+    var elSpecialApFast = document.getElementById('spf' + i);
+    var elSpecialApTough = document.getElementById('spt' + i);
+    var chkSpecialFast = document.getElementById('chk-arf' + i);
+    var chkSpecialTough = document.getElementById('chk-art' + i);
 
-    chkSpecial.checked = false;
+    chkSpecialFast.checked = false;
+    chkSpecialTough.checked = false;
 
-    if (this.value != 'fast') {
-      elSpecialAp.className = 'hide';
-    } else {
-      elSpecialAp.className = '';
-    }
+    var fx = {
+      fast: function fast() {
+        elSpecialApFast.classList.remove('hide');
+        elSpecialApTough.classList.add('hide');
+      },
+      strong: function strong() {
+        elSpecialApFast.classList.add('hide');
+        elSpecialApTough.classList.add('hide');
+      },
+      alert: function alert() {
+        elSpecialApFast.classList.add('hide');
+        elSpecialApTough.classList.add('hide');
+      },
+      tough: function tough() {
+        elSpecialApFast.classList.add('hide');
+        elSpecialApTough.classList.remove('hide');
+      }
+    };
+
+    fx[this.value]();
 
     calculateAll();
   };
@@ -156,7 +189,7 @@ for (var i = 0; i < eSelectTraits.length; i++) {
 
 var _loop2 = function _loop2(i) {
   eWeaponAPs[i].onchange = function () {
-    report(i, calculateNode(i), getApSpecial(i));
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
   };
 };
 
@@ -170,12 +203,22 @@ var _loop3 = function _loop3(i) {
   };
 
   eInputAPs[i].onkeyup = function () {
-    report(i, calculateNode(i), getApSpecial(i));
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
   };
 };
 
 for (var i = 0; i < eInputAPs.length; i++) {
   _loop3(i);
+}
+
+var _loop4 = function _loop4(i) {
+  eSpecialAPts[i].onchange = function () {
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
+  };
+};
+
+for (var i = 0; i < eSpecialAPts.length; i++) {
+  _loop4(i);
 }
 
 // Initialize

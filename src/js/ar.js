@@ -3,9 +3,9 @@ const apAtttack = 20
 
 // Report
 const reportArRound = (idx, ap, apsp) => {
-  const eleApRound = document.getElementById('r' + idx)
-  const eleApFSWRound = document.getElementById('rs' + idx)
-  const inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10)
+  const eleApRound = document.getElementById(`r${idx}`)
+  const eleApFSWRound = document.getElementById(`rs${idx}`)
+  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
 
   if (apsp) {
     let rs = 0
@@ -32,13 +32,13 @@ const reportArRound = (idx, ap, apsp) => {
 }
 
 const reportApPerTurn = (idx, ap, apsp) => {
-  const eleApPerTurn = document.getElementById('apt' + idx)
+  const eleApPerTurn = document.getElementById(`apt${idx}`)
 
   eleApPerTurn.innerHTML = ap + apsp
 }
 
 const reportApFromSpecialWeapon = (idx, apsp) => {
-  const eleApFromSpecialWeapon = document.getElementById('sap' + idx)
+  const eleApFromSpecialWeapon = document.getElementById(`sap${idx}`)
 
   if (apsp) {
     eleApFromSpecialWeapon.innerHTML = `(+ ${apsp})`
@@ -60,7 +60,7 @@ const calculateNode = (idx) => {
 
 const calculateAll = () => {
   for (let i = 0; i <= 4; i++) {
-    report(i, calculateNode(i), getApSpecial(i))
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
   }
 }
 
@@ -75,7 +75,7 @@ const getApFromLeader = (idx) => {
   let typeToon
   let apFromLeader = 0
 
-  const traitToon = document.getElementById('t' + idx).value
+  const traitToon = document.getElementById(`t${idx}`).value
   const leader = document.querySelector('input[name="leader"]:checked').value
 
   if (traitToon === 'fast' || traitToon === 'strong') {
@@ -94,17 +94,17 @@ const getApFromLeader = (idx) => {
 }
 
 const getApWeapon = (idx) => {
-  const apWeapon = parseInt(document.getElementById('w' + idx).value, 10)
+  const apWeapon = parseInt(document.getElementById(`w${idx}`).value, 10)
 
   return apWeapon
 }
 
-const getApSpecial = (idx) => {
+const getApSpecialFast = (idx) => {
   let apSpecialPercent = 0
   let apSpecialPoint = 0
 
-  const eSpecials = document.querySelectorAll('input[name="special-ap"]:checked')
-  const inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10)
+  const eSpecials = document.querySelectorAll('input[name="special-apf"]:checked')
+  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
 
   for (let i = 0; i < eSpecials.length; i++) {
     apSpecialPercent += parseInt(eSpecials[i].value, 10)
@@ -115,17 +115,32 @@ const getApSpecial = (idx) => {
   return apSpecialPoint
 }
 
+const getApSpecialTough = (idx) => {
+  let apSpecialPercent = 0
+  let apSpecialPoint = 0
+
+  const eSpecial = document.getElementById(`chk-art${idx}`)
+  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
+
+  if(eSpecial.checked) {
+    apSpecialPoint = Math.round((inputAp * parseInt(eSpecial.value, 10)) / 100)
+  }
+
+  return apSpecialPoint
+}
+
 // Elements
 const eMethods = document.querySelectorAll('input[name="method"]')
 const eLeaders = document.querySelectorAll('input[name="leader"]')
 const eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]')
 const eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]')
-const eSpecialAPs = document.querySelectorAll('input[name="special-ap"]')
+const eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]')
+const eSpecialAPts = document.querySelectorAll('input[name="special-apt"]')
 const eSelectTraits = document.querySelectorAll('select[name="triat"]')
 const eInputAPs = document.querySelectorAll('input[name="input-ap"]')
 
 // Events
-Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPs)).forEach(function(elem) {
+Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders), Array.prototype.slice.call(eLeaderAPs), Array.prototype.slice.call(eSpecialAPfs)).forEach(function(elem) {
   elem.onchange = function() {
     calculateAll()
   }
@@ -133,16 +148,37 @@ Array.prototype.slice.call(eMethods).concat(Array.prototype.slice.call(eLeaders)
 
 for (let i = 0; i < eSelectTraits.length; i++) { 
   eSelectTraits[i].onchange = function() {
-    var elSpecialAp = document.getElementById('sp' + i)
-    var chkSpecial = document.getElementById('chk-ar' + i)
+    const elSpecialApFast = document.getElementById(`spf${i}`)
+    const elSpecialApTough = document.getElementById(`spt${i}`)
+    const chkSpecialFast = document.getElementById(`chk-arf${i}`)
+    const chkSpecialTough = document.getElementById(`chk-art${i}`)
 
-    chkSpecial.checked = false
+    chkSpecialFast.checked = false
+    chkSpecialTough.checked = false
 
-    if (this.value != 'fast') {
-      elSpecialAp.className = 'hide'
-    } else {
-      elSpecialAp.className = ''
+    const fx = {
+      fast() {
+        elSpecialApFast.classList.remove('hide')
+        elSpecialApTough.classList.add('hide')
+      },
+
+      strong() {
+        elSpecialApFast.classList.add('hide')
+        elSpecialApTough.classList.add('hide')
+      },
+
+      alert() {
+        elSpecialApFast.classList.add('hide')
+        elSpecialApTough.classList.add('hide')
+      },
+
+      tough() {
+        elSpecialApFast.classList.add('hide')
+        elSpecialApTough.classList.remove('hide')
+      }
     }
+
+    fx[this.value]()
 
     calculateAll()
   }
@@ -150,7 +186,7 @@ for (let i = 0; i < eSelectTraits.length; i++) {
 
 for (let i = 0; i < eWeaponAPs.length; i++) { 
   eWeaponAPs[i].onchange = function() {
-    report(i, calculateNode(i), getApSpecial(i))
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
   }
 }
 
@@ -160,7 +196,13 @@ for (let i = 0; i < eInputAPs.length; i++) {
   }
 
   eInputAPs[i].onkeyup = function() {
-    report(i, calculateNode(i), getApSpecial(i))
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
+  }
+}
+
+for (let i = 0; i < eSpecialAPts.length; i++) { 
+  eSpecialAPts[i].onchange = function() {
+    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
   }
 }
 

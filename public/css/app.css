@@ -209,8 +209,7 @@ h3 {
       margin: auto; }
 
 .checkbox {
-  position: relative;
-  display: inline-block; }
+  position: relative; }
   .checkbox label {
     display: inline-block;
     margin-bottom: 4px;
