@@ -97,6 +97,13 @@ h3 {
   right: 0;
 }
 
+.github-link-wrapper {
+  width: 100%;
+  min-width: 1024px;
+  position: absolute;
+  top: 0;
+}
+
 .github-link {
   position: absolute;
   right: 0;
@@ -106,7 +113,6 @@ h3 {
   color: #fff;
   text-transform: none;
   text-decoration: none;
-  background-color: #212121;
   padding: 8px;
 }
 
@@ -456,7 +462,7 @@ input[type="range"]:focus {
 
 .tbl-result {
   .checkbox span {
-    width: 200px;
+    width: 224px;
     line-height: 1;
   }
 }
