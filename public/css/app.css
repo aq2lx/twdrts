@@ -2,10 +2,10 @@
   box-sizing: border-box; }
 
 body {
-  padding: 40px 0 0;
+  padding: 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   background-color: #212121;
   color: #fff;
   text-transform: uppercase;
@@ -65,13 +65,15 @@ h3 {
 
 .github-link {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 0;
+  top: 0;
   font-family: 'Arial', 'sans-serif';
   font-size: 11px;
   color: #fff;
   text-transform: none;
-  text-decoration: none; }
+  text-decoration: none;
+  background-color: #212121;
+  padding: 8px; }
 
 .github-icon {
   background-image: url("../img/github-mark-light-32px.png");
