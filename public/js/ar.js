@@ -7,7 +7,7 @@ var apAtttack = 20;
 var reportArRound = function reportArRound(idx, ap, apsp) {
   var eleApRound = document.getElementById('r' + idx);
   var eleApFSWRound = document.getElementById('rs' + idx);
-  var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
+  var inputAp = getInputAp(idx);
 
   if (apsp) {
     var rs = 0;
@@ -101,12 +101,18 @@ var getApWeapon = function getApWeapon(idx) {
   return apWeapon;
 };
 
+var getInputAp = function getInputAp(idx) {
+  var inputAp = document.getElementById('ipt-ap' + idx).value || 0;
+
+  return parseInt(inputAp, 10);
+};
+
 var getApSpecialFast = function getApSpecialFast(idx) {
   var apSpecialPercent = 0;
   var apSpecialPoint = 0;
 
   var eSpecials = document.querySelectorAll('input[name="special-apf"]:checked');
-  var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
+  var inputAp = getInputAp(idx);
 
   for (var i = 0; i < eSpecials.length; i++) {
     apSpecialPercent += parseInt(eSpecials[i].value, 10);
@@ -122,7 +128,7 @@ var getApSpecialTough = function getApSpecialTough(idx) {
   var apSpecialPoint = 0;
 
   var eSpecial = document.getElementById('chk-art' + idx);
-  var inputAp = parseInt(document.getElementById('ipt-ap' + idx).value, 10);
+  var inputAp = getInputAp(idx);
 
   if (eSpecial.checked) {
     apSpecialPoint = Math.round(inputAp * parseInt(eSpecial.value, 10) / 100);
@@ -198,6 +204,12 @@ for (var i = 0; i < eWeaponAPs.length; i++) {
 }
 
 var _loop3 = function _loop3(i) {
+  eInputAPs[i].oninput = function () {
+    if (this.value.length > 3) {
+      this.value = this.value.slice(0, 3);
+    }
+  };
+
   eInputAPs[i].onclick = function () {
     this.select();
   };

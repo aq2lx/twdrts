@@ -5,7 +5,7 @@ const apAtttack = 20
 const reportArRound = (idx, ap, apsp) => {
   const eleApRound = document.getElementById(`r${idx}`)
   const eleApFSWRound = document.getElementById(`rs${idx}`)
-  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
+  const inputAp = getInputAp(idx)
 
   if (apsp) {
     let rs = 0
@@ -99,12 +99,18 @@ const getApWeapon = (idx) => {
   return apWeapon
 }
 
+const getInputAp = (idx) => {
+  const inputAp = document.getElementById(`ipt-ap${idx}`).value || 0
+
+  return parseInt(inputAp, 10)
+}
+
 const getApSpecialFast = (idx) => {
   let apSpecialPercent = 0
   let apSpecialPoint = 0
 
   const eSpecials = document.querySelectorAll('input[name="special-apf"]:checked')
-  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
+  const inputAp = getInputAp(idx)
 
   for (let i = 0; i < eSpecials.length; i++) {
     apSpecialPercent += parseInt(eSpecials[i].value, 10)
@@ -120,7 +126,7 @@ const getApSpecialTough = (idx) => {
   let apSpecialPoint = 0
 
   const eSpecial = document.getElementById(`chk-art${idx}`)
-  const inputAp = parseInt(document.getElementById(`ipt-ap${idx}`).value, 10)
+  const inputAp = getInputAp(idx)
 
   if(eSpecial.checked) {
     apSpecialPoint = Math.round((inputAp * parseInt(eSpecial.value, 10)) / 100)
@@ -191,6 +197,12 @@ for (let i = 0; i < eWeaponAPs.length; i++) {
 }
 
 for (let i = 0; i < eInputAPs.length; i++) {
+  eInputAPs[i].oninput = function() {
+    if (this.value.length > 3) {
+      this.value = this.value.slice(0, 3)
+    }
+  }
+
   eInputAPs[i].onclick = function() {
     this.select()
   }
