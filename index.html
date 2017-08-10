@@ -9,17 +9,7 @@
 <link href="public/css/app.css" rel="stylesheet">
 </head>
 <body>
-  <div class="navbar">
-    <div class="container">
-      <ul class="navbar-nav nav">
-        <li class="active">
-          <a href="index.html">Adrenaline Rush Calculator</a>
-        </li>
-        <li>
-          <a href="100k-xp.html">You Got Lucky 100k XP Renown Points</a>
-        </li>
-      </ul>
-    </div>
+  <div class="github-link-wrapper">
     <a href="https://github.com/aq2lx/twdrts" target="_blank" class="github-link"><span class="github-icon"></span>Fork me on GitHub</a>
   </div>
   <div class="page-ap container">
@@ -111,18 +101,18 @@
         <table class="tbl-result">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Trait</th>
-              <th>Weapon bonus AP</th>
-              <th>AP</th>
-              <th>Round</th>
-              <th>AP / turn</th>
+              <th style="width: 110px;">Name</th>
+              <th style="width: 80px;">Trait</th>
+              <th style="width: 260px;">Weapon bonus AP</th>
+              <th style="width: 60px;">AP</th>
+              <th style="width: 70px;">Round</th>
+              <th style="width: 120px;">AP / Turn</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style="width: 109px;"><input type="text"></td>
-              <td>
+              <td style="width: 110px;"><input type="text"></td>
+              <td style="width: 80px;">
                 <select id="t0" name="triat">
                   <option value="fast">Fast</option>
                   <option value="strong">Strong</option>
@@ -130,7 +120,7 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
-              <td>
+              <td style="width: 260px;">
                 <select id="w0" name="weapon-ap">
                   <option value="0">None</option>
                   <option value="10">Huge Bonus AP when attacking</option>
@@ -141,20 +131,29 @@
                   <option value="3">Minor Bonus AP when attacking</option>
                 </select>
                 <div id="sp0">
-                  <div class="checkbox sm">
-                    <label for="chk-ar0">
-                      <input type="checkbox" id="chk-ar0" name="special-ap" value="8"> 
+                  <div id="spf0" class="checkbox sm">
+                    <label for="chk-arf0">
+                      <input type="checkbox" id="chk-arf0" name="special-apf" value="8"> 
                       <ins></ins> 
-                      <span style="width: 240px; line-height: 1;">
+                      <span>
                         Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                  <div id="spt0" class="checkbox sm hide">
+                    <label for="chk-art0">
+                      <input type="checkbox" id="chk-art0" name="special-apt" value="20"> 
+                      <ins></ins> 
+                      <span>
+                        Bonus AP: receive +20% AP at the beginning of each wave
                       </span>
                     </label>
                   </div>
                 </div>
               </td>
-              <td style="width: 56px;"><input type="number" id="ipt-ap0" class="text-center" name="input-ap" value="0" max="3"></td>
-              <td class="text-center"><span id="r0" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt0">20</span></td>
+              <td style="width: 60px;"><input type="number" id="ipt-ap0" class="text-center" name="input-ap" value=""></td>
+              <td style="width: 70px;" class="text-center"><span id="rs0" class="clr-amber"></span> <span id="r0" class="clr-amber"></span></td>
+              <td style="width: 120px;" class="text-center"><span id="apt0">20</span> <span id="sap0" class="clr-success"></span></td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -177,20 +176,29 @@
                   <option value="3">Minor Bonus AP when attacking</option>
                 </select>
                 <div id="sp1">
-                  <div class="checkbox sm">
-                    <label for="chk-ar1">
-                      <input type="checkbox" id="chk-ar1" name="special-ap" value="8"> 
+                  <div id="spf1" class="checkbox sm">
+                    <label for="chk-arf1">
+                      <input type="checkbox" id="chk-arf1" name="special-apf" value="8"> 
                       <ins></ins> 
-                      <span style="width: 240px; line-height: 1;">
+                      <span>
                         Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                  <div id="spt1" class="checkbox sm hide">
+                    <label for="chk-art1">
+                      <input type="checkbox" id="chk-art1" name="special-apt" value="20"> 
+                      <ins></ins> 
+                      <span>
+                        Bonus AP: receive +20% AP at the beginning of each wave
                       </span>
                     </label>
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap1" class="text-center" name="input-ap" value="0"></td>
-              <td class="text-center"><span id="r1" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt1"></span></td>
+              <td><input type="number" id="ipt-ap1" class="text-center" name="input-ap" value=""></td>
+              <td class="text-center"><span id="rs1" class="clr-amber"></span> <span id="r1" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt1"></span> <span id="sap1" class="clr-success"></span></td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -213,20 +221,29 @@
                   <option value="3">Minor Bonus AP when attacking</option>
                 </select>
                 <div id="sp2" >
-                  <div class="checkbox sm">
-                    <label for="chk-ar2">
-                      <input type="checkbox" id="chk-ar2" name="special-ap" value="8"> 
+                  <div id="spf2" class="checkbox sm">
+                    <label for="chk-arf2">
+                      <input type="checkbox" id="chk-arf2" name="special-apf" value="8"> 
                       <ins></ins> 
-                      <span style="width: 240px; line-height: 1;">
+                      <span>
                         Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                  <div id="spt2" class="checkbox sm hide">
+                    <label for="chk-art2">
+                      <input type="checkbox" id="chk-art2" name="special-apt" value="20"> 
+                      <ins></ins> 
+                      <span>
+                        Bonus AP: receive +20% AP at the beginning of each wave
                       </span>
                     </label>
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap2" class="text-center" name="input-ap" value="0"></td>
-              <td class="text-center"><span id="r2" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt2"></span></td>
+              <td><input type="number" id="ipt-ap2" class="text-center" name="input-ap" value=""></td>
+              <td class="text-center"><span id="rs2" class="clr-amber"></span> <span id="r2" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt2"></span> <span id="sap2" class="clr-success"></span></td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -249,20 +266,29 @@
                   <option value="3">Minor Bonus AP when attacking</option>
                 </select>
                 <div id="sp3">
-                  <div class="checkbox sm">
-                    <label for="chk-ar3">
-                      <input type="checkbox" id="chk-ar3" name="special-ap" value="8"> 
+                  <div id="spf3" class="checkbox sm">
+                    <label for="chk-arf3">
+                      <input type="checkbox" id="chk-arf3" name="special-apf" value="8"> 
                       <ins></ins> 
-                      <span style="width: 240px; line-height: 1;">
+                      <span>
                         Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                  <div id="spt3" class="checkbox sm hide">
+                    <label for="chk-art3">
+                      <input type="checkbox" id="chk-art3" name="special-apt" value="20"> 
+                      <ins></ins> 
+                      <span>
+                        Bonus AP: receive +20% AP at the beginning of each wave
                       </span>
                     </label>
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap3" class="text-center" name="input-ap" value="0"></td>
-              <td class="text-center"><span id="r3" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt3"></span></td>
+              <td><input type="number" id="ipt-ap3" class="text-center" name="input-ap" value=""></td>
+              <td class="text-center"><span id="rs3" class="clr-amber"></span> <span id="r3" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt3"></span> <span id="sap3" class="clr-success"></span></td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -285,20 +311,29 @@
                   <option value="3">Minor Bonus AP when attacking</option>
                 </select>
                 <div id="sp4">
-                  <div class="checkbox sm">
-                    <label for="chk-ar4">
-                      <input type="checkbox" id="chk-ar4" name="special-ap" value="8"> 
+                  <div id="spf4" class="checkbox sm">
+                    <label for="chk-arf4">
+                      <input type="checkbox" id="chk-arf4" name="special-apf" value="8"> 
                       <ins></ins> 
-                      <span style="width: 240px; line-height: 1;">
+                      <span>
                         Bonus AP: all team members receive +8% AP at the beginning of each wave
+                      </span>
+                    </label>
+                  </div>
+                  <div id="spt4" class="checkbox sm hide">
+                    <label for="chk-art4">
+                      <input type="checkbox" id="chk-art4" name="special-apt" value="20"> 
+                      <ins></ins> 
+                      <span>
+                        Bonus AP: receive +20% AP at the beginning of each wave
                       </span>
                     </label>
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap4" class="text-center" name="input-ap" value="0"></td>
-              <td class="text-center"><span id="r4" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt4"></span></td>
+              <td><input type="number" id="ipt-ap4" class="text-center" name="input-ap" value=""></td>
+              <td class="text-center"><span id="rs4" class="clr-amber"></span> <span id="r4" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt4"></span> <span id="sap4" class="clr-success"></span></td>
             </tr>
           </tbody>
         </table>

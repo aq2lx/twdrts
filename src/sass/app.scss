@@ -20,7 +20,7 @@ $green-500: #89c843;
 }
 
 body {
-  padding: 40px 0 0;
+  padding: 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
   font-size: 22px;
@@ -42,9 +42,11 @@ hr {
 
 table {
   width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 
   th, td {
-    padding: 4px 8px;
+    padding: 4px;
     vertical-align: top;
   }
 
@@ -95,15 +97,23 @@ h3 {
   right: 0;
 }
 
+.github-link-wrapper {
+  width: 100%;
+  min-width: 1024px;
+  position: absolute;
+  top: 0;
+}
+
 .github-link {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 0;
+  top: 0;
   font-family: 'Arial', 'sans-serif';
   font-size: 11px;
   color: #fff;
   text-transform: none;
   text-decoration: none;
+  padding: 8px;
 }
 
 .github-icon {
@@ -280,12 +290,12 @@ h3 {
 // Checkbox
 .checkbox {
   position: relative;
-  display: inline-block;
 
   label {
     display: inline-block;
     margin-bottom: 4px;
     cursor: pointer;
+    position: relative;
   }
 
   input[type=checkbox] {
@@ -334,6 +344,9 @@ h3 {
     display: inline-block;
     vertical-align: middle;
     user-select: none;
+    position: absolute;
+    top: 0;
+    left: 28px;
   }
 }
 
@@ -444,6 +457,13 @@ input[type="range"]:focus {
 
   .right-side {
     width: 700px;
+  }
+}
+
+.tbl-result {
+  .checkbox span {
+    width: 224px;
+    line-height: 1;
   }
 }
 

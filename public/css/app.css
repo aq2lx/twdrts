@@ -2,7 +2,7 @@
   box-sizing: border-box; }
 
 body {
-  padding: 40px 0 0;
+  padding: 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
   font-size: 22px;
@@ -20,9 +20,11 @@ hr {
   width: 90%; }
 
 table {
-  width: 100%; }
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; }
   table th, table td {
-    padding: 4px 8px;
+    padding: 4px;
     vertical-align: top; }
   table th {
     color: #ede1b1; }
@@ -61,15 +63,22 @@ h3 {
   top: 0;
   right: 0; }
 
+.github-link-wrapper {
+  width: 100%;
+  min-width: 1024px;
+  position: absolute;
+  top: 0; }
+
 .github-link {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 0;
+  top: 0;
   font-family: 'Arial', 'sans-serif';
   font-size: 11px;
   color: #fff;
   text-transform: none;
-  text-decoration: none; }
+  text-decoration: none;
+  padding: 8px; }
 
 .github-icon {
   background-image: url("../img/github-mark-light-32px.png");
@@ -207,12 +216,12 @@ h3 {
       margin: auto; }
 
 .checkbox {
-  position: relative;
-  display: inline-block; }
+  position: relative; }
   .checkbox label {
     display: inline-block;
     margin-bottom: 4px;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative; }
   .checkbox input[type=checkbox] {
     visibility: hidden;
     display: none; }
@@ -246,7 +255,10 @@ h3 {
     color: #757575;
     display: inline-block;
     vertical-align: middle;
-    user-select: none; }
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 28px; }
 
 input, select {
   font-family: 'Teko', sans-serif;
@@ -333,6 +345,10 @@ input[type="range"]:focus {
 
 .page-ap .right-side {
   width: 700px; }
+
+.tbl-result .checkbox span {
+  width: 224px;
+  line-height: 1; }
 
 .page-scav .left-side {
   width: 220px; }
