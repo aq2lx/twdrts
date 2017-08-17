@@ -1,11 +1,18 @@
 'use strict';
 
+var campMember = [];
+var xpFromScav = 100000;
+
 var name = '';
 var star = 5;
 var tier = 4;
 var lvl = 1;
 var xp = 0;
 var countMember = 0;
+
+var getXpPerMember = function getXpPerMember() {
+  return parseInt(xpFromScav / campMember.length, 10);
+};
 
 // Elements
 var eName = document.getElementById('ipt-name');
@@ -94,6 +101,9 @@ var addToCamp = function addToCamp(data) {
 
   data.idx = idx;
 
+  campMember.push(data);
+  calculate();
+
   // Create element
   var newMember = document.createElement('div');
   newMember.className = 'fill';
@@ -106,8 +116,6 @@ var addToCamp = function addToCamp(data) {
   campNodes[idx].appendChild(newMember);
 
   countMember++;
-
-  calculate();
 };
 
 // Add element
@@ -238,7 +246,8 @@ var createTable = function createTable(data) {
 
 // Remove member
 var removeMember = function removeMember(evt) {
-  var node = campNodes[evt.target.idx];
+  var idx = evt.target.idx;
+  var node = campNodes[idx];
 
   while (node.firstChild) {
     node.removeChild(node.firstChild);
@@ -246,12 +255,16 @@ var removeMember = function removeMember(evt) {
 
   countMember--;
 
+  campMember.splice(idx, 1);
   calculate();
 };
 
 // Calculate
 var calculate = function calculate() {
-  console.log(document.getElementById('lvl-0'));
+  var xpSet = Xp['s' + campMember[0].star]['t' + campMember[0].tier];
+  var lv = campMember[0].lvl;
+
+  console.log(campMember, getXpPerMember(), xpSet, lv);
 };
 
 // Events
