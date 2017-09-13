@@ -2,16 +2,16 @@
 const apAtttack = 20
 
 // Report
-const reportArRound = (idx, ap, apsp) => {
+const reportArRound = (idx, ap, aprcv) => {
   const eleApRound = document.getElementById(`r${idx}`)
   const eleApFSWRound = document.getElementById(`rs${idx}`)
   const inputAp = getInputAp(idx)
 
-  if (apsp) {
+  if (aprcv) {
     let rs = 0
 
-    while (apsp < inputAp) {
-      apsp += ap
+    while (aprcv < inputAp) {
+      aprcv += ap
       rs++
     }
 
@@ -31,36 +31,40 @@ const reportArRound = (idx, ap, apsp) => {
   eleApRound.innerHTML = r
 }
 
-const reportApPerTurn = (idx, ap, apsp) => {
+const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = ap + apsp
+  eleApPerTurn.innerHTML = ap + aprcv
 }
 
-const reportApFromSpecialWeapon = (idx, apsp) => {
+const reportApReceived = (idx, aprcv) => {
   const eleApFromSpecialWeapon = document.getElementById(`sap${idx}`)
 
-  if (apsp) {
-    eleApFromSpecialWeapon.innerHTML = `(+ ${apsp})`
+  if (aprcv) {
+    eleApFromSpecialWeapon.innerHTML = `(+ ${aprcv})`
   } else {
     eleApFromSpecialWeapon.innerHTML = ''
   }
 }
 
-const report = (idx, ap, apsp) => {
-  reportArRound(idx, ap, apsp)
-  reportApPerTurn(idx, ap, apsp)
-  reportApFromSpecialWeapon(idx, apsp)
+const report = (idx, ap, aprcv) => {
+  reportArRound(idx, ap, aprcv)
+  reportApPerTurn(idx, ap, aprcv)
+  reportApReceived(idx, aprcv)
 }
 
 //Calculate
+const calculateAp = (idx) => {
+  report(idx, calculateNode(idx), getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx))
+}
+
 const calculateNode = (idx) => {
   return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
 }
 
 const calculateAll = () => {
   for (let i = 0; i <= 4; i++) {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
+    calculateAp(i)
   }
 }
 
@@ -122,7 +126,6 @@ const getApSpecialFast = (idx) => {
 }
 
 const getApSpecialTough = (idx) => {
-  let apSpecialPercent = 0
   let apSpecialPoint = 0
 
   const eSpecial = document.getElementById(`chk-art${idx}`)
@@ -135,6 +138,19 @@ const getApSpecialTough = (idx) => {
   return apSpecialPoint
 }
 
+const getApReceived = (idx, percent) => {
+  let apReceived = 0
+
+  const eReceived = document.getElementById(`chk-apr${percent}-${idx}`)
+  const inputAp = getInputAp(idx)
+
+  if(eReceived.checked) {
+    apReceived = Math.round((inputAp * parseInt(percent, 10)) / 100)
+  }
+
+  return apReceived
+}
+
 // Elements
 const eMethods = document.querySelectorAll('input[name="method"]')
 const eLeaders = document.querySelectorAll('input[name="leader"]')
@@ -142,6 +158,8 @@ const eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]')
 const eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]')
 const eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]')
 const eSpecialAPts = document.querySelectorAll('input[name="special-apt"]')
+const eReceived20 = document.querySelectorAll('input[name="apr20"]')
+const eReceived40 = document.querySelectorAll('input[name="apr40"]')
 const eSelectTraits = document.querySelectorAll('select[name="triat"]')
 const eInputAPs = document.querySelectorAll('input[name="input-ap"]')
 
@@ -192,7 +210,7 @@ for (let i = 0; i < eSelectTraits.length; i++) {
 
 for (let i = 0; i < eWeaponAPs.length; i++) { 
   eWeaponAPs[i].onchange = function() {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
+    calculateAp(i)
   }
 }
 
@@ -208,13 +226,25 @@ for (let i = 0; i < eInputAPs.length; i++) {
   }
 
   eInputAPs[i].onkeyup = function() {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
+    calculateAp(i)
   }
 }
 
 for (let i = 0; i < eSpecialAPts.length; i++) { 
   eSpecialAPts[i].onchange = function() {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i))
+    calculateAp(i)
+  }
+}
+
+for (let i = 0; i < eReceived20.length; i++) { 
+  eReceived20[i].onchange = function() {
+    calculateAp(i)
+  }
+}
+
+for (let i = 0; i < eReceived40.length; i++) { 
+  eReceived40[i].onchange = function() {
+    calculateAp(i)
   }
 }
 

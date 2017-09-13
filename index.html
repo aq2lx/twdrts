@@ -54,22 +54,22 @@
           </li>
           <li>
             <input type="radio" id="lf" name="leader" value="fast">
-            <label for="lf">All fast teammates</label>
+            <label for="lf">All <span class="clr-yellow">fast</span> teammates</label>
             <div class="check"></div>
           </li>
           <li>
             <input type="radio" id="ls" name="leader" value="strong">
-            <label for="ls">All strong teammates</label>
+            <label for="ls">All <span class="clr-green">strong</span> teammates</label>
             <div class="check"></div> 
           </li>
           <li>
             <input type="radio" id="la" name="leader" value="alert">
-            <label for="la">All alert teammates</label>
+            <label for="la">All <span class="clr-red">alert</span> teammates</label>
             <div class="check"></div> 
           </li>
           <li>
             <input type="radio" id="lt" name="leader" value="tough">
-            <label for="lt">All Tough teammates</label>
+            <label for="lt">All <span class="clr-blue">tough</span> teammates</label>
             <div class="check"></div>
           </li>
         </ul>
@@ -103,8 +103,8 @@
             <tr>
               <th style="width: 110px;">Name</th>
               <th style="width: 80px;">Trait</th>
-              <th style="width: 260px;">Weapon bonus AP</th>
               <th style="width: 60px;">AP</th>
+              <th style="width: 260px;">Weapon bonus AP <span class="sm clr-gray">(When attacking)</span></th>
               <th style="width: 70px;">Round</th>
               <th style="width: 120px;">AP / Turn</th>
             </tr>
@@ -120,18 +120,45 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
+              <td style="width: 60px;"><input type="number" id="ipt-ap0" class="text-center" name="input-ap" value=""></td>
               <td style="width: 260px;">
                 <select id="w0" name="weapon-ap">
                   <option value="0">None</option>
-                  <option value="10">Huge Bonus AP when attacking</option>
-                  <option value="8">Very large Bonus AP when attacking</option>
-                  <option value="7">Large Bonus AP when attacking</option>
-                  <option value="5">Medium Bonus AP when attacking</option>
-                  <option value="4">Small Bonus AP when attacking</option>
-                  <option value="3">Minor Bonus AP when attacking</option>
+                  <option value="10">Huge (+10)</option>
+                  <option value="8">Very large (+8)</option>
+                  <option value="7">Large (+7)</option>
+                  <option value="5">Medium (+5)</option>
+                  <option value="4">Small (+4)</option>
+                  <option value="3">Minor (+3)</option>
                 </select>
+              </td>
+              <td style="width: 70px;" class="text-center"><span id="rs0" class="clr-amber"></span> <span id="r0" class="clr-amber"></span></td>
+              <td style="width: 120px;" class="text-center"><span id="apt0">20</span> <span id="sap0" class="clr-success"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr20-0">
+                    <input type="checkbox" id="chk-apr20-0" name="apr20" value="20"> 
+                    <ins></ins> 
+                    <span>
+                      + 20% AP
+                    </span>
+                  </label>
+                </div>
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr40-0">
+                    <input type="checkbox" id="chk-apr40-0" name="apr40" value="40"> 
+                    <ins></ins> 
+                    <span>
+                      + 40% AP
+                    </span>
+                  </label>
+                </div>
+              </td>
+              <td>
                 <div id="sp0">
-                  <div id="spf0" class="checkbox sm">
+                  <div id="spf0" class="checkbox chk-w">
                     <label for="chk-arf0">
                       <input type="checkbox" id="chk-arf0" name="special-apf" value="8"> 
                       <ins></ins> 
@@ -140,7 +167,7 @@
                       </span>
                     </label>
                   </div>
-                  <div id="spt0" class="checkbox sm hide">
+                  <div id="spt0" class="checkbox chk-w hide">
                     <label for="chk-art0">
                       <input type="checkbox" id="chk-art0" name="special-apt" value="20"> 
                       <ins></ins> 
@@ -151,9 +178,7 @@
                   </div>
                 </div>
               </td>
-              <td style="width: 60px;"><input type="number" id="ipt-ap0" class="text-center" name="input-ap" value=""></td>
-              <td style="width: 70px;" class="text-center"><span id="rs0" class="clr-amber"></span> <span id="r0" class="clr-amber"></span></td>
-              <td style="width: 120px;" class="text-center"><span id="apt0">20</span> <span id="sap0" class="clr-success"></span></td>
+              <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -165,18 +190,45 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
+              <td><input type="number" id="ipt-ap1" class="text-center" name="input-ap" value=""></td>
               <td>
                 <select id="w1" name="weapon-ap">
                   <option value="0">None</option>
-                  <option value="10">Huge Bonus AP when attacking</option>
-                  <option value="8">Very large Bonus AP when attacking</option>
-                  <option value="7">Large Bonus AP when attacking</option>
-                  <option value="5">Medium Bonus AP when attacking</option>
-                  <option value="4">Small Bonus AP when attacking</option>
-                  <option value="3">Minor Bonus AP when attacking</option>
+                  <option value="10">Huge (+10)</option>
+                  <option value="8">Very large (+8)</option>
+                  <option value="7">Large (+7)</option>
+                  <option value="5">Medium (+5)</option>
+                  <option value="4">Small (+4)</option>
+                  <option value="3">Minor (+3)</option>
                 </select>
+              </td>
+              <td class="text-center"><span id="rs1" class="clr-amber"></span> <span id="r1" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt1"></span> <span id="sap1" class="clr-success"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr20-1">
+                    <input type="checkbox" id="chk-apr20-1" name="apr20" value="20"> 
+                    <ins></ins> 
+                    <span>
+                      + 20% AP
+                    </span>
+                  </label>
+                </div>
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr40-1">
+                    <input type="checkbox" id="chk-apr40-1" name="apr40" value="40"> 
+                    <ins></ins> 
+                    <span>
+                      + 40% AP
+                    </span>
+                  </label>
+                </div>
+              </td>
+              <td>
                 <div id="sp1">
-                  <div id="spf1" class="checkbox sm">
+                  <div id="spf1" class="checkbox chk-w">
                     <label for="chk-arf1">
                       <input type="checkbox" id="chk-arf1" name="special-apf" value="8"> 
                       <ins></ins> 
@@ -185,7 +237,7 @@
                       </span>
                     </label>
                   </div>
-                  <div id="spt1" class="checkbox sm hide">
+                  <div id="spt1" class="checkbox chk-w hide">
                     <label for="chk-art1">
                       <input type="checkbox" id="chk-art1" name="special-apt" value="20"> 
                       <ins></ins> 
@@ -196,9 +248,7 @@
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap1" class="text-center" name="input-ap" value=""></td>
-              <td class="text-center"><span id="rs1" class="clr-amber"></span> <span id="r1" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt1"></span> <span id="sap1" class="clr-success"></span></td>
+              <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -210,18 +260,45 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
+              <td><input type="number" id="ipt-ap2" class="text-center" name="input-ap" value=""></td>
               <td>
                 <select id="w2" name="weapon-ap">
                   <option value="0">None</option>
-                  <option value="10">Huge Bonus AP when attacking</option>
-                  <option value="8">Very large Bonus AP when attacking</option>
-                  <option value="7">Large Bonus AP when attacking</option>
-                  <option value="5">Medium Bonus AP when attacking</option>
-                  <option value="4">Small Bonus AP when attacking</option>
-                  <option value="3">Minor Bonus AP when attacking</option>
+                  <option value="10">Huge (+10)</option>
+                  <option value="8">Very large (+8)</option>
+                  <option value="7">Large (+7)</option>
+                  <option value="5">Medium (+5)</option>
+                  <option value="4">Small (+4)</option>
+                  <option value="3">Minor (+3)</option>
                 </select>
+              </td>
+              <td class="text-center"><span id="rs2" class="clr-amber"></span> <span id="r2" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt2"></span> <span id="sap2" class="clr-success"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr20-2">
+                    <input type="checkbox" id="chk-apr20-2" name="apr20" value="20"> 
+                    <ins></ins> 
+                    <span>
+                      + 20% AP
+                    </span>
+                  </label>
+                </div>
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr40-2">
+                    <input type="checkbox" id="chk-apr40-2" name="apr40" value="40"> 
+                    <ins></ins> 
+                    <span>
+                      + 40% AP
+                    </span>
+                  </label>
+                </div>
+              </td>
+              <td>
                 <div id="sp2" >
-                  <div id="spf2" class="checkbox sm">
+                  <div id="spf2" class="checkbox chk-w">
                     <label for="chk-arf2">
                       <input type="checkbox" id="chk-arf2" name="special-apf" value="8"> 
                       <ins></ins> 
@@ -230,7 +307,7 @@
                       </span>
                     </label>
                   </div>
-                  <div id="spt2" class="checkbox sm hide">
+                  <div id="spt2" class="checkbox chk-w hide">
                     <label for="chk-art2">
                       <input type="checkbox" id="chk-art2" name="special-apt" value="20"> 
                       <ins></ins> 
@@ -241,9 +318,7 @@
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap2" class="text-center" name="input-ap" value=""></td>
-              <td class="text-center"><span id="rs2" class="clr-amber"></span> <span id="r2" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt2"></span> <span id="sap2" class="clr-success"></span></td>
+              <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -255,18 +330,45 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
+              <td><input type="number" id="ipt-ap3" class="text-center" name="input-ap" value=""></td>
               <td>
                 <select id="w3" name="weapon-ap">
                   <option value="0">None</option>
-                  <option value="10">Huge Bonus AP when attacking</option>
-                  <option value="8">Very large Bonus AP when attacking</option>
-                  <option value="7">Large Bonus AP when attacking</option>
-                  <option value="5">Medium Bonus AP when attacking</option>
-                  <option value="4">Small Bonus AP when attacking</option>
-                  <option value="3">Minor Bonus AP when attacking</option>
+                  <option value="10">Huge (+10)</option>
+                  <option value="8">Very large (+8)</option>
+                  <option value="7">Large (+7)</option>
+                  <option value="5">Medium (+5)</option>
+                  <option value="4">Small (+4)</option>
+                  <option value="3">Minor (+3)</option>
                 </select>
+              </td>
+              <td class="text-center"><span id="rs3" class="clr-amber"></span> <span id="r3" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt3"></span> <span id="sap3" class="clr-success"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr20-3">
+                    <input type="checkbox" id="chk-apr20-3" name="apr20" value="20"> 
+                    <ins></ins> 
+                    <span>
+                      + 20% AP
+                    </span>
+                  </label>
+                </div>
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr40-3">
+                    <input type="checkbox" id="chk-apr40-3" name="apr40" value="40"> 
+                    <ins></ins> 
+                    <span>
+                      + 40% AP
+                    </span>
+                  </label>
+                </div>
+              </td>
+              <td>
                 <div id="sp3">
-                  <div id="spf3" class="checkbox sm">
+                  <div id="spf3" class="checkbox chk-w">
                     <label for="chk-arf3">
                       <input type="checkbox" id="chk-arf3" name="special-apf" value="8"> 
                       <ins></ins> 
@@ -275,7 +377,7 @@
                       </span>
                     </label>
                   </div>
-                  <div id="spt3" class="checkbox sm hide">
+                  <div id="spt3" class="checkbox chk-w hide">
                     <label for="chk-art3">
                       <input type="checkbox" id="chk-art3" name="special-apt" value="20"> 
                       <ins></ins> 
@@ -286,9 +388,7 @@
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap3" class="text-center" name="input-ap" value=""></td>
-              <td class="text-center"><span id="rs3" class="clr-amber"></span> <span id="r3" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt3"></span> <span id="sap3" class="clr-success"></span></td>
+              <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
               <td><input type="text"></td>
@@ -300,18 +400,45 @@
                   <option value="tough">Tough</option>
                 </select>
               </td>
+              <td><input type="number" id="ipt-ap4" class="text-center" name="input-ap" value=""></td>
               <td>
                 <select id="w4" name="weapon-ap">
                   <option value="0">None</option>
-                  <option value="10">Huge Bonus AP when attacking</option>
-                  <option value="8">Very large Bonus AP when attacking</option>
-                  <option value="7">Large Bonus AP when attacking</option>
-                  <option value="5">Medium Bonus AP when attacking</option>
-                  <option value="4">Small Bonus AP when attacking</option>
-                  <option value="3">Minor Bonus AP when attacking</option>
+                  <option value="10">Huge (+10)</option>
+                  <option value="8">Very large (+8)</option>
+                  <option value="7">Large (+7)</option>
+                  <option value="5">Medium (+5)</option>
+                  <option value="4">Small (+4)</option>
+                  <option value="3">Minor (+3)</option>
                 </select>
+              </td>
+              <td class="text-center"><span id="rs4" class="clr-amber"></span> <span id="r4" class="clr-amber"></span></td>
+              <td class="text-center"><span id="apt4"></span> <span id="sap4" class="clr-success"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr20-4">
+                    <input type="checkbox" id="chk-apr20-4" name="apr20" value="20"> 
+                    <ins></ins> 
+                    <span>
+                      + 20% AP
+                    </span>
+                  </label>
+                </div>
+                <div class="checkbox chk-apr">
+                  <label for="chk-apr40-4">
+                    <input type="checkbox" id="chk-apr40-4" name="apr40" value="40"> 
+                    <ins></ins> 
+                    <span>
+                      + 40% AP
+                    </span>
+                  </label>
+                </div>
+              </td>
+              <td>
                 <div id="sp4">
-                  <div id="spf4" class="checkbox sm">
+                  <div id="spf4" class="checkbox chk-w">
                     <label for="chk-arf4">
                       <input type="checkbox" id="chk-arf4" name="special-apf" value="8"> 
                       <ins></ins> 
@@ -320,7 +447,7 @@
                       </span>
                     </label>
                   </div>
-                  <div id="spt4" class="checkbox sm hide">
+                  <div id="spt4" class="checkbox chk-w hide">
                     <label for="chk-art4">
                       <input type="checkbox" id="chk-art4" name="special-apt" value="20"> 
                       <ins></ins> 
@@ -331,9 +458,7 @@
                   </div>
                 </div>
               </td>
-              <td><input type="number" id="ipt-ap4" class="text-center" name="input-ap" value=""></td>
-              <td class="text-center"><span id="rs4" class="clr-amber"></span> <span id="r4" class="clr-amber"></span></td>
-              <td class="text-center"><span id="apt4"></span> <span id="sap4" class="clr-success"></span></td>
+              <td colspan="2">&nbsp;</td>
             </tr>
           </tbody>
         </table>

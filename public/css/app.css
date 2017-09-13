@@ -27,19 +27,35 @@ table {
     padding: 4px;
     vertical-align: top; }
   table th {
-    color: #ede1b1; }
+    color: #ede1b1;
+    font-weight: normal; }
 
 h2 {
   margin-top: 12px;
-  margin-bottom: 12px; }
+  margin-bottom: 12px;
+  font-weight: normal; }
 
 h3 {
   margin-top: 0;
   margin-bottom: 8px;
-  color: #ede1b1; }
+  color: #ede1b1;
+  font-weight: normal; }
 
 .sm {
   font-size: 0.75em; }
+
+.chk-apr {
+  width: 107px;
+  display: inline-block;
+  font-size: 0.85em; }
+  .chk-apr span {
+    width: 79px;
+    margin-top: 4px; }
+
+.chk-w {
+  font-size: 0.75em; }
+  .chk-w span {
+    width: 224px; }
 
 .hide {
   display: none; }
@@ -98,6 +114,21 @@ h3 {
 
 .clr-success {
   color: #89c843; }
+
+.clr-gray {
+  color: #757575; }
+
+.clr-yellow {
+  color: #fbc02d; }
+
+.clr-green {
+  color: #388e3c; }
+
+.clr-red {
+  color: #b71c1c; }
+
+.clr-blue {
+  color: #01579b; }
 
 .label {
   font-size: 0.5em;
@@ -264,7 +295,6 @@ input, select {
   font-family: 'Teko', sans-serif;
   font-size: 20px;
   text-transform: uppercase;
-  margin-bottom: 8px;
   border-radius: 4px;
   border: 0;
   width: 100%; }
@@ -347,7 +377,6 @@ input[type="range"]:focus {
   width: 700px; }
 
 .tbl-result .checkbox span {
-  width: 224px;
   line-height: 1; }
 
 .page-scav .left-side {
