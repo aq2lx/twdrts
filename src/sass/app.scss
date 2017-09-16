@@ -19,6 +19,11 @@ $green-500: #89c843;
   box-sizing: border-box;
 }
 
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
 body {
   padding: 0;
   margin: 0;
