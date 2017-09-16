@@ -28,7 +28,6 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
   while (sap < inputAp) {
     sap += ap;
     r++;
-    console.log(sap);
   }
 
   eleApRound.innerHTML = r;
@@ -37,7 +36,7 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
 var reportApPerTurn = function reportApPerTurn(idx, ap, aprcv) {
   var eleApPerTurn = document.getElementById('apt' + idx);
 
-  eleApPerTurn.innerHTML = Math.round(ap) + aprcv;
+  eleApPerTurn.innerHTML = ap + aprcv;
 };
 
 var reportApReceived = function reportApReceived(idx, aprcv) {
@@ -62,7 +61,7 @@ var calculateAp = function calculateAp(idx) {
 };
 
 var calculateNode = function calculateNode(idx) {
-  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod();
+  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(1));
 };
 
 var calculateAll = function calculateAll() {

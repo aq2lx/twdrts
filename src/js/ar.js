@@ -34,7 +34,7 @@ const reportArRound = (idx, ap, aprcv) => {
 const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = Math.round(ap) + aprcv
+  eleApPerTurn.innerHTML = ap + aprcv
 }
 
 const reportApReceived = (idx, aprcv) => {
@@ -59,7 +59,7 @@ const calculateAp = (idx) => {
 }
 
 const calculateNode = (idx) => {
-  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()
+  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(1))
 }
 
 const calculateAll = () => {
