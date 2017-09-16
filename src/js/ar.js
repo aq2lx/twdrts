@@ -34,7 +34,7 @@ const reportArRound = (idx, ap, aprcv) => {
 const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = ap + aprcv
+  eleApPerTurn.innerHTML = Math.round(ap) + aprcv
 }
 
 const reportApReceived = (idx, aprcv) => {
