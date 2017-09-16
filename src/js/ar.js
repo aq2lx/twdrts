@@ -55,7 +55,7 @@ const report = (idx, ap, aprcv) => {
 
 //Calculate
 const calculateAp = (idx) => {
-  report(idx, calculateNode(idx), getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx))
+  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx))
 }
 
 const calculateNode = (idx) => {
@@ -158,6 +158,7 @@ const eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]')
 const eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]')
 const eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]')
 const eSpecialAPts = document.querySelectorAll('input[name="special-apt"]')
+const eReceived15 = document.querySelectorAll('input[name="apr15"]')
 const eReceived20 = document.querySelectorAll('input[name="apr20"]')
 const eReceived40 = document.querySelectorAll('input[name="apr40"]')
 const eSelectTraits = document.querySelectorAll('select[name="triat"]')
@@ -232,6 +233,12 @@ for (let i = 0; i < eInputAPs.length; i++) {
 
 for (let i = 0; i < eSpecialAPts.length; i++) { 
   eSpecialAPts[i].onchange = function() {
+    calculateAp(i)
+  }
+}
+
+for (let i = 0; i < eReceived15.length; i++) { 
+  eReceived15[i].onchange = function() {
     calculateAp(i)
   }
 }

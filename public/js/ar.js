@@ -57,7 +57,7 @@ var report = function report(idx, ap, aprcv) {
 
 //Calculate
 var calculateAp = function calculateAp(idx) {
-  report(idx, calculateNode(idx), getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx));
+  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx));
 };
 
 var calculateNode = function calculateNode(idx) {
@@ -160,6 +160,7 @@ var eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]');
 var eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]');
 var eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]');
 var eSpecialAPts = document.querySelectorAll('input[name="special-apt"]');
+var eReceived15 = document.querySelectorAll('input[name="apr15"]');
 var eReceived20 = document.querySelectorAll('input[name="apr20"]');
 var eReceived40 = document.querySelectorAll('input[name="apr40"]');
 var eSelectTraits = document.querySelectorAll('select[name="triat"]');
@@ -252,23 +253,33 @@ for (var i = 0; i < eSpecialAPts.length; i++) {
 }
 
 var _loop5 = function _loop5(i) {
+  eReceived15[i].onchange = function () {
+    calculateAp(i);
+  };
+};
+
+for (var i = 0; i < eReceived15.length; i++) {
+  _loop5(i);
+}
+
+var _loop6 = function _loop6(i) {
   eReceived20[i].onchange = function () {
     calculateAp(i);
   };
 };
 
 for (var i = 0; i < eReceived20.length; i++) {
-  _loop5(i);
+  _loop6(i);
 }
 
-var _loop6 = function _loop6(i) {
+var _loop7 = function _loop7(i) {
   eReceived40[i].onchange = function () {
     calculateAp(i);
   };
 };
 
 for (var i = 0; i < eReceived40.length; i++) {
-  _loop6(i);
+  _loop7(i);
 }
 
 // Initialize
