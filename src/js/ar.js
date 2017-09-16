@@ -26,7 +26,6 @@ const reportArRound = (idx, ap, aprcv) => {
   while (sap < inputAp) {
     sap += ap
     r++
-    console.log(sap)
   }
 
   eleApRound.innerHTML = r
@@ -35,7 +34,7 @@ const reportArRound = (idx, ap, aprcv) => {
 const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = Math.round(ap) + aprcv
+  eleApPerTurn.innerHTML = ap + aprcv
 }
 
 const reportApReceived = (idx, aprcv) => {
