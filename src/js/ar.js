@@ -26,6 +26,7 @@ const reportArRound = (idx, ap, aprcv) => {
   while (sap < inputAp) {
     sap += ap
     r++
+    console.log(sap)
   }
 
   eleApRound.innerHTML = r
@@ -34,7 +35,7 @@ const reportArRound = (idx, ap, aprcv) => {
 const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = ap + aprcv
+  eleApPerTurn.innerHTML = Math.round(ap) + aprcv
 }
 
 const reportApReceived = (idx, aprcv) => {
@@ -59,7 +60,7 @@ const calculateAp = (idx) => {
 }
 
 const calculateNode = (idx) => {
-  return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod())
+  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()
 }
 
 const calculateAll = () => {
@@ -91,14 +92,14 @@ const getApFromLeader = (idx) => {
   }
 
   if (leader === 'all' || traitToon === leader || typeToon === leader) {
-    apFromLeader = parseInt(document.querySelector('input[name="leader-ap"]:checked').value, 10)
+    apFromLeader = parseFloat(document.querySelector('input[name="leader-ap"]:checked').value)
   }
 
   return apFromLeader
 }
 
 const getApWeapon = (idx) => {
-  const apWeapon = parseInt(document.getElementById(`w${idx}`).value, 10)
+  const apWeapon = parseFloat(document.getElementById(`w${idx}`).value)
 
   return apWeapon
 }

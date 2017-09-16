@@ -28,6 +28,7 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
   while (sap < inputAp) {
     sap += ap;
     r++;
+    console.log(sap);
   }
 
   eleApRound.innerHTML = r;
@@ -36,7 +37,7 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
 var reportApPerTurn = function reportApPerTurn(idx, ap, aprcv) {
   var eleApPerTurn = document.getElementById('apt' + idx);
 
-  eleApPerTurn.innerHTML = ap + aprcv;
+  eleApPerTurn.innerHTML = Math.round(ap) + aprcv;
 };
 
 var reportApReceived = function reportApReceived(idx, aprcv) {
@@ -61,7 +62,7 @@ var calculateAp = function calculateAp(idx) {
 };
 
 var calculateNode = function calculateNode(idx) {
-  return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod());
+  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod();
 };
 
 var calculateAll = function calculateAll() {
@@ -93,14 +94,14 @@ var getApFromLeader = function getApFromLeader(idx) {
   }
 
   if (leader === 'all' || traitToon === leader || typeToon === leader) {
-    apFromLeader = parseInt(document.querySelector('input[name="leader-ap"]:checked').value, 10);
+    apFromLeader = parseFloat(document.querySelector('input[name="leader-ap"]:checked').value);
   }
 
   return apFromLeader;
 };
 
 var getApWeapon = function getApWeapon(idx) {
-  var apWeapon = parseInt(document.getElementById('w' + idx).value, 10);
+  var apWeapon = parseFloat(document.getElementById('w' + idx).value);
 
   return apWeapon;
 };
