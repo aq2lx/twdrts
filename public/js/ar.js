@@ -15,6 +15,8 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
     while (aprcv < inputAp) {
       aprcv += ap;
       rs++;
+
+      aprcv = Math.floor(aprcv) + 1;
     }
 
     eleApFSWRound.innerHTML = rs + ' / ';
@@ -36,14 +38,18 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
 var reportApPerTurn = function reportApPerTurn(idx, ap, aprcv) {
   var eleApPerTurn = document.getElementById('apt' + idx);
 
-  eleApPerTurn.innerHTML = ap + aprcv;
+  if (aprcv) {
+    eleApPerTurn.innerHTML = ap + (Math.floor(aprcv) + 1);
+  } else {
+    eleApPerTurn.innerHTML = ap;
+  }
 };
 
 var reportApReceived = function reportApReceived(idx, aprcv) {
   var eleApFromSpecialWeapon = document.getElementById('sap' + idx);
 
   if (aprcv) {
-    eleApFromSpecialWeapon.innerHTML = '(+ ' + aprcv + ')';
+    eleApFromSpecialWeapon.innerHTML = '(+ ' + (Math.floor(aprcv) + 1) + ')';
   } else {
     eleApFromSpecialWeapon.innerHTML = '';
   }
@@ -122,7 +128,7 @@ var getApSpecialFast = function getApSpecialFast(idx) {
     apSpecialPercent += parseInt(eSpecials[i].value, 10);
   }
 
-  apSpecialPoint = Math.round(inputAp * apSpecialPercent / 100);
+  apSpecialPoint = parseFloat((inputAp * apSpecialPercent / 100).toFixed(1));
 
   return apSpecialPoint;
 };
@@ -134,7 +140,7 @@ var getApSpecialTough = function getApSpecialTough(idx) {
   var inputAp = getInputAp(idx);
 
   if (eSpecial.checked) {
-    apSpecialPoint = Math.round(inputAp * parseInt(eSpecial.value, 10) / 100);
+    apSpecialPoint = parseFloat((inputAp * parseInt(eSpecial.value, 10) / 100).toFixed(1));
   }
 
   return apSpecialPoint;
@@ -147,7 +153,7 @@ var getApReceived = function getApReceived(idx, percent) {
   var inputAp = getInputAp(idx);
 
   if (eReceived.checked) {
-    apReceived = Math.round(inputAp * parseInt(percent, 10) / 100);
+    apReceived = parseFloat((inputAp * parseInt(percent, 10) / 100).toFixed(1));
   }
 
   return apReceived;

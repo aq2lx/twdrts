@@ -13,6 +13,8 @@ const reportArRound = (idx, ap, aprcv) => {
     while (aprcv < inputAp) {
       aprcv += ap
       rs++
+
+      aprcv = Math.floor(aprcv) + 1
     }
 
     eleApFSWRound.innerHTML = `${rs} / `
@@ -34,14 +36,18 @@ const reportArRound = (idx, ap, aprcv) => {
 const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
-  eleApPerTurn.innerHTML = ap + aprcv
+  if (aprcv) {
+    eleApPerTurn.innerHTML = ap + (Math.floor(aprcv) + 1)
+  } else {
+    eleApPerTurn.innerHTML = ap
+  }
 }
 
 const reportApReceived = (idx, aprcv) => {
   const eleApFromSpecialWeapon = document.getElementById(`sap${idx}`)
 
   if (aprcv) {
-    eleApFromSpecialWeapon.innerHTML = `(+ ${aprcv})`
+    eleApFromSpecialWeapon.innerHTML = `(+ ${Math.floor(aprcv) + 1})`
   } else {
     eleApFromSpecialWeapon.innerHTML = ''
   }
@@ -120,7 +126,7 @@ const getApSpecialFast = (idx) => {
     apSpecialPercent += parseInt(eSpecials[i].value, 10)
   }
 
-  apSpecialPoint = Math.round((inputAp * apSpecialPercent) / 100)
+  apSpecialPoint = parseFloat(((inputAp * apSpecialPercent) / 100).toFixed(1))
 
   return apSpecialPoint
 }
@@ -131,8 +137,8 @@ const getApSpecialTough = (idx) => {
   const eSpecial = document.getElementById(`chk-art${idx}`)
   const inputAp = getInputAp(idx)
 
-  if(eSpecial.checked) {
-    apSpecialPoint = Math.round((inputAp * parseInt(eSpecial.value, 10)) / 100)
+  if (eSpecial.checked) {
+    apSpecialPoint = parseFloat(((inputAp * parseInt(eSpecial.value, 10)) / 100).toFixed(1))
   }
 
   return apSpecialPoint
@@ -144,8 +150,8 @@ const getApReceived = (idx, percent) => {
   const eReceived = document.getElementById(`chk-apr${percent}-${idx}`)
   const inputAp = getInputAp(idx)
 
-  if(eReceived.checked) {
-    apReceived = Math.round((inputAp * parseInt(percent, 10)) / 100)
+  if (eReceived.checked) {
+    apReceived = parseFloat(((inputAp * parseInt(percent, 10)) / 100).toFixed(1))
   }
 
   return apReceived
