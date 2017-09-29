@@ -4,17 +4,19 @@
 var apAtttack = 20;
 
 // Report
-var reportArRound = function reportArRound(idx, ap, apsp) {
+var reportArRound = function reportArRound(idx, ap, aprcv) {
   var eleApRound = document.getElementById('r' + idx);
   var eleApFSWRound = document.getElementById('rs' + idx);
   var inputAp = getInputAp(idx);
 
-  if (apsp) {
+  if (aprcv) {
     var rs = 0;
 
-    while (apsp < inputAp) {
-      apsp += ap;
+    while (aprcv < inputAp) {
+      aprcv += ap;
       rs++;
+
+      aprcv = Math.floor(aprcv) + 1;
     }
 
     eleApFSWRound.innerHTML = rs + ' / ';
@@ -33,36 +35,44 @@ var reportArRound = function reportArRound(idx, ap, apsp) {
   eleApRound.innerHTML = r;
 };
 
-var reportApPerTurn = function reportApPerTurn(idx, ap, apsp) {
+var reportApPerTurn = function reportApPerTurn(idx, ap, aprcv) {
   var eleApPerTurn = document.getElementById('apt' + idx);
 
-  eleApPerTurn.innerHTML = ap + apsp;
+  if (aprcv) {
+    eleApPerTurn.innerHTML = ap + (Math.floor(aprcv) + 1);
+  } else {
+    eleApPerTurn.innerHTML = ap;
+  }
 };
 
-var reportApFromSpecialWeapon = function reportApFromSpecialWeapon(idx, apsp) {
+var reportApReceived = function reportApReceived(idx, aprcv) {
   var eleApFromSpecialWeapon = document.getElementById('sap' + idx);
 
-  if (apsp) {
-    eleApFromSpecialWeapon.innerHTML = '(+ ' + apsp + ')';
+  if (aprcv) {
+    eleApFromSpecialWeapon.innerHTML = '(+ ' + (Math.floor(aprcv) + 1) + ')';
   } else {
     eleApFromSpecialWeapon.innerHTML = '';
   }
 };
 
-var report = function report(idx, ap, apsp) {
-  reportArRound(idx, ap, apsp);
-  reportApPerTurn(idx, ap, apsp);
-  reportApFromSpecialWeapon(idx, apsp);
+var report = function report(idx, ap, aprcv) {
+  reportArRound(idx, ap, aprcv);
+  reportApPerTurn(idx, ap, aprcv);
+  reportApReceived(idx, aprcv);
 };
 
 //Calculate
+var calculateAp = function calculateAp(idx) {
+  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx));
+};
+
 var calculateNode = function calculateNode(idx) {
-  return Math.round((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod());
+  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(1));
 };
 
 var calculateAll = function calculateAll() {
   for (var i = 0; i <= 4; i++) {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
+    calculateAp(i);
   }
 };
 
@@ -89,14 +99,14 @@ var getApFromLeader = function getApFromLeader(idx) {
   }
 
   if (leader === 'all' || traitToon === leader || typeToon === leader) {
-    apFromLeader = parseInt(document.querySelector('input[name="leader-ap"]:checked').value, 10);
+    apFromLeader = parseFloat(document.querySelector('input[name="leader-ap"]:checked').value);
   }
 
   return apFromLeader;
 };
 
 var getApWeapon = function getApWeapon(idx) {
-  var apWeapon = parseInt(document.getElementById('w' + idx).value, 10);
+  var apWeapon = parseFloat(document.getElementById('w' + idx).value);
 
   return apWeapon;
 };
@@ -118,23 +128,35 @@ var getApSpecialFast = function getApSpecialFast(idx) {
     apSpecialPercent += parseInt(eSpecials[i].value, 10);
   }
 
-  apSpecialPoint = Math.round(inputAp * apSpecialPercent / 100);
+  apSpecialPoint = parseFloat((inputAp * apSpecialPercent / 100).toFixed(1));
 
   return apSpecialPoint;
 };
 
 var getApSpecialTough = function getApSpecialTough(idx) {
-  var apSpecialPercent = 0;
   var apSpecialPoint = 0;
 
   var eSpecial = document.getElementById('chk-art' + idx);
   var inputAp = getInputAp(idx);
 
   if (eSpecial.checked) {
-    apSpecialPoint = Math.round(inputAp * parseInt(eSpecial.value, 10) / 100);
+    apSpecialPoint = parseFloat((inputAp * parseInt(eSpecial.value, 10) / 100).toFixed(1));
   }
 
   return apSpecialPoint;
+};
+
+var getApReceived = function getApReceived(idx, percent) {
+  var apReceived = 0;
+
+  var eReceived = document.getElementById('chk-apr' + percent + '-' + idx);
+  var inputAp = getInputAp(idx);
+
+  if (eReceived.checked) {
+    apReceived = parseFloat((inputAp * parseInt(percent, 10) / 100).toFixed(1));
+  }
+
+  return apReceived;
 };
 
 // Elements
@@ -144,6 +166,9 @@ var eLeaderAPs = document.querySelectorAll('input[name="leader-ap"]');
 var eWeaponAPs = document.querySelectorAll('select[name="weapon-ap"]');
 var eSpecialAPfs = document.querySelectorAll('input[name="special-apf"]');
 var eSpecialAPts = document.querySelectorAll('input[name="special-apt"]');
+var eReceived15 = document.querySelectorAll('input[name="apr15"]');
+var eReceived20 = document.querySelectorAll('input[name="apr20"]');
+var eReceived40 = document.querySelectorAll('input[name="apr40"]');
 var eSelectTraits = document.querySelectorAll('select[name="triat"]');
 var eInputAPs = document.querySelectorAll('input[name="input-ap"]');
 
@@ -195,7 +220,7 @@ for (var i = 0; i < eSelectTraits.length; i++) {
 
 var _loop2 = function _loop2(i) {
   eWeaponAPs[i].onchange = function () {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
+    calculateAp(i);
   };
 };
 
@@ -215,7 +240,7 @@ var _loop3 = function _loop3(i) {
   };
 
   eInputAPs[i].onkeyup = function () {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
+    calculateAp(i);
   };
 };
 
@@ -225,12 +250,42 @@ for (var i = 0; i < eInputAPs.length; i++) {
 
 var _loop4 = function _loop4(i) {
   eSpecialAPts[i].onchange = function () {
-    report(i, calculateNode(i), getApSpecialFast(i) + getApSpecialTough(i));
+    calculateAp(i);
   };
 };
 
 for (var i = 0; i < eSpecialAPts.length; i++) {
   _loop4(i);
+}
+
+var _loop5 = function _loop5(i) {
+  eReceived15[i].onchange = function () {
+    calculateAp(i);
+  };
+};
+
+for (var i = 0; i < eReceived15.length; i++) {
+  _loop5(i);
+}
+
+var _loop6 = function _loop6(i) {
+  eReceived20[i].onchange = function () {
+    calculateAp(i);
+  };
+};
+
+for (var i = 0; i < eReceived20.length; i++) {
+  _loop6(i);
+}
+
+var _loop7 = function _loop7(i) {
+  eReceived40[i].onchange = function () {
+    calculateAp(i);
+  };
+};
+
+for (var i = 0; i < eReceived40.length; i++) {
+  _loop7(i);
 }
 
 // Initialize
