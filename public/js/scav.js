@@ -1,7 +1,8 @@
 'use strict';
 
+// Varible
 var campMember = [];
-var xpFromScav = 100000;
+var xpFromScav = 25000;
 
 var name = '';
 var star = 5;
@@ -9,9 +10,11 @@ var tier = 4;
 var lvl = 1;
 var xp = 0;
 var countMember = 0;
+var xpPerMember = 0;
+var totalRenown = 0;
 
 var getXpPerMember = function getXpPerMember() {
-  return parseInt(xpFromScav / campMember.length, 10);
+  return parseInt(xpFromScav / countMember, 10);
 };
 
 // Elements
@@ -100,9 +103,7 @@ var addToCamp = function addToCamp(data) {
   }
 
   data.idx = idx;
-
-  campMember.push(data);
-  calculate();
+  campMember[idx] = data;
 
   // Create element
   var newMember = document.createElement('div');
@@ -116,6 +117,7 @@ var addToCamp = function addToCamp(data) {
   campNodes[idx].appendChild(newMember);
 
   countMember++;
+  calculate();
 };
 
 // Add element
@@ -176,7 +178,7 @@ var createTable = function createTable(data) {
   var addCol = function addCol(data, property) {
     var col = document.createElement('td');
 
-    if (data === null || data === '') {
+    if (data === '') {
       data = '&nbsp;';
     }
 
@@ -235,11 +237,15 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addCol('xp gain', {
     className: 'text-right'
-  }), addCol('25,000')]));
+  }), addCol(null, {
+    id: 'xp-gain-' + data.idx
+  })]));
 
   table.appendChild(addRow([addCol('renown', {
     className: 'text-right'
-  }), addCol('1,200')]));
+  }), addCol(null, {
+    id: 'renown-' + data.idx
+  })]));
 
   return table;
 };
@@ -254,17 +260,86 @@ var removeMember = function removeMember(evt) {
   }
 
   countMember--;
+  campMember[idx] = null;
 
-  campMember.splice(idx, 1);
   calculate();
+};
+
+var getRemainingXpChart = function getRemainingXpChart(idx) {
+  var xpSet = Xp['s' + campMember[idx].star]['t' + campMember[idx].tier];
+  var remainingXp = xpSet.slice(campMember[idx].lvl - 1);
+
+  return remainingXp;
 };
 
 // Calculate
 var calculate = function calculate() {
-  var xpSet = Xp['s' + campMember[0].star]['t' + campMember[0].tier];
-  var lv = campMember[0].lvl;
+  xpPerMember = getXpPerMember();
 
-  console.log(campMember, getXpPerMember(), xpSet, lv);
+  for (var _i6 = 0; _i6 <= 4; _i6++) {
+    if (campMember[_i6]) {
+      calculateMember(_i6);
+    }
+  }
+  /*  const xpSet = Xp[`s${campMember[0].star}`][`t${campMember[0].tier}`]
+    const lv = campMember[0].lvl
+  
+    console.log(campMember, getXpPerMember(), xpSet, lv)*/
+};
+
+var calculateMember = function calculateMember(idx) {
+  var remainingXpChart = getRemainingXpChart(idx);
+
+  // console.log(xpPerMember, remainingXp, campMember[idx].xp)
+
+  if (remainingXpChart.length) {
+    var sum = 0;
+    var lvlGain = 0;
+    var _xp = 0;
+
+    for (var _i7 = 0; _i7 < remainingXpChart.length; _i7++) {
+      sum += remainingXpChart[_i7];
+
+      // console.log(xpPerMember)
+
+      if (sum > xpPerMember) {
+        lvlGain = _i7;
+        _xp = xpPerMember + remainingXpChart[_i7] - sum;
+
+        break;
+      }
+    }
+
+    setResult(idx, { lvlGain: lvlGain, xp: _xp });
+  }
+
+  /*    const xpSet = Xp[`s${campMember[idx].star}`][`t${campMember[idx].tier}`]
+      console.log('b', xpSet)
+  
+      xpSet.splice(0, campMember[idx].lvl -1)
+  
+      console.log('a', xpSet, campMember[idx].lvl, campMember[idx].xp)*/
+  //xpSet
+};
+
+// Get Renown point
+var getRenownPoint = function getRenownPoint(idx, lvl) {
+  var renown = Renown['s' + campMember[idx].star][campMember[idx].tier - 1];
+
+  return renown * lvl;
+};
+
+// Set result
+var setResult = function setResult(idx, data) {
+  var elemLvlGain = document.getElementById('lvl-' + idx);
+  var elemXpGain = document.getElementById('xp-gain-' + idx);
+  var elemRenown = document.getElementById('renown-' + idx);
+
+  elemLvlGain.innerHTML = data.lvlGain;
+  elemXpGain.innerHTML = xpPerMember.toLocaleString();
+  elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString();
+
+  console.log(elemLvlGain, data);
 };
 
 // Events
@@ -273,11 +348,5 @@ btnAddtoCamp.onclick = function () {
     return false;
   }
 
-  addToCamp({
-    name: name,
-    star: star,
-    tier: tier,
-    lvl: lvl,
-    xp: xp
-  });
+  addToCamp({ name: name, star: star, tier: tier, lvl: lvl, xp: xp });
 };

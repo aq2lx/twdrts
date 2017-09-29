@@ -1,5 +1,6 @@
+// Varible
 const campMember = []
-const xpFromScav = 100000
+const xpFromScav = 25000
 
 let name = ''
 let star = 5
@@ -7,9 +8,11 @@ let tier = 4
 let lvl = 1
 let xp = 0
 let countMember = 0
+let xpPerMember = 0
+let totalRenown = 0
 
 const getXpPerMember = () => {
-  return parseInt(xpFromScav / campMember.length, 10)
+  return parseInt(xpFromScav / countMember, 10)
 }
 
 // Elements
@@ -98,9 +101,7 @@ const addToCamp = (data) => {
   }
 
   data.idx = idx
-
-  campMember.push(data)
-  calculate()
+  campMember[idx] = data
 
   // Create element
   const newMember = document.createElement('div')
@@ -114,6 +115,7 @@ const addToCamp = (data) => {
   campNodes[idx].appendChild(newMember)
 
   countMember++
+  calculate()
 }
 
 // Add element
@@ -174,7 +176,7 @@ const createTable = (data) => {
   const addCol = (data, property) => {
     const col = document.createElement('td')
 
-    if (data === null || data === '') {
+    if (data === '') {
       data = '&nbsp;'
     }
 
@@ -246,7 +248,9 @@ const createTable = (data) => {
       className: 'text-right'
     }),
 
-    addCol('25,000')
+    addCol(null, {
+      id: `xp-gain-${data.idx}`
+    })
   ]))
 
   table.appendChild(addRow([
@@ -254,7 +258,9 @@ const createTable = (data) => {
       className: 'text-right'
     }),
 
-    addCol('1,200')
+    addCol(null, {
+      id: `renown-${data.idx}`
+    })
   ]))
 
   return table
@@ -270,17 +276,87 @@ const removeMember = (evt) => {
   }
 
   countMember--
+  campMember[idx] = null
 
-  campMember.splice(idx, 1)
   calculate()
+}
+
+const getRemainingXpChart = (idx) => {
+  const xpSet = Xp[`s${campMember[idx].star}`][`t${campMember[idx].tier}`]
+  const remainingXp = xpSet.slice(campMember[idx].lvl - 1)
+
+  return remainingXp
 }
 
 // Calculate
 const calculate = () => {
-  const xpSet = Xp[`s${campMember[0].star}`][`t${campMember[0].tier}`]
+  xpPerMember = getXpPerMember()
+
+  for (let i = 0; i <= 4; i++) {
+    if (campMember[i]) {
+      calculateMember(i)
+    }
+  }
+/*  const xpSet = Xp[`s${campMember[0].star}`][`t${campMember[0].tier}`]
   const lv = campMember[0].lvl
 
-  console.log(campMember, getXpPerMember(), xpSet, lv)
+  console.log(campMember, getXpPerMember(), xpSet, lv)*/
+}
+
+const calculateMember = (idx) => {
+  const remainingXpChart = getRemainingXpChart(idx)
+
+  // console.log(xpPerMember, remainingXp, campMember[idx].xp)
+
+  if (remainingXpChart.length) {
+    let sum = 0
+    let lvlGain = 0
+    let xp = 0
+
+    for (let i = 0; i < remainingXpChart.length; i++) {
+      sum += remainingXpChart[i]
+
+      // console.log(xpPerMember)
+
+      if (sum > xpPerMember) {
+        lvlGain = i
+        xp = xpPerMember + remainingXpChart[i] - sum
+
+        break
+      }
+    }
+
+    setResult(idx, { lvlGain, xp })
+  }
+
+
+/*    const xpSet = Xp[`s${campMember[idx].star}`][`t${campMember[idx].tier}`]
+    console.log('b', xpSet)
+
+    xpSet.splice(0, campMember[idx].lvl -1)
+
+    console.log('a', xpSet, campMember[idx].lvl, campMember[idx].xp)*/
+    //xpSet
+}
+
+// Get Renown point
+const getRenownPoint = (idx, lvl) => {
+  const renown = Renown[`s${campMember[idx].star}`][campMember[idx].tier - 1]
+
+  return renown * lvl
+}
+
+// Set result
+const setResult = (idx, data) => {
+  const elemLvlGain = document.getElementById(`lvl-${idx}`)
+  const elemXpGain = document.getElementById(`xp-gain-${idx}`)
+  const elemRenown = document.getElementById(`renown-${idx}`)
+
+  elemLvlGain.innerHTML = data.lvlGain
+  elemXpGain.innerHTML = xpPerMember.toLocaleString()
+  elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString()
+
+  console.log(elemLvlGain, data)
 }
 
 // Events
@@ -289,11 +365,5 @@ btnAddtoCamp.onclick = function() {
     return false
   }
 
-  addToCamp({
-    name: name,
-    star: star,
-    tier: tier,
-    lvl: lvl,
-    xp: xp
-  })
+  addToCamp({ name, star, tier, lvl, xp })
 }
