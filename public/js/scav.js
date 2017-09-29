@@ -1,8 +1,11 @@
 'use strict';
 
+// Config
+//==============================
+var xpFromScav = 100000;
+
 // Varible
 var campMember = [];
-var xpFromScav = 25000;
 
 var name = '';
 var star = 5;
@@ -11,13 +14,9 @@ var lvl = 1;
 var xp = 0;
 var countMember = 0;
 var xpPerMember = 0;
-var totalRenown = 0;
-
-var getXpPerMember = function getXpPerMember() {
-  return parseInt(xpFromScav / countMember, 10);
-};
 
 // Elements
+//==============================
 var eName = document.getElementById('ipt-name');
 
 var eLblLvl = document.getElementById('lbl-lvl');
@@ -35,25 +34,29 @@ var campNodes = camp.getElementsByTagName('li');
 var eXP = document.getElementById('ipt-xp');
 
 // Input Change
+//==============================
 eName.onchange = function () {
   name = this.value;
 };
 
 // Input XP
+//==============================
 eXP.onclick = function () {
   this.select();
 };
 
 eXP.onkeyup = function () {
-  xp = parseInt(this.value, 10);
+  xp = parseInt(this.value || 0, 10);
 };
 
 // Input Level
+//==============================
 eInputLvl.oninput = function () {
   eLblLvl.innerHTML = lvl = parseInt(this.value);
 };
 
 // Input Star
+//==============================
 for (var i = 0; i < eBtnStar.length; i++) {
   eBtnStar[i].onclick = function () {
     for (var j = 0; j < eBtnStar.length; j++) {
@@ -68,6 +71,7 @@ for (var i = 0; i < eBtnStar.length; i++) {
 }
 
 // Input Tier
+//==============================
 for (var _i = 0; _i < eBtnTier.length; _i++) {
   eBtnTier[_i].onclick = function () {
     for (var j = 0; j < eBtnTier.length; j++) {
@@ -81,15 +85,8 @@ for (var _i = 0; _i < eBtnTier.length; _i++) {
   };
 }
 
-// Set max level
-var setMaxLevel = function setMaxLevel() {
-  var maxLvl = MaxLevel['s' + star]['t' + tier];
-
-  eInputLvl.setAttribute('max', maxLvl);
-  eInputLvl.value = eLblLvl.innerHTML = lvl = 1;
-};
-
 // Add to camp
+//==============================
 var addToCamp = function addToCamp(data) {
   var idx = void 0;
 
@@ -121,6 +118,7 @@ var addToCamp = function addToCamp(data) {
 };
 
 // Add element
+//==============================
 var addBtnRemove = function addBtnRemove(idx) {
   var btnRemove = document.createElement('span');
 
@@ -134,6 +132,8 @@ var addBtnRemove = function addBtnRemove(idx) {
   return btnRemove;
 };
 
+// Add tier
+//==============================
 var addTier = function addTier(tier) {
   var wrapper = document.createElement('div');
 
@@ -150,7 +150,8 @@ var addTier = function addTier(tier) {
   return wrapper;
 };
 
-// Table
+// Table builder
+//==============================
 var createTable = function createTable(data) {
   var row = void 0;
   var col = void 0;
@@ -225,32 +226,22 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addStar(data.star)]));
 
-  table.appendChild(addRow([addCol('lvl', {
-    className: 'text-right'
-  }), addCol(data.lvl + ' > ', {
-    id: 'lvl-' + data.idx
-  })]));
+  table.appendChild(addRow([addCol('lvl', { className: 'text-right' }), addCol(data.lvl + ' > ', { id: 'lvl-' + data.idx })]));
 
-  table.appendChild(addRow([addCol('xp', {
-    className: 'text-right'
-  }), addCol(data.xp)]));
+  /*table.appendChild(addRow([
+    addCol('xp', { className: 'text-right' }),
+    addCol(data.xp)
+  ]))*/
 
-  table.appendChild(addRow([addCol('xp gain', {
-    className: 'text-right'
-  }), addCol(null, {
-    id: 'xp-gain-' + data.idx
-  })]));
+  table.appendChild(addRow([addCol('xp gain', { className: 'text-right' }), addCol(null, { id: 'xp-gain-' + data.idx })]));
 
-  table.appendChild(addRow([addCol('renown', {
-    className: 'text-right'
-  }), addCol(null, {
-    id: 'renown-' + data.idx
-  })]));
+  table.appendChild(addRow([addCol('renown', { className: 'text-right' }), addCol(null, { id: 'renown-' + data.idx })]));
 
   return table;
 };
 
 // Remove member
+//==============================
 var removeMember = function removeMember(evt) {
   var idx = evt.target.idx;
   var node = campNodes[idx];
@@ -265,6 +256,14 @@ var removeMember = function removeMember(evt) {
   calculate();
 };
 
+// Get XP gain per member
+//==============================
+var getXpPerMember = function getXpPerMember() {
+  return parseInt(xpFromScav / countMember, 10);
+};
+
+// Get remaning XP chart
+//==============================
 var getRemainingXpChart = function getRemainingXpChart(idx) {
   var xpSet = Xp['s' + campMember[idx].star]['t' + campMember[idx].tier];
   var remainingXp = xpSet.slice(campMember[idx].lvl - 1);
@@ -272,57 +271,8 @@ var getRemainingXpChart = function getRemainingXpChart(idx) {
   return remainingXp;
 };
 
-// Calculate
-var calculate = function calculate() {
-  xpPerMember = getXpPerMember();
-
-  for (var _i6 = 0; _i6 <= 4; _i6++) {
-    if (campMember[_i6]) {
-      calculateMember(_i6);
-    }
-  }
-  /*  const xpSet = Xp[`s${campMember[0].star}`][`t${campMember[0].tier}`]
-    const lv = campMember[0].lvl
-  
-    console.log(campMember, getXpPerMember(), xpSet, lv)*/
-};
-
-var calculateMember = function calculateMember(idx) {
-  var remainingXpChart = getRemainingXpChart(idx);
-
-  // console.log(xpPerMember, remainingXp, campMember[idx].xp)
-
-  if (remainingXpChart.length) {
-    var sum = 0;
-    var lvlGain = 0;
-    var _xp = 0;
-
-    for (var _i7 = 0; _i7 < remainingXpChart.length; _i7++) {
-      sum += remainingXpChart[_i7];
-
-      // console.log(xpPerMember)
-
-      if (sum > xpPerMember) {
-        lvlGain = _i7;
-        _xp = xpPerMember + remainingXpChart[_i7] - sum;
-
-        break;
-      }
-    }
-
-    setResult(idx, { lvlGain: lvlGain, xp: _xp });
-  }
-
-  /*    const xpSet = Xp[`s${campMember[idx].star}`][`t${campMember[idx].tier}`]
-      console.log('b', xpSet)
-  
-      xpSet.splice(0, campMember[idx].lvl -1)
-  
-      console.log('a', xpSet, campMember[idx].lvl, campMember[idx].xp)*/
-  //xpSet
-};
-
 // Get Renown point
+//==============================
 var getRenownPoint = function getRenownPoint(idx, lvl) {
   var renown = Renown['s' + campMember[idx].star][campMember[idx].tier - 1];
 
@@ -330,19 +280,98 @@ var getRenownPoint = function getRenownPoint(idx, lvl) {
 };
 
 // Set result
+//==============================
 var setResult = function setResult(idx, data) {
   var elemLvlGain = document.getElementById('lvl-' + idx);
   var elemXpGain = document.getElementById('xp-gain-' + idx);
   var elemRenown = document.getElementById('renown-' + idx);
 
-  elemLvlGain.innerHTML = data.lvlGain;
+  elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain;
   elemXpGain.innerHTML = xpPerMember.toLocaleString();
   elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString();
+};
 
-  console.log(elemLvlGain, data);
+// Set Summary
+//==============================
+var totalRenown = 0;
+
+var setSummary = function setSummary(renown) {
+  var elemTotal = document.getElementById('total');
+
+  totalRenown += renown;
+
+  elemTotal.innerHTML = totalRenown.toLocaleString();
+};
+
+// Set max level
+//==============================
+var setMaxLevel = function setMaxLevel() {
+  var maxLvl = MaxLevel['s' + star]['t' + tier];
+
+  eInputLvl.setAttribute('max', maxLvl);
+  eInputLvl.value = eLblLvl.innerHTML = lvl = 1;
+};
+
+// Calculate
+//==============================
+var calculate = function calculate() {
+
+  // Get xp gain per member
+  xpPerMember = getXpPerMember();
+
+  // Reset total renown
+  totalRenown = 0;
+
+  for (var _i6 = 0; _i6 <= 4; _i6++) {
+
+    // If member not null
+    if (campMember[_i6]) {
+      var data = calculateMember(_i6);
+
+      // Report data
+      setResult(_i6, data);
+      setSummary(getRenownPoint(_i6, data.lvlGain));
+    }
+  }
+};
+
+// Calculate member gain lv, xp
+//==============================
+var calculateMember = function calculateMember(idx) {
+
+  // Get xp remaing Array by current level
+  var remainingXpChart = getRemainingXpChart(idx);
+
+  var xpGain = 0;
+  var lvlGain = 0;
+  var xp = 0;
+
+  if (remainingXpChart.length) {
+
+    // Set current xp member
+    remainingXpChart[0] = remainingXpChart[0] - campMember[idx].xp;
+
+    for (var _i7 = 0; _i7 < remainingXpChart.length; _i7++) {
+      xpGain += remainingXpChart[_i7];
+
+      if (xpGain > xpPerMember) {
+        lvlGain = _i7;
+        xp = xpPerMember + remainingXpChart[_i7] - xpGain;
+        xpGain = xpPerMember;
+
+        break;
+      }
+
+      lvlGain = _i7 + 1;
+      xp = 'max';
+    }
+  }
+
+  return { lvlGain: lvlGain, xp: xp, xpGain: xpGain };
 };
 
 // Events
+//==============================
 btnAddtoCamp.onclick = function () {
   if (countMember === 5) {
     return false;

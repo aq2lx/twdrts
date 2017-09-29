@@ -145,8 +145,8 @@ h3 {
 
 .github-icon {
   background-image: url('../img/github-mark-light-32px.png');
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   display: inline-block;
   background-size: cover;
   margin-right: 8px;
@@ -201,7 +201,7 @@ h3 {
 // Icon
 .fa-star {
   font-size: 14px;
-  margin: 0 2px;
+  margin: 0 1px;
 }
 
 .fa-chevron-right {
@@ -209,12 +209,8 @@ h3 {
 }
 
 .navbar {
-  height: 40px;
   background-color: #000;
-  width: 100%;
-  min-width: 1024px;
-  position: absolute;
-  top: 0;
+  margin-bottom: 32px;
 }
 
 .nav {
@@ -225,6 +221,9 @@ h3 {
 
 .navbar-nav {
   @include clearfix();
+
+  width: 1024px;
+  margin: 0 auto;
 
   > li {
     display: block;
@@ -241,6 +240,15 @@ h3 {
       background-color: #006064;
     }
   }
+}
+
+.beta {
+  background-color: #c62828;
+  font-family: 'Arial', 'sans-serif';
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 10px;
+  margin-left: 8px;
 }
 
 .container {
@@ -595,8 +603,8 @@ input[type="range"]:focus {
   position: absolute;
   top: 1px;
   right: 1px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: block;
   line-height: 1;
   text-align: center;
@@ -605,4 +613,6 @@ input[type="range"]:focus {
   background-color: #c62828;
   cursor: pointer;
   text-shadow: none;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 24px;
 }

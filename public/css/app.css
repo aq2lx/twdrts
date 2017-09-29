@@ -102,8 +102,8 @@ h3 {
 
 .github-icon {
   background-image: url("../img/github-mark-light-32px.png");
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   display: inline-block;
   background-size: cover;
   margin-right: 8px;
@@ -146,42 +146,47 @@ h3 {
 
 .fa-star {
   font-size: 14px;
-  margin: 0 2px; }
+  margin: 0 1px; }
 
 .fa-chevron-right {
   font-size: 18px; }
 
 .navbar {
-  height: 40px;
   background-color: #000;
-  width: 100%;
-  min-width: 1024px;
-  position: absolute;
-  top: 0; }
+  margin-bottom: 32px; }
 
 .nav {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-.navbar-nav:before, .navbar-nav:after {
-  content: "";
-  display: table; }
-
-.navbar-nav:after {
-  clear: both; }
-
-.navbar-nav > li {
-  display: block;
-  float: left; }
-  .navbar-nav > li > a {
-    color: #fff;
-    text-decoration: none;
-    padding: 9px 16px;
+.navbar-nav {
+  width: 1024px;
+  margin: 0 auto; }
+  .navbar-nav:before, .navbar-nav:after {
+    content: "";
+    display: table; }
+  .navbar-nav:after {
+    clear: both; }
+  .navbar-nav > li {
     display: block;
-    line-height: 1; }
-  .navbar-nav > li.active a {
-    background-color: #006064; }
+    float: left; }
+    .navbar-nav > li > a {
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 16px;
+      display: block;
+      line-height: 1; }
+    .navbar-nav > li.active a {
+      background-color: #006064; }
+
+.beta {
+  background-color: #c62828;
+  font-family: 'Arial', 'sans-serif';
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 10px;
+  margin-left: 8px; }
 
 .container {
   width: 1024px;
@@ -455,8 +460,8 @@ input[type="range"]:focus {
   position: absolute;
   top: 1px;
   right: 1px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: block;
   line-height: 1;
   text-align: center;
@@ -464,4 +469,6 @@ input[type="range"]:focus {
   border-radius: 4px;
   background-color: #c62828;
   cursor: pointer;
-  text-shadow: none; }
+  text-shadow: none;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 24px; }
