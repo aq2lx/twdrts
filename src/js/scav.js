@@ -234,10 +234,10 @@ const createTable = (data) => {
     addCol(`${data.lvl} > `, { id: `lvl-${data.idx}`, className: 'clr-success' })
   ]))
 
-  /*table.appendChild(addRow([
+  table.appendChild(addRow([
     addCol('xp', { className: 'text-right' }),
-    addCol(data.xp)
-  ]))*/
+    addCol(null, { id: `xp-${data.idx}` })
+  ]))
 
   table.appendChild(addRow([
     addCol('xp gain', { className: 'text-right' }),
@@ -295,11 +295,18 @@ const getRenownPoint = (idx, lvl) => {
 //==============================
 const setResult = (idx, data) => {
   const elemLvlGain = document.getElementById(`lvl-${idx}`)
+  const elemXp = document.getElementById(`xp-${idx}`)
   const elemXpGain = document.getElementById(`xp-gain-${idx}`)
   const elemRenown = document.getElementById(`renown-${idx}`)
 
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain
-  elemXpGain.innerHTML = xpPerMember.toLocaleString()
+
+  elemXp.innerHTML = data.xp.toLocaleString()
+  if (data.xp === 'max') {
+    elemXp.className = 'clr-red'
+  }
+
+  elemXpGain.innerHTML = data.xpGain.toLocaleString()
   elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString()
 }
 
@@ -384,6 +391,8 @@ const calculateMember = (idx) => {
       xp = 'max'
     }
   }
+
+  console.log(lvlGain, xp, xpGain)
 
   return { lvlGain, xp, xpGain }
 }

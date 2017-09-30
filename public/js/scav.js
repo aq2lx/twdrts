@@ -114,6 +114,7 @@ var addToCamp = function addToCamp(data) {
   campNodes[idx].appendChild(newMember);
 
   countMember++;
+
   calculate();
 };
 
@@ -232,10 +233,7 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addCol('lvl', { className: 'text-right' }), addCol(data.lvl + ' > ', { id: 'lvl-' + data.idx, className: 'clr-success' })]));
 
-  /*table.appendChild(addRow([
-    addCol('xp', { className: 'text-right' }),
-    addCol(data.xp)
-  ]))*/
+  table.appendChild(addRow([addCol('xp', { className: 'text-right' }), addCol(null, { id: 'xp-' + data.idx })]));
 
   table.appendChild(addRow([addCol('xp gain', { className: 'text-right' }), addCol(null, { id: 'xp-gain-' + data.idx })]));
 
@@ -287,11 +285,18 @@ var getRenownPoint = function getRenownPoint(idx, lvl) {
 //==============================
 var setResult = function setResult(idx, data) {
   var elemLvlGain = document.getElementById('lvl-' + idx);
+  var elemXp = document.getElementById('xp-' + idx);
   var elemXpGain = document.getElementById('xp-gain-' + idx);
   var elemRenown = document.getElementById('renown-' + idx);
 
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain;
-  elemXpGain.innerHTML = xpPerMember.toLocaleString();
+
+  elemXp.innerHTML = data.xp.toLocaleString();
+  if (data.xp === 'max') {
+    elemXp.className = 'clr-red';
+  }
+
+  elemXpGain.innerHTML = data.xpGain.toLocaleString();
   elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString();
 };
 
@@ -376,6 +381,8 @@ var calculateMember = function calculateMember(idx) {
       xp = 'max';
     }
   }
+
+  console.log(lvlGain, xp, xpGain);
 
   return { lvlGain: lvlGain, xp: xp, xpGain: xpGain };
 };
