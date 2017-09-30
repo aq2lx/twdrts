@@ -304,6 +304,8 @@ const setResult = (idx, data) => {
   elemXp.innerHTML = data.xp.toLocaleString()
   if (data.xp === 'max') {
     elemXp.className = 'clr-red'
+  } else {
+    elemXp.className = ''
   }
 
   elemXpGain.innerHTML = data.xpGain.toLocaleString()
@@ -391,8 +393,6 @@ const calculateMember = (idx) => {
       xp = 'max'
     }
   }
-
-  console.log(lvlGain, xp, xpGain)
 
   return { lvlGain, xp, xpGain }
 }

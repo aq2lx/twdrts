@@ -294,6 +294,8 @@ var setResult = function setResult(idx, data) {
   elemXp.innerHTML = data.xp.toLocaleString();
   if (data.xp === 'max') {
     elemXp.className = 'clr-red';
+  } else {
+    elemXp.className = '';
   }
 
   elemXpGain.innerHTML = data.xpGain.toLocaleString();
