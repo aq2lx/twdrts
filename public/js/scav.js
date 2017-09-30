@@ -208,6 +208,10 @@ var createTable = function createTable(data) {
     col.setAttribute('colspan', 2);
     col.className = 'text-center';
 
+    if (num === 6) {
+      col.className += ' clr-amber';
+    }
+
     for (var _i5 = 0; _i5 < num; _i5++) {
       var _star = document.createElement('i');
 
@@ -226,7 +230,7 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addStar(data.star)]));
 
-  table.appendChild(addRow([addCol('lvl', { className: 'text-right' }), addCol(data.lvl + ' > ', { id: 'lvl-' + data.idx })]));
+  table.appendChild(addRow([addCol('lvl', { className: 'text-right' }), addCol(data.lvl + ' > ', { id: 'lvl-' + data.idx, className: 'clr-success' })]));
 
   /*table.appendChild(addRow([
     addCol('xp', { className: 'text-right' }),
@@ -235,7 +239,7 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addCol('xp gain', { className: 'text-right' }), addCol(null, { id: 'xp-gain-' + data.idx })]));
 
-  table.appendChild(addRow([addCol('renown', { className: 'text-right' }), addCol(null, { id: 'renown-' + data.idx })]));
+  table.appendChild(addRow([addCol('renown', { className: 'text-right' }), addCol(null, { id: 'renown-' + data.idx, className: 'clr-amber' })]));
 
   return table;
 };
@@ -291,16 +295,20 @@ var setResult = function setResult(idx, data) {
   elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString();
 };
 
+// Set total
+//==============================
+var setTotal = function setTotal(totalRenown) {
+  var elemTotal = document.getElementById('total');
+
+  elemTotal.innerHTML = totalRenown.toLocaleString();
+};
+
 // Set Summary
 //==============================
 var totalRenown = 0;
 
 var setSummary = function setSummary(renown) {
-  var elemTotal = document.getElementById('total');
-
   totalRenown += renown;
-
-  elemTotal.innerHTML = totalRenown.toLocaleString();
 };
 
 // Set max level
@@ -330,9 +338,11 @@ var calculate = function calculate() {
 
       // Report data
       setResult(_i6, data);
-      setSummary(getRenownPoint(_i6, data.lvlGain));
+      totalRenown += getRenownPoint(_i6, data.lvlGain);
     }
   }
+
+  setTotal(totalRenown);
 };
 
 // Calculate member gain lv, xp

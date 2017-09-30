@@ -93,7 +93,7 @@ const addToCamp = (data) => {
     if (!campNodes[i].hasChildNodes()) {
       idx = i
 
-      break;
+      break
     }
   }
 
@@ -112,6 +112,7 @@ const addToCamp = (data) => {
   campNodes[idx].appendChild(newMember)
 
   countMember++
+
   calculate()
 }
 
@@ -204,6 +205,10 @@ const createTable = (data) => {
     col.setAttribute('colspan', 2)
     col.className = 'text-center'
 
+    if (num === 6) {
+      col.className += ' clr-amber'
+    }
+
     for (let i = 0; i < num; i++) {
       const star = document.createElement('i')
 
@@ -226,7 +231,7 @@ const createTable = (data) => {
 
   table.appendChild(addRow([
     addCol('lvl', { className: 'text-right' }),
-    addCol(`${data.lvl} > `, { id: `lvl-${data.idx}` })
+    addCol(`${data.lvl} > `, { id: `lvl-${data.idx}`, className: 'clr-success' })
   ]))
 
   /*table.appendChild(addRow([
@@ -241,7 +246,7 @@ const createTable = (data) => {
 
   table.appendChild(addRow([
     addCol('renown', { className: 'text-right' }),
-    addCol(null, { id: `renown-${data.idx}` })
+    addCol(null, { id: `renown-${data.idx}`, className: 'clr-amber' })
   ]))
 
   return table
@@ -298,16 +303,20 @@ const setResult = (idx, data) => {
   elemRenown.innerHTML = getRenownPoint(idx, data.lvlGain).toLocaleString()
 }
 
+// Set total
+//==============================
+const setTotal = (totalRenown) => {
+  const elemTotal = document.getElementById('total')
+
+  elemTotal.innerHTML = totalRenown.toLocaleString()
+}
+
 // Set Summary
 //==============================
 let totalRenown = 0
 
 const setSummary = (renown) => {
-  const elemTotal = document.getElementById('total')
-
   totalRenown += renown
-
-  elemTotal.innerHTML = totalRenown.toLocaleString()
 }
 
 // Set max level
@@ -337,9 +346,11 @@ const calculate = () => {
 
       // Report data
       setResult(i, data)
-      setSummary(getRenownPoint(i, data.lvlGain))
+      totalRenown += getRenownPoint(i, data.lvlGain)
     }
   }
+
+  setTotal(totalRenown)
 }
 
 // Calculate member gain lv, xp

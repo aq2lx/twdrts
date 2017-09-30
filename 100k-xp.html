@@ -29,7 +29,7 @@
               Name
             </td>
             <td style="width: 160px;">
-              <input id="ipt-name" type="text">
+              <input id="ipt-name" type="text" maxlength="12">
             </td>
           </tr>
           <tr>
@@ -63,7 +63,7 @@
             </td>
             <td>
               <span id="lbl-lvl" class="lbl-lvl">1</span>
-              <input id="range-lvl" type="range" min="1" max="80" value="1" style="width: 90px; display: inline-block; vertical-align: middle;">
+              <input id="range-lvl" type="range" min="1" max="80" value="1" style="width: 100px; display: inline-block; vertical-align: middle;">
             </td>
           </tr>
           <tr>
@@ -71,12 +71,12 @@
               XP
             </td>
             <td>
-              <input id="ipt-xp" type="number" value="0">
+              <input id="ipt-xp" type="number" style="width: 90px;">
             </td>
           </tr>
           <tr>
             <td colspan="2" class="text-right">
-              <button id="btn-addtocamp" class="btn btn-addtocamp">Add to camp <i class="fa fa-chevron-right"></i></button>
+              <button id="btn-addtocamp" class="btn btn-addtocamp" style="margin-top: 12px;">Add to camp <i class="fa fa-chevron-right"></i></button>
             </td>
           </tr>
         </table>
@@ -91,7 +91,7 @@
           <li></li>
         </ul>
         <div class="summary">
-          Total Renown points: <span id="total"></span>
+          Total Renown points: <span id="total" class="clr-amber"></span>
         </div>
       </div>
     </div>
