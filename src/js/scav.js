@@ -12,6 +12,7 @@ let lvl = 1
 let xp = 0
 let countMember = 0
 let xpPerMember = 0
+let maxLvl = 80
 
 // Elements
 //==============================
@@ -39,6 +40,12 @@ eName.onchange = function() {
 
 // Input XP
 //==============================
+eXP.oninput = function() {
+  if (this.value.length > 4) {
+    this.value = this.value.slice(0, 4)
+  }
+}
+
 eXP.onclick = function() {
   this.select()
 }
@@ -50,7 +57,19 @@ eXP.onkeyup = function() {
 // Input Level
 //==============================
 eInputLvl.oninput = function () {
-  eLblLvl.innerHTML = lvl = parseInt(this.value)
+  eLblLvl.value = lvl = parseInt(this.value)
+}
+
+eLblLvl.onclick = function () {
+  this.select()
+}
+
+eLblLvl.onkeyup = function () {
+  if (this.value > maxLvl) {
+    eLblLvl.value = maxLvl
+  }
+
+  eInputLvl.value = lvl = parseInt(this.value || 1, 0)
 }
 
 // Input Star
@@ -331,10 +350,13 @@ const setSummary = (renown) => {
 // Set max level
 //==============================
 const setMaxLevel = () => {
-  const maxLvl = MaxLevel[`s${star}`][`t${tier}`]
+  maxLvl = MaxLevel[`s${star}`][`t${tier}`]
 
   eInputLvl.setAttribute('max', maxLvl)
-  eInputLvl.value = eLblLvl.innerHTML = lvl = 1
+
+  if (eLblLvl.value > maxLvl) {
+    eLblLvl.value = lvl = maxLvl
+  }
 }
 
 // Calculate

@@ -331,24 +331,22 @@ input[type="range"] {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: 0;
-  width: 160px; }
+  width: 100px; }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  width: 160px;
-  height: 2px;
-  background: #ddd;
-  border: none;
-  border-radius: 3px; }
+  width: 100px;
+  height: 1px;
+  background: #ddd; }
 
 input[type="range"]::-webkit-slider-thumb {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
-  height: 16px;
-  width: 16px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
   background: #ede1b1;
-  margin-top: -8px; }
+  margin-top: -12px; }
 
 input[type="range"]:focus {
   outline: none; }
@@ -439,9 +437,8 @@ input[type="range"]:focus {
 .lbl-lvl {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 8px;
-  padding-left: 4px;
-  width: 24px; }
+  margin-right: 8px;
+  width: 32px; }
 
 .tier-wrapper {
   position: absolute;
