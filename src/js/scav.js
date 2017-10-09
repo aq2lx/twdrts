@@ -231,7 +231,7 @@ const createTable = (data) => {
     for (let i = 0; i < num; i++) {
       const star = document.createElement('i')
 
-      star.className = 'fa fa-star'
+      star.className = 'icon icon-star'
 
       col.appendChild(star)
     }

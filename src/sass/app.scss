@@ -68,9 +68,9 @@ h2 {
   font-weight: normal;
 }
 
-h3 {
+h3, h4 {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   color: #ede1b1;
   font-weight: normal;
 }
@@ -127,7 +127,7 @@ h3 {
 
 .github-link-wrapper {
   width: 100%;
-  min-width: 1024px;
+  min-width: 944px;
   position: absolute;
   top: 0;
 }
@@ -211,8 +211,7 @@ h3 {
 
 .navbar {
   background-color: #000;
-  margin-bottom: 32px;
-  min-width: 1024px;
+  min-width: 944px;
 }
 
 .nav {
@@ -224,7 +223,7 @@ h3 {
 .navbar-nav {
   @include clearfix();
 
-  width: 1024px;
+  width: 944px;
   margin: 0 auto;
 
   > li {
@@ -254,9 +253,8 @@ h3 {
 }
 
 .container {
-  width: 1024px;
-  padding-left: 12px;
-  padding-right: 12px;
+  width: 944px;
+  padding: 12px;
   margin: 0 auto;
 }
 
@@ -264,7 +262,7 @@ h3 {
   @include clearfix();
 
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .left-side, .right-side {
@@ -274,7 +272,7 @@ h3 {
 // Radio group
 .radio-group {
   list-style: none;
-  margin: 0;
+  margin: 0 0 8px;
   padding: 0;
   display: inline-block;
   vertical-align: middle;
@@ -292,8 +290,7 @@ h3 {
   }
 
   input[type=radio] {
-    position: absolute;
-    visibility: hidden;
+    display: none;
 
     &:checked {
       ~ .check {
@@ -313,7 +310,7 @@ h3 {
   label {
     display: block;
     position: relative;
-    padding: 0 12px 0 28px;
+    padding: 0 4px 0 29px;
     z-index: 9;
     cursor: pointer;
     user-select: none;
@@ -327,7 +324,7 @@ h3 {
     height: 21px;
     width: 21px;
     top: 4px;
-    left: 0;
+    left: 4px;
     z-index: 5;
 
     &:before {
@@ -482,8 +479,13 @@ input[type="range"]:focus {
   cursor: pointer;
   border-radius: 4px;
 
+}
+
+.btn-select {
+  border: 2px solid transparent;
+
   &.active {
-    border: 1px solid #ede1b1;
+    border-color: #ede1b1;
   }
 }
 
@@ -506,7 +508,7 @@ input[type="range"]:focus {
 // Page
 .page-ap {
   .left-side {
-    width: 300px;
+    width: 220px;
   }
 
   .right-side {
@@ -526,7 +528,7 @@ input[type="range"]:focus {
   }
 
   .right-side {
-    width: 780px;
+    width: 700px;
   }
 }
 
@@ -541,8 +543,8 @@ input[type="range"]:focus {
     float: left;
     margin: 4px;
     border: 1px dashed #757575;
-    width: 148px;
-    height: 250px;
+    width: 132px;
+    height: 236px;
     border-radius: 6px;
     position: relative;
 
@@ -553,21 +555,29 @@ input[type="range"]:focus {
       height: 100%;
     }
   }
+
+  .icon {
+    font-size: 14px;
+  }
 }
 
 .btn-addtocamp {
   font-size: 24px;
-  padding: 4px 12px;
+  padding: 2px 12px;
   width: 100%;
   text-align: center;
   background: #d4d4d4;
   background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
   border: solid #000 1px;
   color: #424242;
+
+  .icon {
+    font-size: 18px;
+  }
 }
 
 .summary {
-  margin-top: 28px;
+  margin: 4px;
   text-align: center;
   font-size: 36px;
   padding: 12px 0;

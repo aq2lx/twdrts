@@ -235,7 +235,7 @@ var createTable = function createTable(data) {
     for (var _i5 = 0; _i5 < num; _i5++) {
       var _star = document.createElement('i');
 
-      _star.className = 'fa fa-star';
+      _star.className = 'icon icon-star';
 
       col.appendChild(_star);
     }

@@ -39,9 +39,9 @@ h2 {
   margin-bottom: 12px;
   font-weight: normal; }
 
-h3 {
+h3, h4 {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   color: #ede1b1;
   font-weight: normal; }
 
@@ -85,7 +85,7 @@ h3 {
 
 .github-link-wrapper {
   width: 100%;
-  min-width: 1024px;
+  min-width: 944px;
   position: absolute;
   top: 0; }
 
@@ -153,8 +153,7 @@ h3 {
 
 .navbar {
   background-color: #000;
-  margin-bottom: 32px;
-  min-width: 1024px; }
+  min-width: 944px; }
 
 .nav {
   list-style: none;
@@ -162,7 +161,7 @@ h3 {
   padding: 0; }
 
 .navbar-nav {
-  width: 1024px;
+  width: 944px;
   margin: 0 auto; }
   .navbar-nav:before, .navbar-nav:after {
     content: "";
@@ -190,14 +189,13 @@ h3 {
   margin-left: 8px; }
 
 .container {
-  width: 1024px;
-  padding-left: 12px;
-  padding-right: 12px;
+  width: 944px;
+  padding: 12px;
   margin: 0 auto; }
 
 .top {
   text-align: center;
-  margin-bottom: 20px; }
+  margin-bottom: 8px; }
   .top:before, .top:after {
     content: "";
     display: table; }
@@ -209,7 +207,7 @@ h3 {
 
 .radio-group {
   list-style: none;
-  margin: 0;
+  margin: 0 0 8px;
   padding: 0;
   display: inline-block;
   vertical-align: middle; }
@@ -220,8 +218,7 @@ h3 {
   .radio-group.inline li {
     float: left; }
   .radio-group input[type=radio] {
-    position: absolute;
-    visibility: hidden; }
+    display: none; }
     .radio-group input[type=radio]:checked ~ .check {
       border: 3px solid #fafafa; }
       .radio-group input[type=radio]:checked ~ .check::before {
@@ -231,7 +228,7 @@ h3 {
   .radio-group label {
     display: block;
     position: relative;
-    padding: 0 12px 0 28px;
+    padding: 0 4px 0 29px;
     z-index: 9;
     cursor: pointer;
     user-select: none; }
@@ -243,7 +240,7 @@ h3 {
     height: 21px;
     width: 21px;
     top: 4px;
-    left: 0;
+    left: 4px;
     z-index: 5; }
     .radio-group .check:before {
       display: block;
@@ -363,8 +360,11 @@ input[type="range"]:focus {
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 4px; }
-  .btn.active {
-    border: 1px solid #ede1b1; }
+
+.btn-select {
+  border: 2px solid transparent; }
+  .btn-select.active {
+    border-color: #ede1b1; }
 
 .btn-group .btn {
   float: left;
@@ -379,7 +379,7 @@ input[type="range"]:focus {
   margin-top: 4em; }
 
 .page-ap .left-side {
-  width: 300px; }
+  width: 220px; }
 
 .page-ap .right-side {
   width: 700px; }
@@ -391,7 +391,7 @@ input[type="range"]:focus {
   width: 220px; }
 
 .page-scav .right-side {
-  width: 780px; }
+  width: 700px; }
 
 .camp {
   list-style: none;
@@ -406,8 +406,8 @@ input[type="range"]:focus {
     float: left;
     margin: 4px;
     border: 1px dashed #757575;
-    width: 148px;
-    height: 250px;
+    width: 132px;
+    height: 236px;
     border-radius: 6px;
     position: relative; }
     .camp li .fill {
@@ -415,19 +415,23 @@ input[type="range"]:focus {
       box-shadow: 0 0 0 1px #000;
       border-radius: 4px;
       height: 100%; }
+  .camp .icon {
+    font-size: 14px; }
 
 .btn-addtocamp {
   font-size: 24px;
-  padding: 4px 12px;
+  padding: 2px 12px;
   width: 100%;
   text-align: center;
   background: #d4d4d4;
   background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
   border: solid #000 1px;
   color: #424242; }
+  .btn-addtocamp .icon {
+    font-size: 18px; }
 
 .summary {
-  margin-top: 28px;
+  margin: 4px;
   text-align: center;
   font-size: 36px;
   padding: 12px 0;
