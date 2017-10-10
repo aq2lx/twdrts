@@ -6,8 +6,8 @@ const xpFromScav = 100000
 const campMember = []
 
 let name = ''
-let star = 5
-let tier = 4
+let star = 6
+let tier = 1
 let lvl = 1
 let xp = 0
 let countMember = 0
@@ -36,6 +36,10 @@ const eXP = document.getElementById('ipt-xp')
 //==============================
 eName.onchange = function() {
   name = this.value
+}
+
+eName.onclick = function() {
+  this.select()
 }
 
 // Input XP
@@ -157,12 +161,16 @@ const addTier = (tier) => {
 
   wrapper.className = 'tier-wrapper'
 
-  for (let i = 0; i < tier; i++) {
-    const tier = document.createElement('span')
+  for (let i = 0; i < 4; i++) {
+    const elm = document.createElement('span')
 
-    tier.className = 'tier'
+    elm.className = 'tier'
 
-    wrapper.appendChild(tier)
+    if (i < tier) {
+      elm.className += ' fill'
+    }
+
+    wrapper.appendChild(elm)
   }
 
   return wrapper
@@ -242,29 +250,29 @@ const createTable = (data) => {
   table.appendChild(addRow([
     addCol(data.name, {
       colspan: 2,
-      className: 'text-center'
+      className: 'text-center name'
     })
   ]))
 
   table.appendChild(addRow([addStar(data.star)]))
 
   table.appendChild(addRow([
-    addCol('lvl', { className: 'text-right' }),
-    addCol(`${data.lvl} > `, { id: `lvl-${data.idx}`, className: 'clr-success' })
+    addCol('lvl', { className: 'text-right clr-lightyellow' }),
+    addCol(`${data.lvl} <i class="icon icon-right-open"></i> `, { id: `lvl-${data.idx}`, className: 'clr-success' })
   ]))
 
   table.appendChild(addRow([
-    addCol('xp', { className: 'text-right' }),
+    addCol('xp', { className: 'text-right clr-lightyellow' }),
     addCol(null, { id: `xp-${data.idx}` })
   ]))
 
   table.appendChild(addRow([
-    addCol('xp gain', { className: 'text-right' }),
+    addCol('xp gain', { className: 'text-right clr-lightyellow' }),
     addCol(null, { id: `xp-gain-${data.idx}` })
   ]))
 
   table.appendChild(addRow([
-    addCol('renown', { className: 'text-right' }),
+    addCol('renown', { className: 'text-right clr-lightyellow' }),
     addCol(null, { id: `renown-${data.idx}`, className: 'clr-amber' })
   ]))
 
@@ -321,8 +329,8 @@ const setResult = (idx, data) => {
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain
 
   elemXp.innerHTML = data.xp.toLocaleString()
-  if (data.xp === 'max') {
-    elemXp.className = 'clr-red'
+  if (data.xp === 'max!') {
+    elemXp.className = 'max'
   } else {
     elemXp.className = ''
   }
@@ -412,8 +420,10 @@ const calculateMember = (idx) => {
       }
 
       lvlGain = i + 1
-      xp = 'max'
+      xp = 'max!'
     }
+  } else {
+    xp = 'max!'
   }
 
   return { lvlGain, xp, xpGain }

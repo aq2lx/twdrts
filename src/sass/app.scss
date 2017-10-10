@@ -15,6 +15,14 @@ $lightgreen-300: #aed581;
   }
 }
 
+// Font
+@font-face {
+  font-family: 'komika_display-regular';
+  src: url('font/komika_display-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Reset
 *, *:before, *:after {
   box-sizing: border-box;
@@ -70,9 +78,12 @@ h2 {
 
 h3, h4 {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 12px;
   color: #ede1b1;
+  font-family: 'komika_display-regular';
   font-weight: normal;
+  font-size: 18px;
+  text-transform: none;
 }
 
 .sm {
@@ -157,6 +168,10 @@ h3, h4 {
 .disabled {
   pointer-events: none;
   cursor: default;
+}
+
+.clr-lightyellow {
+  color: #ede1b1;
 }
 
 .clr-amber {
@@ -534,7 +549,7 @@ input[type="range"]:focus {
 
 .camp {
   @include clearfix();
-
+  line-height: 1.2;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -548,11 +563,12 @@ input[type="range"]:focus {
     border-radius: 6px;
     position: relative;
 
-    .fill {
+    > .fill {
       background-color: #424242;
       box-shadow: 0 0 0 1px #000;
       border-radius: 4px;
       height: 100%;
+      padding-top: 24px;
     }
   }
 
@@ -602,9 +618,13 @@ input[type="range"]:focus {
   width: 9px;
   height: 32px;
   transform: skew(0, 45deg);
-  background: $lightgreen-300;
+  background-color: #757575;
   display: block;
   border: 1px solid #000;
+
+  &.fill {
+    background-color: $lightgreen-300;
+  }
 }
 
 .close {
@@ -625,4 +645,21 @@ input[type="range"]:focus {
   background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
   border: solid #000 1px;
   color: #424242;
+}
+
+.name {
+  font-family: 'komika_display-regular';
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.max {
+  font-family: 'komika_display-regular';
+  color: #b71c1c;
+  font-size: 16px;
+}
+
+.total-point {
+  margin-left: 12px;
+  color: #f5be3f;
 }

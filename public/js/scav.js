@@ -8,8 +8,8 @@ var xpFromScav = 100000;
 var campMember = [];
 
 var name = '';
-var star = 5;
-var tier = 4;
+var star = 6;
+var tier = 1;
 var lvl = 1;
 var xp = 0;
 var countMember = 0;
@@ -38,6 +38,10 @@ var eXP = document.getElementById('ipt-xp');
 //==============================
 eName.onchange = function () {
   name = this.value;
+};
+
+eName.onclick = function () {
+  this.select();
 };
 
 // Input XP
@@ -159,12 +163,16 @@ var addTier = function addTier(tier) {
 
   wrapper.className = 'tier-wrapper';
 
-  for (var _i3 = 0; _i3 < tier; _i3++) {
-    var _tier = document.createElement('span');
+  for (var _i3 = 0; _i3 < 4; _i3++) {
+    var elm = document.createElement('span');
 
-    _tier.className = 'tier';
+    elm.className = 'tier';
 
-    wrapper.appendChild(_tier);
+    if (_i3 < tier) {
+      elm.className += ' fill';
+    }
+
+    wrapper.appendChild(elm);
   }
 
   return wrapper;
@@ -245,18 +253,18 @@ var createTable = function createTable(data) {
 
   table.appendChild(addRow([addCol(data.name, {
     colspan: 2,
-    className: 'text-center'
+    className: 'text-center name'
   })]));
 
   table.appendChild(addRow([addStar(data.star)]));
 
-  table.appendChild(addRow([addCol('lvl', { className: 'text-right' }), addCol(data.lvl + ' > ', { id: 'lvl-' + data.idx, className: 'clr-success' })]));
+  table.appendChild(addRow([addCol('lvl', { className: 'text-right clr-lightyellow' }), addCol(data.lvl + ' <i class="icon icon-right-open"></i> ', { id: 'lvl-' + data.idx, className: 'clr-success' })]));
 
-  table.appendChild(addRow([addCol('xp', { className: 'text-right' }), addCol(null, { id: 'xp-' + data.idx })]));
+  table.appendChild(addRow([addCol('xp', { className: 'text-right clr-lightyellow' }), addCol(null, { id: 'xp-' + data.idx })]));
 
-  table.appendChild(addRow([addCol('xp gain', { className: 'text-right' }), addCol(null, { id: 'xp-gain-' + data.idx })]));
+  table.appendChild(addRow([addCol('xp gain', { className: 'text-right clr-lightyellow' }), addCol(null, { id: 'xp-gain-' + data.idx })]));
 
-  table.appendChild(addRow([addCol('renown', { className: 'text-right' }), addCol(null, { id: 'renown-' + data.idx, className: 'clr-amber' })]));
+  table.appendChild(addRow([addCol('renown', { className: 'text-right clr-lightyellow' }), addCol(null, { id: 'renown-' + data.idx, className: 'clr-amber' })]));
 
   return table;
 };
@@ -311,8 +319,8 @@ var setResult = function setResult(idx, data) {
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain;
 
   elemXp.innerHTML = data.xp.toLocaleString();
-  if (data.xp === 'max') {
-    elemXp.className = 'clr-red';
+  if (data.xp === 'max!') {
+    elemXp.className = 'max';
   } else {
     elemXp.className = '';
   }
@@ -402,8 +410,10 @@ var calculateMember = function calculateMember(idx) {
       }
 
       lvlGain = _i7 + 1;
-      xp = 'max';
+      xp = 'max!';
     }
+  } else {
+    xp = 'max!';
   }
 
   return { lvlGain: lvlGain, xp: xp, xpGain: xpGain };
