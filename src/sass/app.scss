@@ -78,10 +78,13 @@ h2 {
 
 h3, h4 {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   color: #ede1b1;
-  font-family: 'komika_display-regular';
   font-weight: normal;
+}
+
+.f-komika_display {
+  font-family: 'komika_display-regular';
   font-size: 18px;
   text-transform: none;
 }
