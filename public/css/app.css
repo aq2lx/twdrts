@@ -47,10 +47,12 @@ h2 {
 
 h3, h4 {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   color: #ede1b1;
+  font-weight: normal; }
+
+.f-komika_display {
   font-family: 'komika_display-regular';
-  font-weight: normal;
   font-size: 18px;
   text-transform: none; }
 
@@ -58,12 +60,10 @@ h3, h4 {
   font-size: 0.75em; }
 
 .chk-apr {
-  width: 78px;
-  display: inline-block;
-  font-size: 0.75em; }
-  .chk-apr span {
-    width: 50px;
-    margin-top: 4px; }
+  width: 60px;
+  float: left;
+  font-size: 0.79em;
+  text-align: center; }
 
 .chk-w {
   font-size: 0.75em; }
@@ -194,7 +194,7 @@ h3, h4 {
 
 .beta {
   background-color: #c62828;
-  font-family: 'Arial', 'sans-serif';
+  font-family: 'komika_display-regular';
   display: inline-block;
   padding: 3px 8px;
   font-size: 10px;
@@ -309,6 +309,25 @@ h3, h4 {
     position: absolute;
     top: 0;
     left: 28px; }
+
+.toggle {
+  position: relative; }
+  .toggle label {
+    display: inline-block;
+    margin-bottom: 4px;
+    cursor: pointer;
+    position: relative; }
+  .toggle input[type=checkbox] {
+    visibility: hidden;
+    display: none; }
+    .toggle input[type=checkbox]:checked + span {
+      color: #fafafa; }
+  .toggle span {
+    width: 100%;
+    height: 21px;
+    display: inline-block;
+    color: #7e8183;
+    user-select: none; }
 
 input, select {
   font-family: 'Teko', sans-serif;

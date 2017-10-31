@@ -7,6 +7,14 @@ const reportArRound = (idx, ap, aprcv) => {
   const eleApFSWRound = document.getElementById(`rs${idx}`)
   const inputAp = getInputAp(idx)
 
+  let r = 0
+  let sap = 0
+
+  while (sap < inputAp) {
+    sap += ap
+    r++
+  }
+
   if (aprcv) {
     let rs = 0
 
@@ -17,20 +25,14 @@ const reportArRound = (idx, ap, aprcv) => {
       aprcv = Math.floor(aprcv) + 1
     }
 
-    eleApFSWRound.innerHTML = `${rs} / `
+    eleApFSWRound.innerHTML = `${rs}`
+    eleApRound.innerHTML = ` (${r})`
   } else {
     eleApFSWRound.innerHTML = ''
+    eleApRound.innerHTML = r
   }
 
-  let r = 0
-  let sap = 0
-
-  while (sap < inputAp) {
-    sap += ap
-    r++
-  }
-
-  eleApRound.innerHTML = r
+  
 }
 
 const reportApPerTurn = (idx, ap, aprcv) => {
@@ -61,7 +63,7 @@ const report = (idx, ap, aprcv) => {
 
 //Calculate
 const calculateAp = (idx) => {
-  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx))
+  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApReceived(idx, 50) + getApSpecialFast(idx) + getApSpecialTough(idx))
 }
 
 const calculateNode = (idx) => {
@@ -167,6 +169,7 @@ const eSpecialAPts = document.querySelectorAll('input[name="special-apt"]')
 const eReceived15 = document.querySelectorAll('input[name="apr15"]')
 const eReceived20 = document.querySelectorAll('input[name="apr20"]')
 const eReceived40 = document.querySelectorAll('input[name="apr40"]')
+const eReceived50 = document.querySelectorAll('input[name="apr50"]')
 const eSelectTraits = document.querySelectorAll('select[name="triat"]')
 const eInputAPs = document.querySelectorAll('input[name="input-ap"]')
 
@@ -257,6 +260,12 @@ for (let i = 0; i < eReceived20.length; i++) {
 
 for (let i = 0; i < eReceived40.length; i++) { 
   eReceived40[i].onchange = function() {
+    calculateAp(i)
+  }
+}
+
+for (let i = 0; i < eReceived40.length; i++) { 
+  eReceived50[i].onchange = function() {
     calculateAp(i)
   }
 }

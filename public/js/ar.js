@@ -9,6 +9,14 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
   var eleApFSWRound = document.getElementById('rs' + idx);
   var inputAp = getInputAp(idx);
 
+  var r = 0;
+  var sap = 0;
+
+  while (sap < inputAp) {
+    sap += ap;
+    r++;
+  }
+
   if (aprcv) {
     var rs = 0;
 
@@ -19,20 +27,12 @@ var reportArRound = function reportArRound(idx, ap, aprcv) {
       aprcv = Math.floor(aprcv) + 1;
     }
 
-    eleApFSWRound.innerHTML = rs + ' / ';
+    eleApFSWRound.innerHTML = '' + rs;
+    eleApRound.innerHTML = ' (' + r + ')';
   } else {
     eleApFSWRound.innerHTML = '';
+    eleApRound.innerHTML = r;
   }
-
-  var r = 0;
-  var sap = 0;
-
-  while (sap < inputAp) {
-    sap += ap;
-    r++;
-  }
-
-  eleApRound.innerHTML = r;
 };
 
 var reportApPerTurn = function reportApPerTurn(idx, ap, aprcv) {
@@ -63,7 +63,7 @@ var report = function report(idx, ap, aprcv) {
 
 //Calculate
 var calculateAp = function calculateAp(idx) {
-  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApSpecialFast(idx) + getApSpecialTough(idx));
+  report(idx, calculateNode(idx), getApReceived(idx, 15) + getApReceived(idx, 20) + getApReceived(idx, 40) + getApReceived(idx, 50) + getApSpecialFast(idx) + getApSpecialTough(idx));
 };
 
 var calculateNode = function calculateNode(idx) {
@@ -169,6 +169,7 @@ var eSpecialAPts = document.querySelectorAll('input[name="special-apt"]');
 var eReceived15 = document.querySelectorAll('input[name="apr15"]');
 var eReceived20 = document.querySelectorAll('input[name="apr20"]');
 var eReceived40 = document.querySelectorAll('input[name="apr40"]');
+var eReceived50 = document.querySelectorAll('input[name="apr50"]');
 var eSelectTraits = document.querySelectorAll('select[name="triat"]');
 var eInputAPs = document.querySelectorAll('input[name="input-ap"]');
 
@@ -286,6 +287,16 @@ var _loop7 = function _loop7(i) {
 
 for (var i = 0; i < eReceived40.length; i++) {
   _loop7(i);
+}
+
+var _loop8 = function _loop8(i) {
+  eReceived50[i].onchange = function () {
+    calculateAp(i);
+  };
+};
+
+for (var i = 0; i < eReceived40.length; i++) {
+  _loop8(i);
 }
 
 // Initialize
