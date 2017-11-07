@@ -38,9 +38,6 @@ gulp.task('uglify', () => {
                presets: ['es2015']
              }))
              .pipe(uglify())
-             .pipe(rename({
-               suffix: '.min'
-             }))
              .pipe(gulp.dest('public/js'))
 })
 
@@ -48,9 +45,6 @@ gulp.task('minify-css', () => {
   return gulp.src('src/sass/app.scss')
              .pipe(sass())
              .pipe(cleanCSS())
-             .pipe(rename({
-               suffix: '.min'
-             }))
              .pipe(gulp.dest('public/css'));
 })
 

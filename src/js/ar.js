@@ -56,6 +56,8 @@ const reportApReceived = (idx, aprcv) => {
 }
 
 const report = (idx, ap, aprcv) => {
+  console.log(idx, ap, aprcv)
+
   reportArRound(idx, ap, aprcv)
   reportApPerTurn(idx, ap, aprcv)
   reportApReceived(idx, aprcv)
@@ -67,7 +69,7 @@ const calculateAp = (idx) => {
 }
 
 const calculateNode = (idx) => {
-  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(1))
+  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(2))
 }
 
 const calculateAll = () => {
@@ -128,7 +130,7 @@ const getApSpecialFast = (idx) => {
     apSpecialPercent += parseInt(eSpecials[i].value, 10)
   }
 
-  apSpecialPoint = parseFloat(((inputAp * apSpecialPercent) / 100).toFixed(1))
+  apSpecialPoint = parseFloat(((inputAp * apSpecialPercent) / 100).toFixed(2))
 
   return apSpecialPoint
 }
@@ -140,7 +142,7 @@ const getApSpecialTough = (idx) => {
   const inputAp = getInputAp(idx)
 
   if (eSpecial.checked) {
-    apSpecialPoint = parseFloat(((inputAp * parseInt(eSpecial.value, 10)) / 100).toFixed(1))
+    apSpecialPoint = parseFloat(((inputAp * parseInt(eSpecial.value, 10)) / 100).toFixed(2))
   }
 
   return apSpecialPoint
@@ -153,7 +155,7 @@ const getApReceived = (idx, percent) => {
   const inputAp = getInputAp(idx)
 
   if (eReceived.checked) {
-    apReceived = parseFloat(((inputAp * parseInt(percent, 10)) / 100).toFixed(1))
+    apReceived = parseFloat(((inputAp * parseInt(percent, 10)) / 100).toFixed(2))
   }
 
   return apReceived
