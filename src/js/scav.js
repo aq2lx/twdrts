@@ -12,7 +12,7 @@ let lvl = 1
 let xp = 0
 let countMember = 0
 let xpPerMember = 0
-let maxLvl = 80
+let maxLvl = MaxLevel[`s${star}`][`t${tier}`]
 
 // Elements
 //==============================
