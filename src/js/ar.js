@@ -21,8 +21,6 @@ const reportArRound = (idx, ap, aprcv) => {
     while (aprcv < inputAp) {
       aprcv += ap
       rs++
-
-      aprcv = Math.floor(aprcv) + 1
     }
 
     eleApFSWRound.innerHTML = `${rs}`
@@ -39,7 +37,7 @@ const reportApPerTurn = (idx, ap, aprcv) => {
   const eleApPerTurn = document.getElementById(`apt${idx}`)
 
   if (aprcv) {
-    eleApPerTurn.innerHTML = ap + (Math.floor(aprcv) + 1)
+    eleApPerTurn.innerHTML = ap + aprcv
   } else {
     eleApPerTurn.innerHTML = ap
   }
@@ -49,15 +47,13 @@ const reportApReceived = (idx, aprcv) => {
   const eleApFromSpecialWeapon = document.getElementById(`sap${idx}`)
 
   if (aprcv) {
-    eleApFromSpecialWeapon.innerHTML = `(+ ${Math.floor(aprcv) + 1})`
+    eleApFromSpecialWeapon.innerHTML = `(+ ${aprcv})`
   } else {
     eleApFromSpecialWeapon.innerHTML = ''
   }
 }
 
 const report = (idx, ap, aprcv) => {
-  console.log(idx, ap, aprcv)
-
   reportArRound(idx, ap, aprcv)
   reportApPerTurn(idx, ap, aprcv)
   reportApReceived(idx, aprcv)
@@ -69,7 +65,7 @@ const calculateAp = (idx) => {
 }
 
 const calculateNode = (idx) => {
-  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(2))
+  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()
 }
 
 const calculateAll = () => {
@@ -130,7 +126,7 @@ const getApSpecialFast = (idx) => {
     apSpecialPercent += parseInt(eSpecials[i].value, 10)
   }
 
-  apSpecialPoint = parseFloat(((inputAp * apSpecialPercent) / 100).toFixed(2))
+  apSpecialPoint = Math.ceil(((inputAp * apSpecialPercent) / 100))
 
   return apSpecialPoint
 }
@@ -142,7 +138,7 @@ const getApSpecialTough = (idx) => {
   const inputAp = getInputAp(idx)
 
   if (eSpecial.checked) {
-    apSpecialPoint = parseFloat(((inputAp * parseInt(eSpecial.value, 10)) / 100).toFixed(2))
+    apSpecialPoint = Math.ceil(((inputAp * parseInt(eSpecial.value, 10)) / 100))
   }
 
   return apSpecialPoint
@@ -155,7 +151,7 @@ const getApReceived = (idx, percent) => {
   const inputAp = getInputAp(idx)
 
   if (eReceived.checked) {
-    apReceived = parseFloat(((inputAp * parseInt(percent, 10)) / 100).toFixed(2))
+    apReceived = Math.ceil(((inputAp * parseInt(percent, 10)) / 100))
   }
 
   return apReceived
