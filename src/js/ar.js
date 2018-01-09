@@ -65,7 +65,7 @@ const calculateAp = (idx) => {
 }
 
 const calculateNode = (idx) => {
-  return (apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()
+  return parseFloat(((apAtttack + getApFromLeader(idx) + getApWeapon(idx)) * getMethod()).toFixed(2))
 }
 
 const calculateAll = () => {
