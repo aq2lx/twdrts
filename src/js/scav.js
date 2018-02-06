@@ -1,10 +1,7 @@
-// Config
-//==============================
-const xpFromScav = 100000
-
 // Varible
 const campMember = []
 
+let xpFromScav = 100000
 let name = ''
 let star = 6
 let tier = 1
@@ -131,6 +128,7 @@ const addToCamp = (data) => {
   newMember.appendChild(addBtnRemove(idx))
   newMember.appendChild(addTier(data.tier))
   newMember.appendChild(createTable(data))
+  newMember.appendChild(addLblArrow(idx))
 
   campNodes[idx].appendChild(newMember)
 
@@ -152,6 +150,15 @@ const addBtnRemove = (idx) => {
   btnRemove.addEventListener('click', removeMember, false)
 
   return btnRemove;
+}
+
+const addLblArrow = (idx) => {
+  const lblArrow = document.createElement('span')
+
+  lblArrow.className = 'lbl-arrow'
+  lblArrow.innerHTML = '<i class="icon icon-right-open"></i>'
+
+  return lblArrow;
 }
 
 // Add tier
@@ -214,6 +221,10 @@ const createTable = (data) => {
         col.setAttribute('colspan', property.colspan)
       }
 
+      if (property.rowspan) {
+        col.setAttribute('rowspan', property.rowspan)
+      }
+
       if (property.id) {
         col.appendChild(addId(property.id))
       }
@@ -257,13 +268,13 @@ const createTable = (data) => {
   table.appendChild(addRow([addStar(data.star)]))
 
   table.appendChild(addRow([
-    addCol('lvl', { className: 'text-right clr-lightyellow' }),
-    addCol(`${data.lvl} <i class="icon icon-right-open"></i> `, { id: `lvl-${data.idx}`, className: 'clr-success' })
+    addCol(`${data.lvl}`, { className: 'text-right nw'}),
+    addCol(null, { id: `lvl-${data.idx}`, className: 'clr-success ne' })
   ]))
 
   table.appendChild(addRow([
-    addCol('xp', { className: 'text-right clr-lightyellow' }),
-    addCol(null, { id: `xp-${data.idx}` })
+    addCol(`${data.xp}`, { className: 'text-right sw' }),
+    addCol(null, { id: `xp-to-${data.idx}`, className: 'clr-success se' })
   ]))
 
   table.appendChild(addRow([
@@ -321,18 +332,19 @@ const getRenownPoint = (idx, lvl) => {
 // Set result
 //==============================
 const setResult = (idx, data) => {
+
   const elemLvlGain = document.getElementById(`lvl-${idx}`)
-  const elemXp = document.getElementById(`xp-${idx}`)
+  const elemXpTo = document.getElementById(`xp-to-${idx}`)
   const elemXpGain = document.getElementById(`xp-gain-${idx}`)
   const elemRenown = document.getElementById(`renown-${idx}`)
 
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain
 
-  elemXp.innerHTML = data.xp.toLocaleString()
+  elemXpTo.innerHTML = data.xp.toLocaleString()
   if (data.xp === 'max!') {
-    elemXp.className = 'max'
+    elemXpTo.className = 'max'
   } else {
-    elemXp.className = ''
+    elemXpTo.className = ''
   }
 
   elemXpGain.innerHTML = data.xpGain.toLocaleString()
@@ -396,7 +408,7 @@ const calculate = () => {
 //==============================
 const calculateMember = (idx) => {
 
-  // Get xp remaing Array by current level
+  // Get xp remaining Array by current level
   const remainingXpChart = getRemainingXpChart(idx)
 
   let xpGain = 0
