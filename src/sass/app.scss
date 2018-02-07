@@ -109,7 +109,7 @@ h3, h4 {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .text-center {
@@ -127,12 +127,6 @@ h3, h4 {
 } 
 .clearfix:after {
   clear: both;
-}
-
-.github-ribbin {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .github-link-wrapper {
@@ -167,8 +161,10 @@ h3, h4 {
 .disabled {
   pointer-events: none;
   cursor: default;
+  opacity: 0.4;
 }
 
+// Color
 .clr-lightyellow {
   color: #ede1b1;
 }
@@ -283,7 +279,6 @@ h3, h4 {
   float: left;
 }
 
-// Radio group
 .radio-group {
   list-style: none;
   margin: 0 0 8px;
@@ -291,17 +286,18 @@ h3, h4 {
   display: inline-block;
   vertical-align: middle;
 
-  li {
-    color: #757575;
-    display: block;
-    position: relative;
-  }
-
   &.inline {
     li {
-      float: left;
+      display: inline-block;
     }
   }
+}
+
+// Radio
+.radio {
+  position: relative;
+  display: block;
+  color: #757575;
 
   input[type=radio] {
     display: none;
@@ -319,15 +315,6 @@ h3, h4 {
         color: #fafafa;
       }
     }
-  }
-
-  label {
-    display: block;
-    position: relative;
-    padding: 0 4px 0 29px;
-    z-index: 9;
-    cursor: pointer;
-    user-select: none;
   }
 
   .check {
@@ -353,38 +340,38 @@ h3, h4 {
       margin: auto;
     }
   }
+
+  label {
+    display: block;
+    position: relative;
+    padding: 0 4px 0 29px;
+    z-index: 9;
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 // Checkbox
 .checkbox {
   position: relative;
-}
-
-/* .checkbox {
-  position: relative;
-
-  label {
-    display: inline-block;
-    margin-bottom: 4px;
-    cursor: pointer;
-    position: relative;
-  }
+  display: block;
+  color: #757575;
 
   input[type=checkbox] {
-    visibility: hidden;
     display: none;
 
     &:checked {
-      + ins {
+      ~ .check {
         background-color: #fafafa;
         border: 3px solid #fafafa;
 
-        &:before {
+        &::before {
           content: '';
           width: 14px;
           height: 8px;
           position: absolute;
           top: 3px;
+          left: 0;
           border: 4px solid #3f3f3f;
           border-radius: 2px;
           border-top: none;
@@ -395,32 +382,34 @@ h3, h4 {
         }
       }
 
-      ~ span {
+      ~ label {
         color: #fafafa;
       }
     }
   }
 
-  ins {
-    margin-right: 4px;
-    width: 21px;
-    height: 21px;
-    border: 3px solid #7e8183;
+  .check {
+    display: block;
+    position: absolute;
+    border: 3px solid #aaa;
     border-radius: 4px;
-    display: inline-block;
-    position: relative;
+    height: 21px;
+    width: 21px;
+    top: 0;
+    left: 4px;
+    z-index: 5;
   }
 
-  span {
-    color: #757575;
-    display: inline-block;
-    vertical-align: middle;
+  label {
+    display: block;
+    position: relative;
+    padding: 0 4px 0 29px;
+    z-index: 9;
+    cursor: pointer;
     user-select: none;
-    position: absolute;
-    top: 0;
-    left: 28px;
+    line-height: 1;
   }
-} */
+}
 
 // Toggle
 .toggle {

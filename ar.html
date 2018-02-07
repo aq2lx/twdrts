@@ -22,14 +22,18 @@
     <div class="top">
       <ul class="radio-group inline">
         <li>
-          <input type="radio" id="ma" name="method" value="1" checked>
-          <label for="ma">Attack</label>
-          <div class="check"></div>
+          <div class="radio">
+            <input type="radio" id="ma" name="method" value="1" checked>
+            <label for="ma">Attack</label>
+            <div class="check"></div>
+          </div>
         </li>
         <li>
-          <input type="radio" id="md" name="method" value="1.4">
-          <label for="md">Defense <span class="sm">(40% bonus on attack)</span></label>
-          <div class="check"></div> 
+          <div class="radio">
+            <input type="radio" id="md" name="method" value="1.4">
+            <label for="md">Defense <span class="sm">(40% bonus on attack)</span></label>
+            <div class="check"></div>
+          </div>
         </li>
       </ul>
     </div>
@@ -38,67 +42,91 @@
         <h4>Leader skill</h4>
         <ul class="radio-group">
           <li>
-            <input type="radio" id="ln" name="leader" value="none" checked>
-            <label for="ln">None</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="ln" name="leader" value="none" checked>
+              <label for="ln">None</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lall" name="leader" value="all">
-            <label for="lall">All teammates</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="lall" name="leader" value="all">
+              <label for="lall">All teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lm" name="leader" value="melee">
-            <label for="lm">All melee teammates</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="lm" name="leader" value="melee">
+              <label for="lm">All melee teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lr" name="leader" value="ranged">
-            <label for="lr">All ranged teammates</label>
-            <div class="check"></div>
+            <div class="radio">
+              <input type="radio" id="lr" name="leader" value="ranged">
+              <label for="lr">All ranged teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lf" name="leader" value="fast">
-            <label for="lf">All <span class="clr-yellow">fast</span> teammates</label>
-            <div class="check"></div>
+            <div class="radio">
+              <input type="radio" id="lf" name="leader" value="fast">
+              <label for="lf">All <span class="clr-yellow">fast</span> teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="ls" name="leader" value="strong">
-            <label for="ls">All <span class="clr-green">strong</span> teammates</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="ls" name="leader" value="strong">
+              <label for="ls">All <span class="clr-green">strong</span> teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="la" name="leader" value="alert">
-            <label for="la">All <span class="clr-red">alert</span> teammates</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="la" name="leader" value="alert">
+              <label for="la">All <span class="clr-red">alert</span> teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lt" name="leader" value="tough">
-            <label for="lt">All <span class="clr-blue">tough</span> teammates</label>
-            <div class="check"></div>
+            <div class="radio">
+              <input type="radio" id="lt" name="leader" value="tough">
+              <label for="lt">All <span class="clr-blue">tough</span> teammates</label>
+              <div class="check"></div>
+            </div>
           </li>
         </ul>
         <h4>Bonus AP When attacking</h4>
         <ul class="radio-group">
           <li>
-            <input type="radio" id="laph" name="leader-ap" value="10" checked>
-            <label for="laph">Huge (+10)</label>
-            <div class="check"></div>
+            <div class="radio">
+              <input type="radio" id="laph" name="leader-ap" value="10" checked>
+              <label for="laph">Huge (+10)</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lapv" name="leader-ap" value="8">
-            <label for="lapv">Very Large (+8)</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="lapv" name="leader-ap" value="8">
+              <label for="lapv">Very Large (+8)</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lapl" name="leader-ap" value="6.5">
-            <label for="lapl">Large (+6.5)</label>
-            <div class="check"></div>
+            <div class="radio">
+              <input type="radio" id="lapl" name="leader-ap" value="6.5">
+              <label for="lapl">Large (+6.5)</label>
+              <div class="check"></div>
+            </div>
           </li>
           <li>
-            <input type="radio" id="lapm" name="leader-ap" value="5">
-            <label for="lapm">Medium (+5)</label>
-            <div class="check"></div> 
+            <div class="radio">
+              <input type="radio" id="lapm" name="leader-ap" value="5">
+              <label for="lapm">Medium (+5)</label>
+              <div class="check"></div>
+            </div>
           </li>
         </ul>
       </div>
@@ -170,22 +198,18 @@
               <td>
                 <div id="sp0">
                   <div id="spf0" class="checkbox chk-w">
-                    <label for="chk-arf0">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-arf0" name="special-apf" value="8"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: all team members receive +8% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-arf0">Bonus AP: all team members receive +8% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                   <div id="spt0" class="checkbox chk-w hide">
-                    <label for="chk-art0">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-art0" name="special-apt" value="20"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: receive +20% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-art0">Bonus AP: receive +20% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -246,22 +270,18 @@
               <td>
                 <div id="sp1">
                   <div id="spf1" class="checkbox chk-w">
-                    <label for="chk-arf1">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-arf1" name="special-apf" value="8"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: all team members receive +8% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-arf1">Bonus AP: all team members receive +8% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                   <div id="spt1" class="checkbox chk-w hide">
-                    <label for="chk-art1">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-art1" name="special-apt" value="20"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: receive +20% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-art1">Bonus AP: receive +20% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -322,22 +342,18 @@
               <td>
                 <div id="sp2" >
                   <div id="spf2" class="checkbox chk-w">
-                    <label for="chk-arf2">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-arf2" name="special-apf" value="8"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: all team members receive +8% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-arf2">Bonus AP: all team members receive +8% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                   <div id="spt2" class="checkbox chk-w hide">
-                    <label for="chk-art2">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-art2" name="special-apt" value="20"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: receive +20% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-art2">Bonus AP: receive +20% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -398,22 +414,18 @@
               <td>
                 <div id="sp3">
                   <div id="spf3" class="checkbox chk-w">
-                    <label for="chk-arf3">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-arf3" name="special-apf" value="8"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: all team members receive +8% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-arf3">Bonus AP: all team members receive +8% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                   <div id="spt3" class="checkbox chk-w hide">
-                    <label for="chk-art3">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-art3" name="special-apt" value="20"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: receive +20% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-art3">Bonus AP: receive +20% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -474,22 +486,18 @@
               <td>
                 <div id="sp4">
                   <div id="spf4" class="checkbox chk-w">
-                    <label for="chk-arf4">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-arf4" name="special-apf" value="8"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: all team members receive +8% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-arf4">Bonus AP: all team members receive +8% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                   <div id="spt4" class="checkbox chk-w hide">
-                    <label for="chk-art4">
+                    <div class="checkbox">
                       <input type="checkbox" id="chk-art4" name="special-apt" value="20"> 
-                      <ins></ins> 
-                      <span>
-                        Bonus AP: receive +20% AP at the beginning of each wave
-                      </span>
-                    </label>
+                      <label for="chk-art4">Bonus AP: receive +20% AP at the beginning of each wave</label>
+                      <div class="check"></div>
+                    </div>
                   </div>
                 </div>
               </td>
