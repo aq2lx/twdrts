@@ -1,10 +1,8 @@
-// Config
-//==============================
-const xpFromScav = 100000
-
 // Varible
+//==============================
 const campMember = []
 
+let xpFromScav = 100000
 let name = ''
 let star = 6
 let tier = 1
@@ -16,6 +14,9 @@ let maxLvl = MaxLevel[`s${star}`][`t${tier}`]
 
 // Elements
 //==============================
+const eScavType = document.querySelectorAll('input[name="scav-type"]')
+const eChkBonus = document.getElementById('chk-bonus')
+const eSBonus = document.getElementById('s-bonus')
 const eName = document.getElementById('ipt-name')
 
 const eLblLvl = document.getElementById('lbl-lvl')
@@ -25,12 +26,11 @@ const eGroupStar = document.getElementById('g-star')
 const eGroupTier = document.getElementById('g-tier')
 const eBtnStar = eGroupStar.getElementsByTagName('button')
 const eBtnTier = eGroupTier.getElementsByTagName('button')
+const eXP = document.getElementById('ipt-xp')
 
 const btnAddtoCamp = document.getElementById('btn-addtocamp')
 const camp = document.getElementById('camp')
 const campNodes = camp.getElementsByTagName('li')
-
-const eXP = document.getElementById('ipt-xp')
 
 // Input Change
 //==============================
@@ -131,6 +131,7 @@ const addToCamp = (data) => {
   newMember.appendChild(addBtnRemove(idx))
   newMember.appendChild(addTier(data.tier))
   newMember.appendChild(createTable(data))
+  newMember.appendChild(addLblArrow(idx))
 
   campNodes[idx].appendChild(newMember)
 
@@ -152,6 +153,15 @@ const addBtnRemove = (idx) => {
   btnRemove.addEventListener('click', removeMember, false)
 
   return btnRemove;
+}
+
+const addLblArrow = (idx) => {
+  const lblArrow = document.createElement('span')
+
+  lblArrow.className = 'lbl-arrow'
+  lblArrow.innerHTML = '<i class="icon icon-right-open"></i>'
+
+  return lblArrow;
 }
 
 // Add tier
@@ -214,6 +224,10 @@ const createTable = (data) => {
         col.setAttribute('colspan', property.colspan)
       }
 
+      if (property.rowspan) {
+        col.setAttribute('rowspan', property.rowspan)
+      }
+
       if (property.id) {
         col.appendChild(addId(property.id))
       }
@@ -257,13 +271,13 @@ const createTable = (data) => {
   table.appendChild(addRow([addStar(data.star)]))
 
   table.appendChild(addRow([
-    addCol('lvl', { className: 'text-right clr-lightyellow' }),
-    addCol(`${data.lvl} <i class="icon icon-right-open"></i> `, { id: `lvl-${data.idx}`, className: 'clr-success' })
+    addCol(`${data.lvl}`, { className: 'text-right nw'}),
+    addCol(null, { id: `lvl-${data.idx}`, className: 'clr-success ne' })
   ]))
 
   table.appendChild(addRow([
-    addCol('xp', { className: 'text-right clr-lightyellow' }),
-    addCol(null, { id: `xp-${data.idx}` })
+    addCol(`${data.xp}`, { className: 'text-right sw' }),
+    addCol(null, { id: `xp-to-${data.idx}`, className: 'clr-success se' })
   ]))
 
   table.appendChild(addRow([
@@ -322,17 +336,17 @@ const getRenownPoint = (idx, lvl) => {
 //==============================
 const setResult = (idx, data) => {
   const elemLvlGain = document.getElementById(`lvl-${idx}`)
-  const elemXp = document.getElementById(`xp-${idx}`)
+  const elemXpTo = document.getElementById(`xp-to-${idx}`)
   const elemXpGain = document.getElementById(`xp-gain-${idx}`)
   const elemRenown = document.getElementById(`renown-${idx}`)
 
   elemLvlGain.innerHTML = campMember[idx].lvl + data.lvlGain
 
-  elemXp.innerHTML = data.xp.toLocaleString()
+  elemXpTo.innerHTML = data.xp.toLocaleString()
   if (data.xp === 'max!') {
-    elemXp.className = 'max'
+    elemXpTo.className = 'max'
   } else {
-    elemXp.className = ''
+    elemXpTo.className = ''
   }
 
   elemXpGain.innerHTML = data.xpGain.toLocaleString()
@@ -396,7 +410,7 @@ const calculate = () => {
 //==============================
 const calculateMember = (idx) => {
 
-  // Get xp remaing Array by current level
+  // Get xp remaining Array by current level
   const remainingXpChart = getRemainingXpChart(idx)
 
   let xpGain = 0
@@ -406,6 +420,10 @@ const calculateMember = (idx) => {
   if (remainingXpChart.length) {
 
     // Set current xp member
+    if (campMember[idx].xp > remainingXpChart[0]) {
+      campMember[idx].xp = remainingXpChart[0]
+    }
+
     remainingXpChart[0] = remainingXpChart[0] - campMember[idx].xp
 
     for (let i = 0; i < remainingXpChart.length; i++) {
@@ -431,6 +449,38 @@ const calculateMember = (idx) => {
 
 // Events
 //==============================
+const getXPFromScavBonus = () => {
+  if (eSBonus.checked) {
+    return 90000
+  } else {
+    return 60000
+  }
+}
+
+eScavType.forEach(function(elem) {
+  elem.onchange = function() {
+    if (this.value === 'bnm') {
+      eChkBonus.classList.remove('disabled')
+      xpFromScav = getXPFromScavBonus()
+    } else {
+      eChkBonus.classList.add('disabled')
+      xpFromScav = 100000
+    }
+
+    if (countMember) {
+      calculate()
+    }
+  }
+})
+
+eSBonus.onchange = function() {
+  xpFromScav = getXPFromScavBonus()
+
+  if (countMember) {
+    calculate()
+  }
+}
+
 btnAddtoCamp.onclick = function() {
   if (countMember === 5) {
     return false
