@@ -24,22 +24,22 @@
       <ul class="radio-group inline">
         <li>
           <div class="radio">
-            <input type="radio" id="s100" name="scav-type" value="100000" checked>
-            <label for="s100">You Got Lucky <span class="sm">(100k)</span></label>
+            <input type="radio" id="s-ygl" name="scav-type" value="ygl" checked>
+            <label for="s-ygl">You Got Lucky <span class="sm clr-amber">(100k)</span></label>
             <div class="check"></div> 
           </div>
         </li>
         <li>
           <div class="radio">
-            <input type="radio" id="s60" name="scav-type" value="60000">
-            <label for="s60">Bricks and Mortar <span class="sm">(60k)</span></label>
+            <input type="radio" id="s-bnm" name="scav-type" value="bnm">
+            <label for="s-bnm">Bricks and Mortar <span class="sm clr-amber">(60k)</span></label>
             <div class="check"></div>
           </div>
         </li>
         <li>
-          <div class="checkbox disabled">
-            <input type="checkbox" id="s30" name="scav-bonus" value="60000">
-            <label for="s30">Challenge Bonus <span class="sm">(+30k)</span></label>
+          <div id="chk-bonus" class="checkbox disabled">
+            <input type="checkbox" id="s-bonus" name="scav-bonus" value="30000">
+            <label for="s-bonus">Challenge Bonus <span class="sm clr-amber">(+30k)</span></label>
             <div class="check"></div>
           </div>
         </li>
@@ -121,9 +121,7 @@
       </div>
     </div>
   </div>
-<script src="public/js/maxlevel.json"></script>
-<script src="public/js/xp.json"></script>
-<script src="public/js/renown.json"></script>
+<script src="public/js/db.json"></script>
 <script src="public/js/scav.js"></script>
 <script src="public/js/ga.js"></script>
 </body>

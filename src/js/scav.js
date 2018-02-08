@@ -1,4 +1,5 @@
 // Varible
+//==============================
 const campMember = []
 
 let xpFromScav = 100000
@@ -13,6 +14,9 @@ let maxLvl = MaxLevel[`s${star}`][`t${tier}`]
 
 // Elements
 //==============================
+const eScavType = document.querySelectorAll('input[name="scav-type"]')
+const eChkBonus = document.getElementById('chk-bonus')
+const eSBonus = document.getElementById('s-bonus')
 const eName = document.getElementById('ipt-name')
 
 const eLblLvl = document.getElementById('lbl-lvl')
@@ -22,12 +26,11 @@ const eGroupStar = document.getElementById('g-star')
 const eGroupTier = document.getElementById('g-tier')
 const eBtnStar = eGroupStar.getElementsByTagName('button')
 const eBtnTier = eGroupTier.getElementsByTagName('button')
+const eXP = document.getElementById('ipt-xp')
 
 const btnAddtoCamp = document.getElementById('btn-addtocamp')
 const camp = document.getElementById('camp')
 const campNodes = camp.getElementsByTagName('li')
-
-const eXP = document.getElementById('ipt-xp')
 
 // Input Change
 //==============================
@@ -332,7 +335,6 @@ const getRenownPoint = (idx, lvl) => {
 // Set result
 //==============================
 const setResult = (idx, data) => {
-
   const elemLvlGain = document.getElementById(`lvl-${idx}`)
   const elemXpTo = document.getElementById(`xp-to-${idx}`)
   const elemXpGain = document.getElementById(`xp-gain-${idx}`)
@@ -418,6 +420,10 @@ const calculateMember = (idx) => {
   if (remainingXpChart.length) {
 
     // Set current xp member
+    if (campMember[idx].xp > remainingXpChart[0]) {
+      campMember[idx].xp = remainingXpChart[0]
+    }
+
     remainingXpChart[0] = remainingXpChart[0] - campMember[idx].xp
 
     for (let i = 0; i < remainingXpChart.length; i++) {
@@ -443,6 +449,38 @@ const calculateMember = (idx) => {
 
 // Events
 //==============================
+const getXPFromScavBonus = () => {
+  if (eSBonus.checked) {
+    return 90000
+  } else {
+    return 60000
+  }
+}
+
+eScavType.forEach(function(elem) {
+  elem.onchange = function() {
+    if (this.value === 'bnm') {
+      eChkBonus.classList.remove('disabled')
+      xpFromScav = getXPFromScavBonus()
+    } else {
+      eChkBonus.classList.add('disabled')
+      xpFromScav = 100000
+    }
+
+    if (countMember) {
+      calculate()
+    }
+  }
+})
+
+eSBonus.onchange = function() {
+  xpFromScav = getXPFromScavBonus()
+
+  if (countMember) {
+    calculate()
+  }
+}
+
 btnAddtoCamp.onclick = function() {
   if (countMember === 5) {
     return false

@@ -1,6 +1,7 @@
 'use strict';
 
 // Varible
+//==============================
 var campMember = [];
 
 var xpFromScav = 100000;
@@ -15,6 +16,9 @@ var maxLvl = MaxLevel['s' + star]['t' + tier];
 
 // Elements
 //==============================
+var eScavType = document.querySelectorAll('input[name="scav-type"]');
+var eChkBonus = document.getElementById('chk-bonus');
+var eSBonus = document.getElementById('s-bonus');
 var eName = document.getElementById('ipt-name');
 
 var eLblLvl = document.getElementById('lbl-lvl');
@@ -24,12 +28,11 @@ var eGroupStar = document.getElementById('g-star');
 var eGroupTier = document.getElementById('g-tier');
 var eBtnStar = eGroupStar.getElementsByTagName('button');
 var eBtnTier = eGroupTier.getElementsByTagName('button');
+var eXP = document.getElementById('ipt-xp');
 
 var btnAddtoCamp = document.getElementById('btn-addtocamp');
 var camp = document.getElementById('camp');
 var campNodes = camp.getElementsByTagName('li');
-
-var eXP = document.getElementById('ipt-xp');
 
 // Input Change
 //==============================
@@ -322,7 +325,6 @@ var getRenownPoint = function getRenownPoint(idx, lvl) {
 // Set result
 //==============================
 var setResult = function setResult(idx, data) {
-
   var elemLvlGain = document.getElementById('lvl-' + idx);
   var elemXpTo = document.getElementById('xp-to-' + idx);
   var elemXpGain = document.getElementById('xp-gain-' + idx);
@@ -408,6 +410,10 @@ var calculateMember = function calculateMember(idx) {
   if (remainingXpChart.length) {
 
     // Set current xp member
+    if (campMember[idx].xp > remainingXpChart[0]) {
+      campMember[idx].xp = remainingXpChart[0];
+    }
+
     remainingXpChart[0] = remainingXpChart[0] - campMember[idx].xp;
 
     for (var _i7 = 0; _i7 < remainingXpChart.length; _i7++) {
@@ -433,6 +439,38 @@ var calculateMember = function calculateMember(idx) {
 
 // Events
 //==============================
+var getXPFromScavBonus = function getXPFromScavBonus() {
+  if (eSBonus.checked) {
+    return 90000;
+  } else {
+    return 60000;
+  }
+};
+
+eScavType.forEach(function (elem) {
+  elem.onchange = function () {
+    if (this.value === 'bnm') {
+      eChkBonus.classList.remove('disabled');
+      xpFromScav = getXPFromScavBonus();
+    } else {
+      eChkBonus.classList.add('disabled');
+      xpFromScav = 100000;
+    }
+
+    if (countMember) {
+      calculate();
+    }
+  };
+});
+
+eSBonus.onchange = function () {
+  xpFromScav = getXPFromScavBonus();
+
+  if (countMember) {
+    calculate();
+  }
+};
+
 btnAddtoCamp.onclick = function () {
   if (countMember === 5) {
     return false;
