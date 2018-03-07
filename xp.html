@@ -13,7 +13,7 @@
   <div class="navbar">
 
   </div>
-  <div style="padding-top: 3rem;">
+  <div style="padding-top: 3rem; padding-left: .5rem; padding-right: .5rem;">
     <div class="text-center">
       <div class="btns">
         <button class="btn">You Got Lucky <span class="sm clr-amber">(100k)</span></button>
@@ -21,7 +21,65 @@
         <button class="btn"><span class="sm clr-amber">(+30k)</span></button>
       </div>
     </div>
-    <h4 class="text-center f-komika_display clr-lightyellow" style="text-transform: uppercase;">Add Camp Member</h4>
+    <h5 class="text-center f-komika_display clr-lightyellow" style="text-transform: uppercase;">Add Camp Member</h5>
+    <div>
+      <div class="row">
+        <div class="text-right">
+          Name
+        </div>
+        <div>
+          <input id="ipt-name" type="text" maxlength="12">
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-right">
+          Star
+        </div>
+        <div>
+          <div id="g-star" class="btns">
+            <button class="btn" data-value="4">4</button>
+            <button class="btn" data-value="5">5</button>
+            <button class="btn active" data-value="6">6</button>
+          </div>
+        </div>
+        <div class="text-right">
+          Tier
+        </div>
+        <div>
+          <div id="g-tier" class="btns">
+            <button class="btn active" data-value="1">1</button>
+            <button class="btn" data-value="2">2</button>
+            <button class="btn" data-value="3">3</button>
+            <button class="btn" data-value="4">4</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-right">
+          Level
+        </div>
+        <div>
+          <input id="lbl-lvl" type="number" class="lbl-lvl" min="1" max="60" value="1">
+        </div>
+        <div class="text-right">
+          XP
+        </div>
+        <div>
+          <input id="ipt-xp" type="number" style="width: 90px;">
+        </div>
+      </div>
+      <div>
+        <button id="btn-addtocamp" class="btn btn-addtocamp">Add to camp <i class="icon icon-right-open"></i></button>
+      </div>
+    </div>
+    <h5 class="text-center f-komika_display clr-lightyellow" style="text-transform: uppercase;">Scavenger Camp</h5>
+    <ul id="camp" class="camp">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
 </body>
 </html>

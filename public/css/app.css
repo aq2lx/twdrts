@@ -8,15 +8,11 @@
   font-family: 'komika_display-regular';
   text-transform: none; }
 
-h3, h4 {
-  margin-top: 0;
-  margin-bottom: 0;
+h5 {
+  margin-top: .4rem;
+  margin-bottom: .4rem;
   color: #ede1b1;
   font-weight: normal; }
-
-h4 {
-  margin-top: .4rem;
-  margin-bottom: .4rem; }
 
 .text-center {
   text-align: center; }
@@ -50,27 +46,70 @@ body {
 .clr-lightyellow {
   color: #ede1b1; }
 
+input {
+  font-family: 'Teko', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: .4rem;
+  border: 0;
+  width: 100%;
+  padding: 0 .4rem;
+  appearance: none;
+  background-color: #fff; }
+
 .btn {
   border: none;
   background-color: #424242;
   color: #fff;
   font-family: 'Teko', sans-serif;
   font-size: 1rem;
+  min-width: 1.8rem;
   outline: 0;
-  padding: .4rem;
+  padding: .2rem .4rem;
   text-transform: uppercase; }
 
 .btns {
   display: inline-flex; }
   .btns .btn:first-child {
-    border-top-left-radius: 0.4rem;
-    border-bottom-left-radius: 0.4rem; }
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: .4rem; }
   .btns .btn:last-child {
-    border-top-right-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem; }
+    border-top-right-radius: .4rem;
+    border-bottom-right-radius: .4rem; }
 
 .navbar {
   background-color: #000;
   width: 100%;
   height: 40px;
   position: fixed; }
+
+.row {
+  display: flex;
+  align-items: center; }
+  .row > div {
+    padding: .2rem; }
+
+.camp {
+  line-height: 1.2;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .camp:before, .camp:after {
+    content: "";
+    display: table; }
+  .camp:after {
+    clear: both; }
+  .camp li {
+    margin: 4px;
+    border: 1px dashed #757575;
+    height: 60px;
+    border-radius: 6px;
+    position: relative; }
+    .camp li > .fill {
+      background-color: #424242;
+      box-shadow: 0 0 0 1px #000;
+      border-radius: 4px;
+      height: 100%;
+      padding-top: 24px; }
+  .camp .icon {
+    font-size: 14px; }
