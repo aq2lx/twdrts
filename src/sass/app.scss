@@ -83,7 +83,7 @@ input {
   border-radius: .4rem;
   border: 0;
   width: 100%;
-  padding: 0 .4rem;
+  padding: .2rem .4rem;
   appearance: none;
   background-color: #fff;
 }
@@ -98,6 +98,11 @@ input {
   outline: 0;
   padding: .2rem .4rem;
   text-transform: uppercase;
+}
+
+.btn-addtocamp {
+  height: 100%;
+  border-radius: .4rem;
 }
 
 .btns {
@@ -132,6 +137,14 @@ input {
   }
 }
 
+.col {
+  display: flex;
+
+  > div {
+    padding: .2rem;
+  }
+}
+
 .camp {
   @include clearfix();
   line-height: 1.2;
@@ -142,7 +155,7 @@ input {
   li {
     margin: 4px;
     border: 1px dashed #757575;
-    height: 60px;
+    height: 64px;
     border-radius: 6px;
     position: relative;
 
