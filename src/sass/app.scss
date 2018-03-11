@@ -94,14 +94,14 @@ input {
   color: #fff;
   font-family: 'Teko', sans-serif;
   font-size: 1rem;
-  min-width: 1.8rem;
+  min-width: 2rem;
   outline: 0;
   padding: .2rem .4rem;
   text-transform: uppercase;
 }
 
 .btn-addtocamp {
-  height: 100%;
+  width: 100%;
   border-radius: .4rem;
 }
 
@@ -131,6 +131,7 @@ input {
 .row {
   display: flex;
   align-items: center;
+  padding: .1rem 0;
 
   > div {
     padding: .2rem;
@@ -145,19 +146,54 @@ input {
   }
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  opacity: .5;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  margin: .4rem;
+  position: relative;
+  top: 4.8rem;
+}
+
+.modal-content {
+  background-color: #212121;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .4rem;
+  padding: 1rem;
+}
+
 .camp {
   @include clearfix();
   line-height: 1.2;
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 
   li {
-    margin: 4px;
+    margin: .2rem;
     border: 1px dashed #757575;
-    height: 64px;
-    border-radius: 6px;
+    border-radius: .4rem;
     position: relative;
+    flex: 1 1 auto;
 
     > .fill {
       background-color: #424242;
@@ -171,4 +207,13 @@ input {
   .icon {
     font-size: 14px;
   }
+}
+
+.summary {
+  margin: .4rem;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: .2rem;
+  border-radius: .4rem;
+  border: 1px solid #424242;
 }
