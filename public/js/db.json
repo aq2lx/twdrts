@@ -1,4 +1,4 @@
-// Max Level
+// Max level
 //==============================
 window.MaxLevel = {
   "s4": {
@@ -21,7 +21,7 @@ window.MaxLevel = {
   }
 }
 
-// Max Xp
+// Xp
 //==============================
 window.Xp = {
   "s4": {
@@ -44,7 +44,7 @@ window.Xp = {
   }
 }
 
-// Max Renown
+// Renown point
 //==============================
 window.Renown = {
   "s4": [105, 210, 420, 875],

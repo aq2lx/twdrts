@@ -101,11 +101,10 @@ input {
 
 .modal {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1001; }
+  top: 80px;
+  width: 100%;
+  z-index: 1001;
+  visibility: hidden; }
 
 .modal-backdrop {
   position: fixed;
@@ -113,14 +112,15 @@ input {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #000;
-  opacity: .5;
-  z-index: 1000; }
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 1000;
+  transition: all .3s;
+  visibility: hidden; }
 
-.modal-dialog {
-  margin: .4rem;
-  position: relative;
-  top: 4.8rem; }
+.md-show ~ .modal-backdrop {
+  opacity: 1;
+  visibility: visible; }
 
 .modal-content {
   background-color: #212121;
