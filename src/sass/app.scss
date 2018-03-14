@@ -76,7 +76,7 @@ body {
 }
 
 // input
-input {
+input[type=text], input[type=number] {
   font-family: 'Teko', sans-serif;
   font-size: 1rem;
   text-transform: uppercase;
@@ -88,6 +88,7 @@ input {
   background-color: #fff;
 }
 
+// Button
 .btn {
   border: none;
   background-color: #424242;
@@ -98,11 +99,17 @@ input {
   outline: 0;
   padding: .2rem .4rem;
   text-transform: uppercase;
+
+  &.active {
+    background-color: #f5be3f;
+  }
 }
 
 .btn-addtocamp {
   width: 100%;
   border-radius: .4rem;
+  margin-top: .4rem;
+  font-size: 1.2rem;
 }
 
 .btns {
@@ -119,6 +126,26 @@ input {
       border-bottom-right-radius: .4rem;
     }
   }
+}
+
+.close {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 32px;
+  height: 24px;
+  display: block;
+  line-height: 1;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  text-shadow: none;
+  font-family: 'Arial', 'sans-serif';
+  font-size: 24px;
+  background: #d4d4d4;
+  background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
+  border: solid #000 1px;
+  color: #424242;
 }
 
 .navbar {
@@ -146,12 +173,18 @@ input {
   }
 }
 
+// Modal
 .modal {
   position: fixed;
   top: 80px;
-  width: 100%;
+  left: 50%;
   z-index: 1001;
+  transform: translateX(-50%);
   visibility: hidden;
+}
+
+.modal-add-to-camp {
+  width: 204px;
 }
 
 .modal-backdrop {
@@ -163,8 +196,27 @@ input {
   background-color: rgba(0, 0, 0, .5);
   opacity: 0;
   z-index: 1000;
-  transition: all .3s;
+  transition: all .2s;
   visibility: hidden;
+}
+
+.modal-content {
+  background-color: #212121;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .4rem;
+  opacity: 0;
+  padding: 1rem;
+  transform: translateY(9%);
+  transition: all .2s;
+}
+
+.md-show {
+  visibility: visible;
+
+  .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .md-show ~ .modal-backdrop {
@@ -172,13 +224,7 @@ input {
   visibility: visible;
 }
 
-.modal-content {
-  background-color: #212121;
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: .4rem;
-  padding: 1rem;
-}
-
+//
 .camp {
   @include clearfix();
   line-height: 1.2;
