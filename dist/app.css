@@ -14,6 +14,35 @@
   font-family: 'komika_display-regular';
   text-transform: none; }
 
+@font-face {
+  font-family: 'icon';
+  src: url(3337c49e4e8848305cd26558dbd13d7f.eot);
+  src: url(3337c49e4e8848305cd26558dbd13d7f.eot#iefix) format("embedded-opentype"), url(265d1cdb7f0dda257547910d5313ae52.woff2) format("woff2"), url(00d37e51f618fb17033de0fb35f67cca.woff) format("woff"), url(5e869d70c2acc6faf5f71e4b87fde864.ttf) format("truetype"), url(100477aac96a24f65ed0b9336bdff0b5.svg#icon) format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: 'icon';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin-left: .1em;
+  margin-right: .1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-star:before {
+  content: '\E800'; }
+
+.icon-right-open:before {
+  content: '\E801'; }
+
 *, *:before, *:after {
   box-sizing: border-box; }
 
@@ -53,7 +82,7 @@ h5 {
   color: #ede1b1; }
 
 input[type=text], input[type=number] {
-  font-family: 'Teko', sans-serif;
+  font-family: 'teko-regular', sans-serif;
   font-size: 1rem;
   text-transform: uppercase;
   border-radius: .4rem;
@@ -67,7 +96,7 @@ input[type=text], input[type=number] {
   border: none;
   background-color: #424242;
   color: #fff;
-  font-family: 'Teko', sans-serif;
+  font-family: 'teko-regular', sans-serif;
   font-size: 1rem;
   min-width: 2rem;
   outline: 0;
@@ -115,6 +144,14 @@ input[type=text], input[type=number] {
   width: 100%;
   height: 40px;
   position: fixed; }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 100%; }
 
 .row {
   display: flex;

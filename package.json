@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "webpack --watch --mode development",
-    "build": "webpack --mode production"
+    "dev": "webpack --watch --hide-modules --mode development",
+    "build": "webpack --hide-modules --mode production"
   },
   "keywords": [
     "twdrts"

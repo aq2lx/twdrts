@@ -1,6 +1,7 @@
 @import "variables";
 @import "mixins";
 @import "fonts";
+@import "icons";
 
 // Reset
 *, *:before, *:after {
@@ -53,7 +54,7 @@ h5 {
 
 // input
 input[type=text], input[type=number] {
-  font-family: 'Teko', sans-serif;
+  font-family: 'teko-regular', sans-serif;
   font-size: 1rem;
   text-transform: uppercase;
   border-radius: .4rem;
@@ -69,7 +70,7 @@ input[type=text], input[type=number] {
   border: none;
   background-color: #424242;
   color: #fff;
-  font-family: 'Teko', sans-serif;
+  font-family: 'teko-regular', sans-serif;
   font-size: 1rem;
   min-width: 2rem;
   outline: 0;
@@ -129,6 +130,15 @@ input[type=text], input[type=number] {
   width: 100%;
   height: 40px;
   position: fixed;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 100%;
 }
 
 .row {

@@ -6,12 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Renown Points Calculator</title>
 <link href="./dist/app.css" rel="stylesheet">
-<link href="public/css/icon.css" rel="stylesheet">
 </head>
 <body>
   <div class="navbar">
   </div>
-  <div style="padding-top: 3rem; padding-left: .5rem; padding-right: .5rem; height: 100%; display: flex; flex-direction: column;">
+  <div class="main-container">
     <div style="flex: 0 1 auto;">
       <div class="text-center">
         <div class="btns">
@@ -76,7 +75,7 @@
             Level
           </div>
           <div>
-            <input id="lbl-lvl" type="number" class="lbl-lvl" min="1" max="60" value="1" style="width: 32px;">
+            <input id="ipt-lvl" type="number" value="1" style="width: 32px;">
           </div>
           <div class="text-right">
             XP
@@ -94,7 +93,7 @@
   <div class="modal-backdrop"></div>
 <script src="./dist/app.bundle.js"></script>
 <script>
-  console.log(app.ScavengerCamp);
+  app.ScavengerCamp.init();
 </script>
 </body>
 </html>
