@@ -1,17 +1,25 @@
 {
   "name": "twdrts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "rollup": "rollup -c build/rollup-config.js",
-    "watch": "rollup -w -c build/rollup-watch-config.js"
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [
     "twdrts"
   ],
   "license": "ISC",
   "devDependencies": {
-    
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   }
 }
