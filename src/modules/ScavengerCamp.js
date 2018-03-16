@@ -1,4 +1,5 @@
 import DB from '../db.json';
+import UI from './UI';
 
 const ScavengerCamp = {
 
@@ -16,8 +17,10 @@ const ScavengerCamp = {
   mergeOptions(options) {
     const opt = {
       xpFromScav: options.xpFromScav || 100000,
-      star: options.star || 6,
-      tier: options.tier || 1,
+      input: {
+        star: options.star || 6,
+        tier: options.tier || 1,
+      }
     };
 
     this.state = { ...this.state, ...opt };
@@ -48,44 +51,32 @@ const ScavengerCamp = {
   },
 
   iniModal() {
-    const eGroupStar = document.getElementById('g-star');
-    const eGroupTier = document.getElementById('g-tier');
+    // Group button
+    const eInputStar = new UI.BtnGroup('ipt-star');
+    const eInputTier = new UI.BtnGroup('ipt-tier');
+
     const eName = document.getElementById('ipt-name');
     const eInputLvl = document.getElementById('ipt-lvl');
     const eInputXp = document.getElementById('ipt-xp');
     const eBtnAddtoCamp = document.getElementById('btn-addtocamp');
-    const eBtnStar = eGroupStar.getElementsByTagName('button');
-    const eBtnTier = eGroupTier.getElementsByTagName('button');
 
-    // Input star
-    for (let i = 0; i < eBtnStar.length; i++) {
-      eBtnStar[i].onclick = (e) => {
-        for (let j = 0; j < eBtnStar.length; j++) {
-          eBtnStar[j].classList.remove('active');
-        }
-
+    /*for (let i = 0; i < eInputStar.child.length; i++) {
+      eInputStar.child[i].onclick = (e) => {
         const el = e.target || e.currentTarget;
-        el.classList.add('active');
 
-        this.state.star = parseInt(el.dataset.value, 10);
+        this.state.input.star = parseInt(el.dataset.value, 10);
         this.setMaxLevel();
       }
     }
 
-    // Input tier
-    for (let i = 0; i < eBtnTier.length; i++) {
-      eBtnTier[i].onclick = (e) => {
-        for (let j = 0; j < eBtnTier.length; j++) {
-          eBtnTier[j].classList.remove('active');
-        }
-
+    for (let i = 0; i < eInputTier.child.length; i++) {
+      eInputTier.child[i].onclick = (e) => {
         const el = e.target || e.currentTarget;
-        el.classList.add('active');
 
-        this.state.tier = parseInt(el.dataset.value, 10);
+        this.state.input.tier = parseInt(el.dataset.value, 10);
         this.setMaxLevel();
       }
-    }
+    }*/
 
     // Input lvl
     eInputLvl.onkeyup = (e) => {
@@ -94,18 +85,28 @@ const ScavengerCamp = {
       if (el.value > this.state.maxLevel) {
         el.value = this.state.maxLevel;
       }
+
+      this.state.input.lvl = el.value;
     }
 
     // Input xp
-    eInputXp.onkeyup = function() {
+    eInputXp.onkeyup = (e) => {
+      const el = e.target || e.currentTarget;
+
       if (this.value > 9999) {
         this.value = 9999;
       }
+
+      this.state.input.xp = this.value;
     }
 
     // Button add to camp
     eBtnAddtoCamp.onclick = () => {
-      console.log(this.state);
+      if (this.state.counMember > 5) {
+        return;
+      }
+
+      addToCamp(this.state.input);
     }
 
     // Close modal
@@ -121,9 +122,11 @@ const ScavengerCamp = {
   },
 
   setMaxLevel() {
-    this.state.maxLevel = DB.maxLevel[`s${this.state.star}`][`t${this.state.tier}`];
+    this.state.maxLevel = DB.maxLevel[`s${this.state.input.star}`][`t${this.state.input.tier}`];
+  },
 
-    console.log(this.state.maxLevel);
+  addToCamp(input) {
+    console.log(input);
   }
 }
 
