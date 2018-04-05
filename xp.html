@@ -5,124 +5,134 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Renown Points Calculator</title>
-<link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet">
-<link href="public/css/app.css" rel="stylesheet">
-<link href="public/css/icon.css" rel="stylesheet">
+<link href="./dist/app.css" rel="stylesheet">
 </head>
 <body>
   <div class="navbar">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="xp.html">Renown Points Calculator</a></li>
-      <li><a href="ar.html">Adrenaline Rush Calculator</a></li>
+    <div class="container">
+      <a href="d-xp.html" class="dsk">
+        <i class="icon icon-desktop"></i>
+        Desktop version
+      </a>
+    </div>
+  </div>
+  <div class="main-container">
+    <div style="flex: 0 1 auto;">
+      <div class="text-center" style="margin-bottom: .4rem;">
+        <div class="btn-group">
+          <div class="btn-toggle">
+            <input type="radio" name="scav-type" id="scav-type-ygl" value="ygl">
+            <label class="btn" for="scav-type-ygl">You Got Lucky <span class="sm clr-amber">(100k)</span></label>
+          </div>
+          <div class="btn-toggle">
+            <input type="radio" name="scav-type" id="scav-type-bnm" value="bnm">
+            <label class="btn" for="scav-type-bnm">Bricks &amp; Mortar <span class="sm clr-amber">(60k)</span></label>
+          </div>
+          <div class="btn-toggle">
+            <input type="checkbox" name="scav-bonus" id="chk-scav-bonus" value="bonus">
+            <label class="btn" id="btn-scav-bonus" for="chk-scav-bonus"><span class="sm clr-amber">(+30k)</span></label>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: baseline;">
+        <h4 class="f-komika_display clr-lightyellow" style="text-transform: uppercase; flex: 0 1 auto;">Scavenger Camp</h4>
+        <div class="summary" style="flex: 1 1 auto;">
+          Total <span id="total" class="total-point"></span>
+        </div>
+      </div>
+    </div>
+    <ul id="camp" class="camp" style="flex: 1 1 auto;">
+      <li data-idx="0"></li>
+      <li data-idx="1"></li>
+      <li data-idx="2"></li>
+      <li data-idx="3"></li>
+      <li data-idx="4"></li>
     </ul>
   </div>
-  <div class="github-link-wrapper">
-    <a href="https://github.com/aq2lx/twdrts" target="_blank" class="github-link"><span class="github-icon"></span></a>
-  </div>
-  <div class="page-scav container">
-    <div class="top">
-      <ul class="radio-group inline">
-        <li>
-          <div class="radio">
-            <input type="radio" id="s-ygl" name="scav-type" value="ygl" checked>
-            <label for="s-ygl">You Got Lucky <span class="sm clr-amber">(100k)</span></label>
-            <div class="check"></div> 
+  <div class="modal modal-add-to-camp" id="modal-addmember" style="visibility: hidden;">
+    <div class="modal-content">
+      <span class="close" id="btn-close-md">×</span>
+      <h4 class="text-center f-komika_display clr-lightyellow" style="text-transform: uppercase; margin-bottom: .4rem;">Add Camp Member</h4>
+      <div>
+        <div class="row">
+          <div class="text-right" style="width: 3rem;">
+            Name
           </div>
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" id="s-bnm" name="scav-type" value="bnm">
-            <label for="s-bnm">Bricks and Mortar <span class="sm clr-amber">(60k)</span></label>
-            <div class="check"></div>
+          <div>
+            <input id="ipt-name" type="text" maxlength="12">
           </div>
-        </li>
-        <li>
-          <div id="chk-bonus" class="checkbox disabled">
-            <input type="checkbox" id="s-bonus" name="scav-bonus" value="30000">
-            <label for="s-bonus">Challenge Bonus <span class="sm clr-amber">(+30k)</span></label>
-            <div class="check"></div>
+        </div>
+        <div class="row">
+          <div class="text-right" style="width: 3rem;">
+            Star
           </div>
-        </li>
-      </ul>
-    </div>
-    <div class="clearfix">
-      <div class="left-side">
-        <h4 class="text-center f-komika_display" style="margin-bottom: 12px; text-transform: uppercase;">Add Camp Member</h4>
-        <table>
-          <tr>
-            <td class="text-right">
-              Name
-            </td>
-            <td style="width: 162px;">
-              <input id="ipt-name" type="text" maxlength="12">
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">
-              Star
-            </td>
-            <td>
-              <div id="g-star" class="btn-group">
-                <button class="btn btn-select" data-value="4">4</button>
-                <button class="btn btn-select" data-value="5">5</button>
-                <button class="btn btn-select active" data-value="6">6</button>
+          <div>
+            <div class="btn-group">
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-star" id="ipt-star-4" value="4">
+                <label class="btn" for="ipt-star-4">4</label>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">
-              Tier
-            </td>
-            <td>
-              <div id="g-tier" class="btn-group">
-                <button class="btn btn-select active" data-value="1">1</button>
-                <button class="btn btn-select" data-value="2">2</button>
-                <button class="btn btn-select" data-value="3">3</button>
-                <button class="btn btn-select" data-value="4">4</button>
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-star" id="ipt-star-5" value="5">
+                <label class="btn" for="ipt-star-5">5</label>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">
-              Level
-            </td>
-            <td>
-              <input id="lbl-lvl" type="number" class="lbl-lvl" min="1" max="60" value="1">
-              <input id="range-lvl" type="range" min="1" max="60" value="1" style="display: inline-block; vertical-align: middle;">
-            </td>
-          </tr>
-          <tr>
-            <td class="text-right">
-              XP
-            </td>
-            <td>
-              <input id="ipt-xp" type="number" style="width: 90px;">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="text-right">
-              <button id="btn-addtocamp" class="btn btn-addtocamp">Add to camp <i class="icon icon-right-open"></i></button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="right-side">
-        <h4 class="text-center f-komika_display" style="margin-bottom: 12px; text-transform: uppercase;">Scavenger Camp</h4>
-        <ul id="camp" class="camp">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <div class="summary">
-          Total Renown points: <span id="total" class="total-point"></span>
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-star" id="ipt-star-6" value="6">
+                <label class="btn" for="ipt-star-6">6</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-right" style="width: 3rem;">
+            Tier
+          </div>
+          <div>
+            <div class="btn-group">
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-tier" id="ipt-tier-1" value="1">
+                <label class="btn" for="ipt-tier-1">1</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-tier" id="ipt-tier-2" value="2">
+                <label class="btn" for="ipt-tier-2">2</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-tier" id="ipt-tier-3" value="3">
+                <label class="btn" for="ipt-tier-3">3</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="ipt-tier" id="ipt-tier-4" value="4">
+                <label class="btn" for="ipt-tier-4">4</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-right" style="width: 3rem;">
+            Level
+          </div>
+          <div>
+            <input id="ipt-lvl" type="tel" style="width: 2.8rem;">
+          </div>
+          <div class="text-right">
+            XP
+          </div>
+          <div>
+            <input id="ipt-xp" type="tel" style="width: 5.6rem;">
+          </div>
+        </div>
+        <div class="row">
+          <button id="btn-addtocamp" class="btn btn-addtocamp">Add to camp</button>
         </div>
       </div>
     </div>
   </div>
-<script src="public/js/db.json"></script>
-<script src="public/js/scav.js"></script>
-<script src="public/js/ga.js"></script>
+  <div class="modal-backdrop"></div>
+<script src="./dist/app.bundle.js"></script>
+<script src="./public/js/ga.js"></script>
+<script>
+  app.ScavengerCamp.init();
+</script>
 </body>
 </html>
