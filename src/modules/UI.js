@@ -1,28 +1,70 @@
-// Button group
-class BtnGroup {
+
+// Modal
+class Modal {
   constructor(id) {
     this.el = document.getElementById(id);
-    this.init();
   }
 
-  init() {
-    const child = this.child = this.el.getElementsByTagName('button');
+  show() {
+    this.el.classList.add('md-show');
+  }
 
-    for (let i = 0; i < child.length; i++) {
-      child[i].onclick = (e) => {
-        for (let j = 0; j < child.length; j++) {
-          child[j].classList.remove('active');
-        }
+  hide() {
+    this.el.classList.remove('md-show');
+  }
 
-        const el = e.target || e.currentTarget;
-        el.classList.add('active');
-      }
+  toggle() {
+    this.el.classList.toggle('md-show');
+  }
+}
+
+// Table
+class Table {
+  constructor(className) {
+    const tbl = this.el = document.createElement('table');
+    tbl.className = className;
+
+    return this;
+  }
+
+  addRow(col) {
+    const row = document.createElement('tr')
+
+    for (let i = 0; i < col.length; i++) {
+      row.appendChild(col[i])
     }
+
+    this.el.appendChild(row);
+
+    return this;
+  }
+
+  addCol(data) {
+    const col = document.createElement('td');
+
+    if (data.hasOwnProperty('class')) {
+      col.className = data.class;
+    }
+    if (data.hasOwnProperty('id')) {
+      col.id = data.id;
+    }
+    if (data.hasOwnProperty('text')) {
+      col.innerHTML = data.text;
+    }
+    if (data.hasOwnProperty('child')) {
+      col.appendChild(data.child);
+    }
+    if (data.hasOwnProperty('rowspan')) {
+      col.setAttribute('rowspan', data.rowspan);
+    }
+
+    return col;
   }
 }
 
 const UI = {
-  BtnGroup,
+  Modal,
+  Table
 }
 
 export default UI;

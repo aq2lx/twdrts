@@ -5,16 +5,33 @@ module.exports = {
   entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
     filename: 'app.bundle.js',
     library: 'app'
   },
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [require('@babel/plugin-proposal-object-rest-spread')]
+          }
+        }
+      },
+      {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+          use: [{
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          }, 'sass-loader']
         })
       },
       {
@@ -29,3 +46,4 @@ module.exports = {
     new ExtractTextPlugin('app.css')
   ]
 };
+

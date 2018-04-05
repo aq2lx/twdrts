@@ -93,7 +93,7 @@ for (let i = 0; i < eBtnStar.length; i++) {
 
 // Input Tier
 //==============================
-for (let i = 0; i < eBtnTier.length; i++) { 
+for (let i = 0; i < eBtnTier.length; i++) {
   eBtnTier[i].onclick = function() {
     for (let j = 0; j < eBtnTier.length; j++) {
       eBtnTier[j].classList.remove('active')

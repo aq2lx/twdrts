@@ -1,0 +1,49 @@
+.modal {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  margin-left: -8rem;
+  z-index: 1001;
+  visibility: hidden;
+}
+
+.modal-add-to-camp {
+  width: 16rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .8);
+  opacity: 0;
+  z-index: 1000;
+  transition: all .2s;
+  visibility: hidden;
+}
+
+.modal-content {
+  background-color: #212121;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .4rem;
+  opacity: 0;
+  padding: 1rem;
+  transform: translateY(9%);
+  transition: all .2s;
+}
+
+.md-show {
+  visibility: visible !important;
+
+  .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.md-show ~ .modal-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
