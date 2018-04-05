@@ -1,0 +1,20 @@
+// Font
+@font-face {
+  font-family: 'komika_display-regular';
+  src: url('./fonts/komika_display-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'teko-regular';
+  src: url('./fonts/teko-regular-webfont.woff2') format('woff2'),
+       url('./fonts/teko-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.f-komika_display {
+  font-family: 'komika_display-regular';
+  text-transform: none;
+}
