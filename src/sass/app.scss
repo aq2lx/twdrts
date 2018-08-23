@@ -19,6 +19,7 @@ body {
 html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -227,6 +228,10 @@ input[type=text], input[type=number], input[type=tel] {
   font-family: 'komika_display-regular';
   font-size: 1rem;
   text-transform: capitalize;
+  width: 6rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .sh-star {
@@ -241,7 +246,7 @@ input[type=text], input[type=number], input[type=tel] {
 .tbl-box {
   position: absolute;
   top: .4rem;
-  left: 46%;
+  left: 36%;
 
   .a {
     width: 1.6rem;
@@ -274,6 +279,10 @@ input[type=text], input[type=number], input[type=tel] {
 
   .g {
     color: #89c843;
+  }
+
+  .h {
+    font-size: .75rem;
   }
 }
 

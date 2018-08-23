@@ -57,6 +57,9 @@ class Table {
     if (data.hasOwnProperty('rowspan')) {
       col.setAttribute('rowspan', data.rowspan);
     }
+    if (data.hasOwnProperty('colspan')) {
+      col.setAttribute('colspan', data.colspan);
+    }
 
     return col;
   }

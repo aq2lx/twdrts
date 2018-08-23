@@ -342,26 +342,23 @@ const ScavengerCamp = {
 
   addLXBox(data) {
     // arrow
-    const arrow = document.createElement('div');
-    arrow.className = 'c';
-
-    const icon = document.createElement('i');
-    icon.className = 'icon icon-right-open';
-
-    arrow.appendChild(icon);
+    const iconArrow = document.createElement('i');
+    iconArrow.className = 'icon icon-right-open';
 
     // build table
     const tbl = new UI.Table('tbl-box');
     tbl.addRow([
       tbl.addCol({ class: 'a', text: 'lvl' }),
       tbl.addCol({ class: 'b', text: data.lvl }),
-      tbl.addCol({ class: 'c', child: arrow, rowspan: 2 }),
+      tbl.addCol({ class: 'c', child: iconArrow, rowspan: 2 }),
       tbl.addCol({ id: `lvl-${data.idx}`, class: 'd' })
     ]).addRow([
       tbl.addCol({ class: 'e', text: 'xp' }),
       tbl.addCol({ class: 'f', text: data.xp }),
       tbl.addCol({ id: `xp-to-${data.idx}`, class: 'g' })
-    ]);
+    ]).addRow([
+      tbl.addCol({ id: `xp-left-${data.idx}`, class: 'h f-safe', colspan: 4 })
+    ])
 
     return tbl.el;
   },
@@ -449,6 +446,7 @@ const ScavengerCamp = {
     let xpGain = 0;
     let lvlGain = 0;
     let xp = 0;
+    let xpLeft = 0;
 
     if (remainingXpChart.length) {
 
@@ -466,20 +464,23 @@ const ScavengerCamp = {
           lvlGain = i;
           xp = this.state.xpPerMember + remainingXpChart[i] - xpGain;
           xpGain = this.state.xpPerMember;
+          xpLeft = this.getRemainingXpTotal(remainingXpChart) - this.state.xpPerMember;
 
           break;
         }
 
         lvlGain = i + 1;
         xp = 'max!';
+        xpLeft = 0;
       }
     } else {
       xp = 'max!';
+      xpLeft = 0;
     }
 
     const renown = this.getRenownPoint(idx, lvlGain);
 
-    return { lvlGain, xp, xpGain, renown };
+    return { lvlGain, xp, xpGain, renown, xpLeft };
   },
 
   getChallangeBonusXp() {
@@ -497,6 +498,16 @@ const ScavengerCamp = {
     return remainingXp;
   },
 
+  getRemainingXpTotal(xpArray) {
+    let total = 0
+
+    for (let i = 0; i < xpArray.length; i++) {
+      total += xpArray[i];
+    }
+
+    return total;
+  },
+
   getRenownPoint(idx, lvl) {
     const renown = DB.renown[`s${this.state.campMember[idx].star}`][this.state.campMember[idx].tier - 1];
 
@@ -508,6 +519,7 @@ const ScavengerCamp = {
     const elXpTo = document.getElementById(`xp-to-${idx}`);
     const elXpGain = document.getElementById(`xp-gain-${idx}`);
     const elRenown = document.getElementById(`renown-${idx}`);
+    const elXpLeft = document.getElementById(`xp-left-${idx}`);
 
     elLvlGain.innerHTML = this.state.campMember[idx].lvl + data.lvlGain;
 
@@ -520,6 +532,12 @@ const ScavengerCamp = {
 
     elXpGain.innerHTML = data.xpGain.toLocaleString();
     elRenown.innerHTML = data.renown.toLocaleString();
+
+    if (data.xpLeft) {
+      elXpLeft.innerHTML = `(${data.xpLeft.toLocaleString()} xp to max)`;
+    } else {
+      elXpLeft.innerHTML = '';
+    }
   },
 
   setTotal(total) {
