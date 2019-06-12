@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP Calculator</title>
+<link href="<%= htmlWebpackPlugin.files.chunks.app.css %>" rel="stylesheet">
+<link href="<%= htmlWebpackPlugin.files.chunks.ap.css %>" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <ul class="navbar-nav">
+      <li><a href="xp.html" class="nav-link"><i class="icon icon-chevron-up"></i>YGL Calculator</a></li>
+      <li><a href="ap.html" class="nav-link active"><i class="icon icon-sound"></i>AP Calculator</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="main-container">
+  <div style="flex: 0 1 auto;">
+    <div style="display: flex; justify-content: center; margin-bottom: .4rem;">
+      <div class="btn-group">
+        <div class="btn-toggle" style="min-width: 5.4rem;">
+          <input type="radio" name="method" id="method-atk" value="atk">
+          <label class="btn" for="method-atk">Attack</label>
+        </div>
+        <div class="btn-toggle" style="min-width: 5.4rem;">
+          <input type="radio" name="method" id="method-def" value="def">
+          <label class="btn" for="method-def">Defense</label>
+        </div>
+      </div>
+    </div>
+    <div id="buff" style="display: flex; font-size: 0.9rem;">
+      <div style="width: 50%; display: flex; padding: 0.2rem; justify-content: center;">
+        <div style="width: 1.6rem; align-self: center; text-align: center;"><i class="icon icon-crown"></i></div>
+        <div id="show-buff">
+
+          <!-- <i class="icon icon-trait i-sm icon-trait-fast"></i> <i class="icon icon-trait i-sm icon-trait-tough"></i> Very Large +AP Atk -->
+          <!-- <br><i class="icon icon-trait i-sm icon-trait-alert"></i> <i class="icon icon-trait i-sm icon-trait-strong"></i> Very Large +AP TDmg -->
+        </div>
+      </div>
+      <div style="width: 50%; display: flex; padding: 0.2rem; justify-content: center;">
+        <!-- <div style="width: 1.6rem; align-self: center; text-align: center;"><i class="icon icon-lighthouse"></i></div>
+        <div>
+          <i class="icon icon-trait i-sm icon-trait-fast"></i> Very Large +AP Atk<br>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <ul id="team" class="team">
+    <li id="m0">
+      <div class="a">
+        <i class="icon icon-trait icon-trait-fast" data-el="select-trait"></i>
+        <ul class="select-trait">
+          <li data-trait="fast"><i class="icon icon-trait icon-trait-fast"></i></li>
+          <li data-trait="strong"><i class="icon icon-trait icon-trait-strong"></i></li>
+          <li data-trait="alert"><i class="icon icon-trait icon-trait-alert"></i></li>
+          <li data-trait="tough"><i class="icon icon-trait icon-trait-tough"></i></li>
+        </ul>
+      </div>
+      <input type="text" class="b input-type-b f-komika-display" placeholder="--">
+      <div class="c">
+        <span class="lbl">Recharge R.</span>
+        <select id="ipt-ap0" class="select-type-b" name="ipt-ap">
+          <option value="0">--</option>
+          <option value="85">85</option>
+          <option value="76">76</option>
+          <option value="66">66</option>
+          <option value="58">58</option>
+          <option value="56">56</option>
+          <option value="45">45</option>
+          <option value="44">44</option>
+        </select>
+        <!-- <input type="tel" class="input-type-b f-big-noodle-titling text-center" placeholder="--"> -->
+      </div>
+      <div class="d">
+        <span class="lbl">Gain AP %</span>
+        <input id="ipt-gain0" type="tel" name="ap-gain" class="input-type-b f-big-noodle-titling" style="width: 1.4rem; vertical-align: middle;" placeholder="--">
+        <span id="apg0" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="e">
+        <span class="lbl">+AP Atk:</span>
+        <select id="w0" class="select-type-b" name="weapon-ap">
+          <option value="10">Huge</option>
+          <option value="8">Very Large</option>
+          <option value="6.5">Large</option>
+          <option value="0">None</option>
+        </select>
+        <!-- <br>
+        <span class="clr-lightyellow">+AP TDmg:</span>
+        <select class="select-type-b">
+          <option>Huge</option>
+          <option>Very Large</option>
+          <option>Large</option>
+          <option>None</option>
+        </select> -->
+      </div>
+      <div id="spf0" class="f toggle">
+        <label for="chk-arf0">
+          <input type="checkbox" id="chk-arf0" name="special-apf" value="8">
+          <span>+8% All</span>
+        </label>
+      </div>
+      <div id="spt0" class="f">
+        <div class="toggle">
+          <label for="chk-art0">
+            <input type="checkbox" id="chk-art0" name="special-apt" value="20">
+            <span>+20%</span>
+          </label>
+        </div>
+        <span id="apwt0" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="g">
+        <span class="lbl">AP</span>
+        <div id="apt0"></div>
+        <span id="apwf0" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="h">
+        <span class="lbl">FT</span>
+        <div id="rft0" class="clr-amber ap-ft"></div>
+      </div>
+      <!-- <div style="position: absolute; bottom: 0.2rem; right: 0.4rem; font-size: 1rem;">
+        -1% HP = 56 AP
+      </div> -->
+    </li>
+    <li id="m1">
+      <div class="a">
+        <i class="icon icon-trait icon-trait-fast" data-el="select-trait"></i>
+        <ul class="select-trait">
+          <li data-trait="fast"><i class="icon icon-trait icon-trait-fast"></i></li>
+          <li data-trait="strong"><i class="icon icon-trait icon-trait-strong"></i></li>
+          <li data-trait="alert"><i class="icon icon-trait icon-trait-alert"></i></li>
+          <li data-trait="tough"><i class="icon icon-trait icon-trait-tough"></i></li>
+        </ul>
+      </div>
+      <input type="text" class="b input-type-b f-komika-display" placeholder="--">
+      <div class="c">
+        <span class="lbl">Recharge R.</span>
+        <select id="ipt-ap1" class="select-type-b" name="ipt-ap">
+          <option value="0">--</option>
+          <option value="85">85</option>
+          <option value="76">76</option>
+          <option value="66">66</option>
+          <option value="58">58</option>
+          <option value="56">56</option>
+          <option value="45">45</option>
+          <option value="44">44</option>
+        </select>
+        <!-- <input type="tel" class="input-type-b f-big-noodle-titling text-center" placeholder="--"> -->
+      </div>
+      <div class="d">
+        <span class="lbl">Gain AP %</span>
+        <input id="ipt-gain1" type="tel" name="ap-gain" class="input-type-b f-big-noodle-titling" style="width: 1.4rem; vertical-align: middle;" placeholder="--">
+        <span id="apg1" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="e">
+        <span class="lbl">+AP Atk:</span>
+        <select id="w1" class="select-type-b" name="weapon-ap">
+          <option value="10">Huge</option>
+          <option value="8">Very Large</option>
+          <option value="6.5">Large</option>
+          <option value="0">None</option>
+        </select>
+      </div>
+      <div id="spf1" class="f toggle">
+        <label for="chk-arf1">
+          <input type="checkbox" id="chk-arf1" name="special-apf" value="8">
+          <span>+8% All</span>
+        </label>
+      </div>
+      <div id="spt1" class="f">
+        <div class="toggle">
+          <label for="chk-art1">
+            <input type="checkbox" id="chk-art1" name="special-apt" value="20">
+            <span>+20%</span>
+          </label>
+        </div>
+        <span id="apwt1" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="g">
+        <span class="lbl">AP</span>
+        <div id="apt1"></div>
+        <span id="apwf1" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="h">
+        <span class="lbl">FT</span>
+        <div id="rft1" class="clr-amber ap-ft"></div>
+      </div>
+    </li>
+    <li id="m2">
+      <div class="a">
+        <i class="icon icon-trait icon-trait-fast" data-el="select-trait"></i>
+        <ul class="select-trait">
+          <li data-trait="fast"><i class="icon icon-trait icon-trait-fast"></i></li>
+          <li data-trait="strong"><i class="icon icon-trait icon-trait-strong"></i></li>
+          <li data-trait="alert"><i class="icon icon-trait icon-trait-alert"></i></li>
+          <li data-trait="tough"><i class="icon icon-trait icon-trait-tough"></i></li>
+        </ul>
+      </div>
+      <input type="text" class="b input-type-b f-komika-display" placeholder="--">
+      <div class="c">
+        <span class="lbl">Recharge R.</span>
+        <select id="ipt-ap2" class="select-type-b" name="ipt-ap">
+          <option value="0">--</option>
+          <option value="85">85</option>
+          <option value="76">76</option>
+          <option value="66">66</option>
+          <option value="58">58</option>
+          <option value="56">56</option>
+          <option value="45">45</option>
+          <option value="44">44</option>
+        </select>
+        <!-- <input type="tel" class="input-type-b f-big-noodle-titling text-center" placeholder="--"> -->
+      </div>
+      <div class="d">
+        <span class="lbl">Gain AP %</span>
+        <input id="ipt-gain2" type="tel" name="ap-gain" class="input-type-b f-big-noodle-titling" style="width: 1.4rem; vertical-align: middle;" placeholder="--">
+        <span id="apg2" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="e">
+        <span class="lbl">+AP Atk:</span>
+        <select id="w2" class="select-type-b" name="weapon-ap">
+          <option value="10">Huge</option>
+          <option value="8">Very Large</option>
+          <option value="6.5">Large</option>
+          <option value="0">None</option>
+        </select>
+      </div>
+      <div id="spf2" class="f toggle">
+        <label for="chk-arf2">
+          <input type="checkbox" id="chk-arf2" name="special-apf" value="8">
+          <span>+8% All</span>
+        </label>
+      </div>
+      <div id="spt2" class="f">
+        <div class="toggle">
+          <label for="chk-art2">
+            <input type="checkbox" id="chk-art2" name="special-apt" value="20">
+            <span>+20%</span>
+          </label>
+        </div>
+        <span id="apwt2" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="g">
+        <span class="lbl">AP</span>
+        <div id="apt2"></div>
+        <span id="apwf2" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="h">
+        <span class="lbl">FT</span>
+        <div id="rft2" class="clr-amber ap-ft"></div>
+      </div>
+    </li>
+    <li id="m3">
+      <div class="a">
+        <i class="icon icon-trait icon-trait-fast" data-el="select-trait"></i>
+        <ul class="select-trait">
+          <li data-trait="fast"><i class="icon icon-trait icon-trait-fast"></i></li>
+          <li data-trait="strong"><i class="icon icon-trait icon-trait-strong"></i></li>
+          <li data-trait="alert"><i class="icon icon-trait icon-trait-alert"></i></li>
+          <li data-trait="tough"><i class="icon icon-trait icon-trait-tough"></i></li>
+        </ul>
+      </div>
+      <input type="text" class="b input-type-b f-komika-display" placeholder="--">
+      <div class="c">
+        <span class="lbl">Recharge R.</span>
+        <select id="ipt-ap3" class="select-type-b" name="ipt-ap">
+          <option value="0">--</option>
+          <option value="85">85</option>
+          <option value="76">76</option>
+          <option value="66">66</option>
+          <option value="58">58</option>
+          <option value="56">56</option>
+          <option value="45">45</option>
+          <option value="44">44</option>
+        </select>
+        <!-- <input type="tel" class="input-type-b f-big-noodle-titling text-center" placeholder="--"> -->
+      </div>
+      <div class="d">
+        <span class="lbl">Gain AP %</span>
+        <input id="ipt-gain3" type="tel" name="ap-gain" name="ap-gain0" class="input-type-b f-big-noodle-titling" style="width: 1.4rem; vertical-align: middle;" placeholder="--">
+        <span id="apg3" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="e">
+        <span class="lbl">+AP Atk:</span>
+        <select id="w3" class="select-type-b" name="weapon-ap">
+          <option value="10">Huge</option>
+          <option value="8">Very Large</option>
+          <option value="6.5">Large</option>
+          <option value="0">None</option>
+        </select>
+      </div>
+      <div id="spf3" class="f toggle">
+        <label for="chk-arf3">
+          <input type="checkbox" id="chk-arf3" name="special-apf" value="8">
+          <span>+8% All</span>
+        </label>
+      </div>
+      <div id="spt3" class="f">
+        <div class="toggle">
+          <label for="chk-art3">
+            <input type="checkbox" id="chk-art3" name="special-apt" value="20">
+            <span>+20%</span>
+          </label>
+        </div>
+        <span id="apwt3" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="g">
+        <span class="lbl">AP</span>
+        <div id="apt3"></div>
+        <span id="apwf3" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="h">
+        <span class="lbl">FT</span>
+        <div id="rft3" class="clr-amber ap-ft"></div>
+      </div>
+    </li>
+    <li id="m4">
+      <div class="a">
+        <i class="icon icon-trait icon-trait-fast" data-el="select-trait"></i>
+        <ul class="select-trait">
+          <li data-trait="fast"><i class="icon icon-trait icon-trait-fast"></i></li>
+          <li data-trait="strong"><i class="icon icon-trait icon-trait-strong"></i></li>
+          <li data-trait="alert"><i class="icon icon-trait icon-trait-alert"></i></li>
+          <li data-trait="tough"><i class="icon icon-trait icon-trait-tough"></i></li>
+        </ul>
+      </div>
+      <input type="text" class="b input-type-b f-komika-display" placeholder="--">
+      <div class="c">
+        <span class="lbl">Recharge R.</span>
+        <select id="ipt-ap4" class="select-type-b" name="ipt-ap">
+          <option value="0">--</option>
+          <option value="85">85</option>
+          <option value="76">76</option>
+          <option value="66">66</option>
+          <option value="58">58</option>
+          <option value="56">56</option>
+          <option value="45">45</option>
+          <option value="44">44</option>
+        </select>
+        <!-- <input type="tel" class="input-type-b f-big-noodle-titling text-center" placeholder="--"> -->
+      </div>
+      <div class="d">
+        <span class="lbl">Gain AP %</span>
+        <input id="ipt-gain4" type="tel" name="ap-gain" class="input-type-b f-big-noodle-titling" style="width: 1.4rem; vertical-align: middle;" placeholder="--">
+        <span id="apg4" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="e">
+        <span class="lbl">+AP Atk:</span>
+        <select id="w4"class="select-type-b" name="weapon-ap">
+          <option value="10">Huge</option>
+          <option value="8">Very Large</option>
+          <option value="6.5">Large</option>
+          <option value="0">None</option>
+        </select>
+      </div>
+      <div id="spf4" class="f toggle">
+        <label for="chk-arf4">
+          <input type="checkbox" id="chk-arf4" name="special-apf" value="8">
+          <span>+8% All</span>
+        </label>
+      </div>
+      <div id="spt4" class="f">
+        <div class="toggle">
+          <label for="chk-art4">
+            <input type="checkbox" id="chk-art4" name="special-apt" value="20">
+            <span>+20%</span>
+          </label>
+        </div>
+        <span id="apwt4" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="g">
+        <span class="lbl">AP</span>
+        <div id="apt4"></div>
+        <span id="apwf4" class="f-safe clr-success ap-gain-des"></span>
+      </div>
+      <div class="h">
+        <span class="lbl">FT</span>
+        <div id="rft4" class="clr-amber ap-ft"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal modal-set-ap-buff" id="modal-set-ap-buff">
+  <div class="modal-content">
+    <span class="close" id="btn-close-md">×</span>
+    <h3 class="title">Add AP Buff</h3>
+    <div>
+      <div class="row">
+        <div>
+          <h3 class="f-komika-display"><i class="icon icon-crown"></i> Leader</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div id="leader-trait" class="grid-trait">
+          <div style="grid-column: 1 / 5;"><button class="btn" style="border-top-left-radius: 0.4rem; border-top-right-radius: 0.4rem;" data-trait="all" data-group="a">All</button></div>
+          <div style="grid-column: 1 / 3;"><button class="btn" data-trait="melee" data-group="a">Melee</button></div>
+          <div style="grid-column: 3 / 5;"><button class="btn" data-trait="range" data-group="a">Range</button></div>
+          <div><button class="btn" style="border-bottom-left-radius: 0.4rem;" data-trait="fast" data-group="b"><i class="icon icon-trait icon-trait-fast"></i></button></div>
+          <div><button class="btn" data-trait="strong" data-group="b"><i class="icon icon-trait icon-trait-strong"></i></button></div>
+          <div><button class="btn" data-trait="alert" data-group="b"><i class="icon icon-trait icon-trait-alert"></i></button></div>
+          <div><button class="btn" style="border-bottom-right-radius: 0.4rem;" data-trait="tough" data-group="b"><i class="icon icon-trait icon-trait-tough"></i></button></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="btn-group">
+          <div class="btn-toggle">
+            <input type="radio" name="ipt-apa" id="ipt-apa-10" value="10" data-txt="huge" checked>
+            <label class="btn" for="ipt-apa-10">Huge</label>
+          </div>
+          <div class="btn-toggle">
+            <input type="radio" name="ipt-apa" id="ipt-apa-8" value="8" data-txt="very large">
+            <label class="btn" for="ipt-apa-8">Very Large</label>
+          </div>
+          <div class="btn-toggle">
+            <input type="radio" name="ipt-apa" id="ipt-apa-6" value="6.5" data-txt="large">
+            <label class="btn" for="ipt-apa-6">Large</label>
+          </div>
+          <div class="btn-toggle">
+            <input type="radio" name="ipt-apa" id="ipt-apa-0" value="0" data-txt="none">
+            <label class="btn" for="ipt-apa-0">None</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button id="btn-apply-traits" class="btn btn-full">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop"></div>
+<script src="<%= htmlWebpackPlugin.files.chunks.ap.entry %>"></script>
+<script>
+  ap.AdrenalineRush.init();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48174541-3', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

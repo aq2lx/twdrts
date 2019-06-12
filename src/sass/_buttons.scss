@@ -1,59 +1,61 @@
 .btn {
+  background-color: #292929;
   border: 0;
-  background-color: #424242;
   color: #fff;
-  font-family: 'teko-regular', sans-serif;
+  cursor: pointer;
+  font-family: 'big-noodle-titling'; // stylelint-disable-line
   font-size: 1.2rem;
+  margin: 0;
   min-width: 2.4rem;
   outline: 0;
-  padding: .4rem;
+  padding: 0.4rem 0.3rem;
   text-align: center;
+  text-shadow: -1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111, 1px 1px 0 #111;
   text-transform: uppercase;
+  user-select: none;
 
   &.active {
     background-color: #f5be3f;
   }
 }
 
-.btn-addtocamp {
-  width: 100%;
-  border-radius: .4rem;
-  padding: .4rem 0;
-  margin-top: .4rem;
-  font-size: 1.2rem;
-  color: #424242;
+.btn-full {
   background: #d4d4d4;
-  background-image: linear-gradient(to bottom, #d4d4d4, #887f76);
+  background-image: $btn-gradient;
+  border-radius: 0.4rem;
+  color: #424242;
+  margin-top: 0.4rem;
+  text-shadow: none;
+  width: 100%;
 }
 
 .btn-group {
   display: inline-flex;
 
   .btn-toggle {
-    min-width: 2rem;
+    .btn {
+      display: block;
+    }
 
     &:first-child {
       .btn {
-        border-top-left-radius: .4rem;
-        border-bottom-left-radius: .4rem;
+        border-bottom-left-radius: 0.4rem;
+        border-top-left-radius: 0.4rem;
       }
     }
 
     &:last-child {
       .btn {
-        border-top-right-radius: .4rem;
-        border-bottom-right-radius: .4rem;
+        border-bottom-right-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
       }
     }
 
-    .btn {
-      display: block;
-    }
-
-    input[type=checkbox], input[type=radio] {
-      position: absolute;
-      clip: rect(0,0,0,0);
+    input[type=checkbox],
+    input[type=radio] {
+      clip: rect(0, 0, 0, 0);
       pointer-events: none;
+      position: absolute;
 
       &:checked {
         ~ label {

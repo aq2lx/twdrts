@@ -1,4 +1,21 @@
-// Color
-$amber-500: #f5be3f;
-$green-500: #89c843;
-$lightgreen-300: #aed581;
+$black: #111;
+$white: #fff;
+$silver: #ddd;
+
+$success: #8dc63f;
+$light-yellow: #eee1b0;
+$light-red: #ea545a;
+$amber: #ffc447;
+
+//trait
+$clr-fast: #ffd25b;
+$clr-strong: #92c74a;
+$clr-alert: #ed5458;
+$clr-tough: #0083ff;
+
+$bg-fast: darken($clr-fast, 24%);
+$bg-strong: darken($clr-strong, 24%);
+$bg-alert: darken($clr-alert, 24%);
+$bg-tough: darken($clr-tough, 24%);
+
+$btn-gradient: linear-gradient(to bottom, #fff, #ababab);

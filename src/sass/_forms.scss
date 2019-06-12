@@ -1,0 +1,74 @@
+// input
+.input-type-a {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 0;
+  border-radius: 0.4rem;
+  font-family: 'big-noodle-titling', sans-serif;
+  font-size: 1.2rem;
+  padding: 0.2rem 0.4rem;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.input-type-b {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-indent: 0.2rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-transform: capitalize;
+}
+
+.select-type-b {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+  font-family: 'big-noodle-titling', sans-serif;
+  font-size: 1.2rem;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-indent: 0.2rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  width: 4.2rem;
+
+  option {
+    background-color: #292929;
+  }
+}
+
+.toggle {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+
+  label {
+    cursor: pointer;
+  }
+
+  span {
+    user-select: none;
+  }
+
+  input[type=checkbox] {
+    display: none;
+    visibility: hidden;
+
+    &:checked {
+      + span {
+        color: #f5be3f;
+      }
+    }
+  }
+
+  &.hide {
+    display: none;
+  }
+}

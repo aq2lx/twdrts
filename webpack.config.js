@@ -1,52 +1,54 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    xp: './src/xp.js',
+    ap: './src/ap.js'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: 'app.bundle.js',
-    library: 'app'
+    path: path.resolve(__dirname, 'docs'),
+    filename: '[name].[contenthash].js',
+    library: '[name]'
+  },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [require('@babel/plugin-proposal-object-rest-spread')]
-          }
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
-          },
+          'css-loader',
           'sass-loader'
         ]
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        use: [
-          'file-loader'
-        ]
+        test: /\.(woff|woff2|eot|ttf|otf|svg|png|jpg)$/,
+        loader: 'file-loader'
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'app.css'
+      filename: '[name].[contenthash].css'
+    }),
+    ...['index', 'xp', 'ap'].map((x) => {
+      return new HtmlWebpackPlugin({
+        inject: false,
+        filename: `${x}.html`,
+        template: `src/${x}.html`
+      })
     })
   ]
-};
-
+}

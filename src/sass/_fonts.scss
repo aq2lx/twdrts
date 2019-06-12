@@ -1,22 +1,27 @@
-// Font
 @font-face {
-  font-family: 'komika_display-regular';
-  src: url('./fonts/komika_display-webfont.woff') format('woff');
-  font-weight: normal;
+  font-family: 'big-noodle-titling';
   font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/big-noodle-titling.woff2') format('woff2'),
+    url('../fonts/big-noodle-titling.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'teko-regular';
-  src: url('./fonts/teko-regular-webfont.woff2') format('woff2'),
-       url('./fonts/teko-regular-webfont.woff') format('woff');
-  font-weight: normal;
+  font-family: 'komika-display';
   font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/komika-display.woff2') format('woff2'),
+    url('../fonts/komika-display.woff') format('woff');
 }
 
-.f-komika_display {
-  font-family: 'komika_display-regular';
-  text-transform: none;
+.f-komika-display {
+  font-family: komika-display; // stylelint-disable-line
+}
+
+.f-big-noodle-titling {
+  font-family: big-noodle-titling; // stylelint-disable-line
 }
 
 .f-safe {

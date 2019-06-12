@@ -1,45 +1,58 @@
 .modal {
+  left: 50%;
   position: absolute;
   top: 10%;
-  left: 50%;
-  margin-left: -8rem;
-  z-index: 1001;
   visibility: hidden;
+  z-index: 1001;
 }
 
 .modal-add-to-camp {
-  width: 16rem;
+  margin-left: -7.1rem;
+  width: 14.2rem;
+}
+
+.modal-set-ap-buff {
+  margin-left: -6.7rem;
+  width: 13.4rem;
 }
 
 .modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .8);
   opacity: 0;
-  z-index: 1000;
-  transition: all .2s;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.2s;
   visibility: hidden;
+  z-index: 1000;
 }
 
 .modal-content {
   background-color: #212121;
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: .4rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.4rem;
   opacity: 0;
-  padding: 1rem;
+  padding: 0.4rem;
   transform: translateY(9%);
-  transition: all .2s;
+  transition: all 0.2s;
+
+  .title {
+    color: #eee1b0;
+    font-family: 'komika-display', sans-serif;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 .md-show {
   visibility: visible !important;
 
   .modal-content {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 

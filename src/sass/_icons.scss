@@ -1,37 +1,54 @@
+// font icons
 @font-face {
-  font-family: 'icon';
-  src: url('icons/icon.eot');
-  src: url('icons/icon.eot#iefix') format('embedded-opentype'),
-       url('icons/icon.woff2') format('woff2'),
-       url('icons/icon.woff') format('woff'),
-       url('icons/icon.ttf') format('truetype'),
-       url('icons/icon.svg#icon') format('svg');
-  font-weight: normal;
+  font-family: 'icon'; // stylelint-disable-line
   font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/icons.woff2') format('woff2'),
+    url('../fonts/icons.woff') format('woff');
 }
 
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: 'icon';
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
   display: inline-block;
-  text-decoration: inherit;
-  text-align: center;
-
-  font-variant: normal;
-  text-transform: none;
-
-  line-height: 1;
-  margin-left: .1em;
-  margin-right: .1em;
-
+  font-family: 'icon'; // stylelint-disable-line
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+  speak: none;
+  text-align: center;
+  text-decoration: inherit;
+  text-transform: none;
 }
 
-.icon-plus:before { content: '\e800'; }
-.icon-star:before { content: '\e801'; }
-.icon-right-open:before { content: '\e802'; }
-.icon-desktop:before { content: '\f108'; }
+.icon-chevron-up::before { content: '\e800'; }
+.icon-sound::before { content: '\e801'; }
+.icon-chevron-right::before { content: '\e802'; }
+.icon-star::before { content: '\e803'; }
+.icon-crown::before { content: '\e804'; }
+.icon-lighthouse::before { content: '\e805'; }
+
+// trait
+.icon-trait {
+  background-image: url('../img/trait.png');
+  background-size: cover;
+  display: inline-block;
+  height: 28px;
+  vertical-align: middle;
+  width: 28px;
+
+  &.i-sm {
+    height: 16px !important;
+    width: 16px !important;
+  }
+}
+
+.icon-trait-fast { background-position: 0 0; }
+.icon-trait-strong { background-position: 33.33% 0; }
+.icon-trait-alert { background-position: 66.66% 0; }
+.icon-trait-tough { background-position: 100% 0; }

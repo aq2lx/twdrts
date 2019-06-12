@@ -1,5 +1,1 @@
-import './sass/app.scss';
-
-import ScavengerCamp from './modules/ScavengerCamp';
-
-export { ScavengerCamp };
+import './sass/app.scss'
