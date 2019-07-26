@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AP Calculator</title>
-<link href="app.1253e0655afdc6f5741c.css" rel="stylesheet">
+<link href="app.af044ed0072cf169e345.css" rel="stylesheet">
 <link href="ap.7a9f3fe1b0f235a2e1b9.css" rel="stylesheet">
 </head>
 <body>
@@ -34,17 +34,13 @@
     <div id="buff" style="display: flex; font-size: 0.9rem;">
       <div style="width: 50%; display: flex; padding: 0.2rem; justify-content: center;">
         <div style="width: 1.6rem; align-self: center; text-align: center;"><i class="icon icon-crown"></i></div>
-        <div id="show-buff">
-
-          <!-- <i class="icon icon-trait i-sm icon-trait-fast"></i> <i class="icon icon-trait i-sm icon-trait-tough"></i> Very Large +AP Atk -->
-          <!-- <br><i class="icon icon-trait i-sm icon-trait-alert"></i> <i class="icon icon-trait i-sm icon-trait-strong"></i> Very Large +AP TDmg -->
+        <div id="show-buff-leader">
         </div>
       </div>
       <div style="width: 50%; display: flex; padding: 0.2rem; justify-content: center;">
-        <!-- <div style="width: 1.6rem; align-self: center; text-align: center;"><i class="icon icon-lighthouse"></i></div>
-        <div>
-          <i class="icon icon-trait i-sm icon-trait-fast"></i> Very Large +AP Atk<br>
-        </div> -->
+        <div style="width: 1.6rem; align-self: center; text-align: center;"><i class="icon icon-lighthouse"></i></div>
+        <div id="show-buff-tower">
+        </div>
       </div>
     </div>
   </div>
@@ -387,50 +383,86 @@
     <span class="close" id="btn-close-md">×</span>
     <h3 class="title">Add AP Buff</h3>
     <div>
-      <div class="row">
-        <div>
-          <h3 class="f-komika-display"><i class="icon icon-crown"></i> Leader</h3>
+      <div id="tab-buff">
+        <div class="row" class="text-center">
+          <div id="tab-l" class="tab text-center active" style="width: 50%;" data-tab="leader">
+            <i class="icon icon-crown"></i> Leader
+          </div>
+          <div id="tab-t" class="tab text-center" style="width: 50%;" data-tab="tower">
+            <i class="icon icon-lighthouse"></i> Tower
+          </div>
+        </div>
+        <div id="tab-lc" class="tab-content show" data-tab-content="leader">
+          <div class="row">
+            <div id="leader-trait" class="grid-trait">
+              <div style="grid-column: 1 / 5;"><button class="btn" style="border-top-left-radius: 0.4rem; border-top-right-radius: 0.4rem;" data-trait="all" data-group="a">All</button></div>
+              <div style="grid-column: 1 / 3;"><button class="btn" data-trait="melee" data-group="a">Melee</button></div>
+              <div style="grid-column: 3 / 5;"><button class="btn" data-trait="range" data-group="a">Range</button></div>
+              <div><button class="btn" style="border-bottom-left-radius: 0.4rem;" data-trait="fast" data-group="b"><i class="icon icon-trait icon-trait-fast"></i></button></div>
+              <div><button class="btn" data-trait="strong" data-group="b"><i class="icon icon-trait icon-trait-strong"></i></button></div>
+              <div><button class="btn" data-trait="alert" data-group="b"><i class="icon icon-trait icon-trait-alert"></i></button></div>
+              <div><button class="btn" style="border-bottom-right-radius: 0.4rem;" data-trait="tough" data-group="b"><i class="icon icon-trait icon-trait-tough"></i></button></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn-group fw">
+              <div class="btn-toggle">
+                <input type="radio" name="iptl-apa" id="iptl-apa-10" value="10" data-txt="huge" checked>
+                <label class="btn" for="iptl-apa-10">Huge</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="iptl-apa" id="iptl-apa-8" value="8" data-txt="very large">
+                <label class="btn" for="iptl-apa-8">Very Large</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="iptl-apa" id="iptl-apa-6" value="6.5" data-txt="large">
+                <label class="btn" for="iptl-apa-6">Large</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="iptl-apa" id="iptl-apa-0" value="0" data-txt="none">
+                <label class="btn" for="iptl-apa-0">None</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-tc" class="tab-content" data-tab-content="tower">
+          <div class="row">
+            <div id="tower-trait" class="grid-trait">
+              <div style="grid-column: 1 / 5;"><button class="btn" style="border-top-left-radius: 0.4rem; border-top-right-radius: 0.4rem;" data-trait="all" data-group="a">All</button></div>
+              <div style="grid-column: 1 / 3;"><button class="btn" data-trait="melee" data-group="a">Melee</button></div>
+              <div style="grid-column: 3 / 5;"><button class="btn" data-trait="range" data-group="a">Range</button></div>
+              <div><button class="btn" style="border-bottom-left-radius: 0.4rem;" data-trait="fast" data-group="b"><i class="icon icon-trait icon-trait-fast"></i></button></div>
+              <div><button class="btn" data-trait="strong" data-group="b"><i class="icon icon-trait icon-trait-strong"></i></button></div>
+              <div><button class="btn" data-trait="alert" data-group="b"><i class="icon icon-trait icon-trait-alert"></i></button></div>
+              <div><button class="btn" style="border-bottom-right-radius: 0.4rem;" data-trait="tough" data-group="b"><i class="icon icon-trait icon-trait-tough"></i></button></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn-group fw">
+              <div class="btn-toggle">
+                <input type="radio" name="iptt-apa" id="iptt-apa-6" value="6.5" data-txt="large">
+                <label class="btn" for="iptt-apa-6">Large</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="iptt-apa" id="iptt-apa-5" value="5" data-txt="medium">
+                <label class="btn" for="iptt-apa-5">Medium</label>
+              </div>
+              <div class="btn-toggle">
+                <input type="radio" name="iptt-apa" id="iptt-apa-0" value="0" data-txt="none" checked>
+                <label class="btn" for="iptt-apa-0">None</label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div id="leader-trait" class="grid-trait">
-          <div style="grid-column: 1 / 5;"><button class="btn" style="border-top-left-radius: 0.4rem; border-top-right-radius: 0.4rem;" data-trait="all" data-group="a">All</button></div>
-          <div style="grid-column: 1 / 3;"><button class="btn" data-trait="melee" data-group="a">Melee</button></div>
-          <div style="grid-column: 3 / 5;"><button class="btn" data-trait="range" data-group="a">Range</button></div>
-          <div><button class="btn" style="border-bottom-left-radius: 0.4rem;" data-trait="fast" data-group="b"><i class="icon icon-trait icon-trait-fast"></i></button></div>
-          <div><button class="btn" data-trait="strong" data-group="b"><i class="icon icon-trait icon-trait-strong"></i></button></div>
-          <div><button class="btn" data-trait="alert" data-group="b"><i class="icon icon-trait icon-trait-alert"></i></button></div>
-          <div><button class="btn" style="border-bottom-right-radius: 0.4rem;" data-trait="tough" data-group="b"><i class="icon icon-trait icon-trait-tough"></i></button></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="btn-group">
-          <div class="btn-toggle">
-            <input type="radio" name="ipt-apa" id="ipt-apa-10" value="10" data-txt="huge" checked>
-            <label class="btn" for="ipt-apa-10">Huge</label>
-          </div>
-          <div class="btn-toggle">
-            <input type="radio" name="ipt-apa" id="ipt-apa-8" value="8" data-txt="very large">
-            <label class="btn" for="ipt-apa-8">Very Large</label>
-          </div>
-          <div class="btn-toggle">
-            <input type="radio" name="ipt-apa" id="ipt-apa-6" value="6.5" data-txt="large">
-            <label class="btn" for="ipt-apa-6">Large</label>
-          </div>
-          <div class="btn-toggle">
-            <input type="radio" name="ipt-apa" id="ipt-apa-0" value="0" data-txt="none">
-            <label class="btn" for="ipt-apa-0">None</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <button id="btn-apply-traits" class="btn btn-full">Apply</button>
+        <button id="btn-apply-buff" class="btn btn-full">Apply</button>
       </div>
     </div>
   </div>
 </div>
 <div class="modal-backdrop"></div>
-<script src="ap.adb6cec4ecc0a633fdd6.js"></script>
+<script src="ap.38c461c9889e3711f07e.js"></script>
 <script>
   ap.AdrenalineRush.init();
 </script>

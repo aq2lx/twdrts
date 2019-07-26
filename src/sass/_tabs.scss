@@ -1,0 +1,16 @@
+.tab {
+  cursor: pointer;
+  font-size: 1.1rem;
+
+  &.active {
+    color: #f5be3f;
+  }
+}
+
+.tab-content {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}

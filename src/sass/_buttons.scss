@@ -64,4 +64,12 @@
       }
     }
   }
+
+  &.fw {
+    width: 100%;
+
+    .btn-toggle {
+      flex-grow: 1;
+    }
+  }
 }

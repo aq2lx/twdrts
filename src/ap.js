@@ -19,7 +19,7 @@ const settings = {
 const AdrenalineRush = {
   state: {
     leaderAP: 0,
-    buffLeaderTxt: 'none',
+    towerAP: 0,
     member: []
   },
 
@@ -53,8 +53,10 @@ const AdrenalineRush = {
     this.el = {
       modalSetAPBuff: new UI.Modal('modal-set-ap-buff'),
       leaderTrait: new UI.SelectTraits('leader-trait'),
+      towerTrait: new UI.SelectTraits('tower-trait'),
       selectTraits: document.querySelectorAll('[data-el="select-trait"]'),
-      showBuff: document.getElementById('show-buff')
+      showBuffLeader: document.getElementById('show-buff-leader'),
+      showBuffTower: document.getElementById('show-buff-tower')
     }
 
     return this
@@ -92,7 +94,7 @@ const AdrenalineRush = {
     }
 
     // Apply Buffs
-    const btnApply = this.el.leaderTrait.btnApply
+    const btnApply = document.getElementById('btn-apply-buff')
 
     btnApply.onclick = () => {
       this.applyBuff()
@@ -168,6 +170,9 @@ const AdrenalineRush = {
       this.el.modalSetAPBuff.hide()
     }
 
+    // Tabs
+    new UI.Tab('tab-buff')
+
     return this
   },
 
@@ -231,48 +236,69 @@ const AdrenalineRush = {
   },
 
   applyBuff() {
-    this.el.showBuff.innerHTML = ''
-
-    for (let i = 0; i < this.el.leaderTrait.active.length; i++) {
-      const trait = this.el.leaderTrait.active[i]
-
-      if (trait.match(/all|melee|range/)) {
-        this.el.showBuff.innerHTML += `<span class="clr-amber">${trait}</span> `
-      } else if (trait.match(/fast|strong|alert|tough/)) {
-        this.el.showBuff.innerHTML += `<i class="icon icon-trait i-sm icon-trait-${trait}"></i> `
-      } else return false
-    }
-
-    const txtApLeader = document.querySelector('input[name="ipt-apa"]:checked')
-      .dataset.txt
-
-    this.el.showBuff.innerHTML += `${txtApLeader} AP Atk`
-
-    // Set Leader AP
-    this.state.leaderAP = parseFloat(
-      document.querySelector('input[name="ipt-apa"]:checked').value
+    this.state.leaderAP = this._applyBuff(
+      this.el.showBuffLeader,
+      this.el.leaderTrait,
+      'input[name="iptl-apa"]:checked'
+    )
+    this.state.towerAP = this._applyBuff(
+      this.el.showBuffTower,
+      this.el.towerTrait,
+      'input[name="iptt-apa"]:checked'
     )
 
     this.el.modalSetAPBuff.hide()
     this.calculateAll()
   },
 
+  _applyBuff(showBuff, traits, input) {
+    showBuff.innerHTML = ''
+
+    for (let i = 0; i < traits.active.length; i++) {
+      const trait = traits.active[i]
+
+      if (trait.match(/all|melee|range/)) {
+        showBuff.innerHTML += `<span class="clr-amber">${trait}</span> `
+      } else if (trait.match(/fast|strong|alert|tough/)) {
+        showBuff.innerHTML += `<i class="icon icon-trait i-sm icon-trait-${trait}"></i> `
+      } else return false
+    }
+
+    const txtAp = document.querySelector(input).dataset.txt
+    showBuff.innerHTML += `<span class="clr-lightyellow">${txtAp}</span> AP Atk`
+
+    return parseFloat(document.querySelector(input).value)
+  },
+
   // Get
   getAPLeader(idx) {
-    const leaderTraitActive = this.el.leaderTrait.active
-    const leaderAP = this.state.leaderAP
+    return this.getAPfromBuff(
+      idx,
+      this.el.leaderTrait.active,
+      this.state.leaderAP
+    )
+  },
 
-    if (leaderTraitActive[0] === 'all') return leaderAP
-    if (leaderTraitActive[0] === 'melee') {
-      if (this.state.member[idx].trait.match(/fast|strong/)) return leaderAP
+  getAPTower(idx) {
+    return this.getAPfromBuff(
+      idx,
+      this.el.towerTrait.active,
+      this.state.towerAP
+    )
+  },
+
+  getAPfromBuff(idx, active, ap) {
+    if (active[0] === 'all') return ap
+    if (active[0] === 'melee') {
+      if (this.state.member[idx].trait.match(/fast|strong/)) return ap
     }
-    if (leaderTraitActive[0] === 'range') {
-      if (this.state.member[idx].trait.match(/alert|tough/)) return leaderAP
+    if (active[0] === 'range') {
+      if (this.state.member[idx].trait.match(/alert|tough/)) return ap
     }
 
-    for (let i = 0; i < leaderTraitActive.length; i++) {
-      if (leaderTraitActive[i] === this.state.member[idx].trait) {
-        return leaderAP
+    for (let i = 0; i < active.length; i++) {
+      if (active[i] === this.state.member[idx].trait) {
+        return ap
       }
     }
 
@@ -387,7 +413,10 @@ const AdrenalineRush = {
   calculateNode(idx) {
     return parseFloat(
       (
-        (settings.apAtttack + this.getAPLeader(idx) + this.getAPWeapon(idx)) *
+        (settings.apAtttack +
+          this.getAPLeader(idx) +
+          this.getAPTower(idx) +
+          this.getAPWeapon(idx)) *
         this.getMethod()
       ).toFixed(2)
     )

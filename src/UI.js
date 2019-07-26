@@ -62,12 +62,47 @@ class Table {
   }
 }
 
+// Tab
+class Tab {
+  constructor(id) {
+    this.el = document.getElementById(id)
+    this.tabs = this.el.querySelectorAll('[data-tab]')
+    this.tabContents = this.el.querySelectorAll('[data-tab-content]')
+
+    this.iniEvent()
+  }
+
+  iniEvent() {
+    for (let i = 0; i < this.tabs.length; i++) {
+      this.tabs[i].onclick = () => {
+        for (let x = 0; x < this.tabs.length; x++) {
+          this.tabs[x].classList.remove('active')
+        }
+
+        const tab = this.tabs[i].dataset.tab
+
+        this.tabs[i].classList.add('active')
+        this.showContent(tab)
+      }
+    }
+  }
+
+  showContent(tab) {
+    for (let i = 0; i < this.tabContents.length; i++) {
+      this.tabContents[i].classList.remove('show')
+    }
+
+    const tabContent = document.querySelector(`[data-tab-content=${tab}]`)
+
+    tabContent.classList.add('show')
+  }
+}
+
 // Select Traits
 class SelectTraits {
   constructor(id) {
     this.el = document.getElementById(id)
     this.bottons = this.el.querySelectorAll('button')
-    this.btnApply = document.getElementById('btn-apply-traits')
 
     this.active = []
     ;[].forEach.call(this.bottons, el => {
@@ -123,6 +158,7 @@ class SelectTraits {
 const UI = {
   Modal,
   Table,
+  Tab,
   SelectTraits
 }
 
