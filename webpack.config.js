@@ -48,7 +48,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),
-    ...['index', 'xp', 'ap'].map((x) => {
+    ...['index', 'xp', 'ap', '404'].map((x) => {
       return new HtmlWebpackPlugin({
         inject: false,
         filename: `${x}.html`,
