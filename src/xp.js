@@ -129,7 +129,7 @@ const ScavengerCamp = {
       el.onchange = e => {
         const el = e.target || e.currentTarget
 
-        this.state.input.star = parseInt(el.value, 10)
+        this.state.input.star = el.value
         this.setMaxLevel()
       }
     })
@@ -152,8 +152,12 @@ const ScavengerCamp = {
     eInputLvl.onkeyup = e => {
       const el = e.target || e.currentTarget
 
-      if (el.value > this.state.maxLevel) {
+      /*if (el.value > this.state.maxLevel) {
         el.value = this.state.maxLevel
+      }*/
+
+      if (el.value > 150) {
+        el.value = 150
       }
 
       this.state.input.lvl = parseInt(el.value, 10)
@@ -271,6 +275,10 @@ const ScavengerCamp = {
     newMember.appendChild(this.addXpGain(data.idx))
     newMember.appendChild(this.addRenown(data.idx))
 
+    if (data.star === '6s') {
+      newMember.appendChild(this.addSClassIcon())
+    }
+
     this.el.campNodes[data.idx].appendChild(newMember)
 
     this.calculate()
@@ -325,7 +333,11 @@ const ScavengerCamp = {
     const elStarGroup = document.createElement('div')
     elStarGroup.className = 'sh-star'
 
-    if (star === 6) {
+    if (star === '6s') {
+      star = 6
+    }
+
+    if (star == 6) {
       elStarGroup.className += ' clr-amber'
     }
 
@@ -338,6 +350,18 @@ const ScavengerCamp = {
     }
 
     return elStarGroup
+  },
+
+  addSClassIcon() {
+    const sClassIcon = document.createElement('div')
+    sClassIcon.className = 'sh-s-class'
+
+    const s = document.createElement('i')
+    s.className = 'icon icon-s-class'
+
+    sClassIcon.appendChild(s)
+
+    return sClassIcon
   },
 
   addDetailsBox(data) {

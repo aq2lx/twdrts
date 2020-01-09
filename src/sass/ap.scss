@@ -27,6 +27,7 @@
     .d { left: 13.4rem; position: absolute; text-align: center; top: 0.2rem; width: 4.2rem; }
     .e { bottom: 0.2rem; left: 0.4rem; position: absolute; }
     .f { bottom: 0.26rem; left: 9.2rem; position: absolute; }
+    .f > div { display: inline-block; }
     .g { position: absolute; right: 2.4rem; text-align: center; top: 0.2rem; width: 2.4rem; }
     .h { position: absolute; right: 0.2rem; text-align: center; top: 0.2rem; width: 2rem; }
     /* stylelint-enable */

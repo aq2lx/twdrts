@@ -52,3 +52,12 @@
 .icon-trait-strong { background-position: 33.33% 0; }
 .icon-trait-alert { background-position: 66.66% 0; }
 .icon-trait-tough { background-position: 100% 0; }
+
+.icon-s-class {
+  background-image: url('../img/s-class.png');
+  background-size: cover;
+  display: inline-block;
+  height: 32px;
+  vertical-align: middle;
+  width: 32px;
+}

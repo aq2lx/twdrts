@@ -100,29 +100,14 @@ const AdrenalineRush = {
       this.applyBuff()
     }
 
-    // Methods, Special Fast
+    // Methods
     const eMethods = document.querySelectorAll('input[name="method"]')
-    const eSpecialAPFast = document.querySelectorAll(
-      'input[name="special-apf"]'
-    )
 
-    ;[].slice
-      .call(eMethods)
-      .concat([].slice.call(eSpecialAPFast))
-      .forEach(elem => {
-        elem.onchange = () => {
-          this.calculateAll()
-        }
-      })
-
-    // Weapon
-    const eWeaponAP = document.querySelectorAll('select[name="weapon-ap"]')
-
-    for (let i = 0; i < eWeaponAP.length; i++) {
-      eWeaponAP[i].onchange = () => {
-        this.calculateAP(i)
+    ;[].slice.call(eMethods).forEach(elem => {
+      elem.onchange = () => {
+        this.calculateAll()
       }
-    }
+    })
 
     // Recharge Rate
     const eInputAP = document.querySelectorAll('select[name="ipt-ap"]')
@@ -133,14 +118,49 @@ const AdrenalineRush = {
       }
     }
 
-    // Special Tough
-    const eSpecialAPTough = document.querySelectorAll(
-      'input[name="special-apt"]'
-    )
+    // Weapon
+    const eWeaponAP = document.querySelectorAll('select[name="weapon-ap"]')
 
-    for (let i = 0; i < eSpecialAPTough.length; i++) {
-      eSpecialAPTough[i].onchange = () => {
+    for (let i = 0; i < eWeaponAP.length; i++) {
+      eWeaponAP[i].onchange = () => {
         this.calculateAP(i)
+      }
+    }
+
+    // Weapion AP 8 All
+    const eWeaponAP8All = document.querySelectorAll('input[name="wap8a"]')
+
+    for (let i = 0; i < eWeaponAP8All.length; i++) {
+      eWeaponAP8All[i].onchange = () => {
+        if (this.state.member[i].trait === 'fast') {
+          const elWap20 = document.getElementById(`chk-wap20-${i}`)
+
+          if (elWap20.checked) {
+            elWap20.checked = false
+          }
+        }
+
+        this.calculateAll()
+      }
+    }
+
+    // Weapon AP 20
+    const eWeaponAP20 = document.querySelectorAll('input[name="wap20"]')
+
+    for (let i = 0; i < eWeaponAP20.length; i++) {
+      eWeaponAP20[i].onchange = () => {
+        if (this.state.member[i].trait === 'fast') {
+          const elWap8All = document.getElementById(`chk-wap8a-${i}`)
+
+          if (elWap8All.checked) {
+            elWap8All.checked = false
+            this.calculateAll()
+          } else {
+            this.calculateAP(i)
+          }
+        } else {
+          this.calculateAP(i)
+        }
       }
     }
 
@@ -198,33 +218,33 @@ const AdrenalineRush = {
     m.style.backgroundColor = settings.bg[trait]
 
     // Weapon
-    const elSpecialApFast = document.getElementById(`spf${idx}`)
-    const elSpecialApTough = document.getElementById(`spt${idx}`)
-    const chkSpecialFast = document.getElementById(`chk-arf${idx}`)
-    const chkSpecialTough = document.getElementById(`chk-art${idx}`)
+    const elWap8All = document.getElementById(`wap8a-${idx}`)
+    const elWap20 = document.getElementById(`wap20-${idx}`)
+    // const chkWap8All = document.getElementById(`chk-wap8a-${idx}`)
+    // const chkWap20 = document.getElementById(`chk-wap20-${idx}`)
 
-    chkSpecialFast.checked = false
-    chkSpecialTough.checked = false
+    // chkWap8All.checked = false
+    // chkWap20.checked = false
 
     const fx = {
       fast() {
-        elSpecialApFast.classList.remove('hide')
-        elSpecialApTough.classList.add('hide')
+        elWap8All.classList.remove('hide')
+        elWap20.classList.remove('hide')
       },
 
       strong() {
-        elSpecialApFast.classList.add('hide')
-        elSpecialApTough.classList.add('hide')
+        elWap8All.classList.add('hide')
+        elWap20.classList.add('hide')
       },
 
       alert() {
-        elSpecialApFast.classList.add('hide')
-        elSpecialApTough.classList.add('hide')
+        elWap8All.classList.add('hide')
+        elWap20.classList.add('hide')
       },
 
       tough() {
-        elSpecialApFast.classList.add('hide')
-        elSpecialApTough.classList.remove('hide')
+        elWap8All.classList.add('hide')
+        elWap20.classList.remove('hide')
       }
     }
 
@@ -330,10 +350,8 @@ const AdrenalineRush = {
     return received
   },
 
-  getAPSpecialFast(idx) {
-    const eSpecials = document.querySelectorAll(
-      'input[name="special-apf"]:checked'
-    )
+  getAPWeapon8All(idx) {
+    const eSpecials = document.querySelectorAll('input[name="wap8a"]:checked')
     let received = 0
 
     for (let i = 0; i < eSpecials.length; i++) {
@@ -341,7 +359,7 @@ const AdrenalineRush = {
       received += this.getAPPercentage(this.getRechargeRate(idx), percent)
     }
 
-    const eAPR = document.getElementById(`apwf${idx}`)
+    const eAPR = document.getElementById(`apw8a-${idx}`)
 
     if (received) {
       eAPR.classList.add('show')
@@ -353,10 +371,10 @@ const AdrenalineRush = {
     return received
   },
 
-  getAPSpecialTough(idx) {
-    if (this.state.member[idx].trait === 'tough') {
-      const eSpecial = document.getElementById(`chk-art${idx}`)
-      const eAPR = document.getElementById(`apwt${idx}`)
+  getAPWeapon20(idx) {
+    if (this.state.member[idx].trait.match(/fast|tough/)) {
+      const eSpecial = document.getElementById(`chk-wap20-${idx}`)
+      const eAPR = document.getElementById(`apw20-${idx}`)
 
       if (eSpecial.checked) {
         const percent = parseInt(eSpecial.value, 10)
@@ -405,8 +423,8 @@ const AdrenalineRush = {
       idx,
       this.calculateNode(idx),
       this.getAPReceived(idx) +
-        this.getAPSpecialFast(idx) +
-        this.getAPSpecialTough(idx)
+        this.getAPWeapon8All(idx) +
+        this.getAPWeapon20(idx)
     )
   },
 

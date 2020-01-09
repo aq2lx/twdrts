@@ -77,14 +77,20 @@
 }
 
 .sh-star {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   left: 1.2rem;
   position: absolute;
   top: 2rem;
 }
 
+.sh-s-class {
+  right: 4.5rem;
+  position: absolute;
+  top: 0.4rem;
+}
+
 .tbl-box {
-  left: 36%;
+  left: 34%;
   position: absolute;
   top: calc(50% - 40px);
   /* stylelint-disable */
