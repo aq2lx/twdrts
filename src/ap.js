@@ -220,11 +220,11 @@ const AdrenalineRush = {
     // Weapon
     const elWap8All = document.getElementById(`wap8a-${idx}`)
     const elWap20 = document.getElementById(`wap20-${idx}`)
-    // const chkWap8All = document.getElementById(`chk-wap8a-${idx}`)
-    // const chkWap20 = document.getElementById(`chk-wap20-${idx}`)
+    const chkWap8All = document.getElementById(`chk-wap8a-${idx}`)
+    const chkWap20 = document.getElementById(`chk-wap20-${idx}`)
 
-    // chkWap8All.checked = false
-    // chkWap20.checked = false
+    chkWap8All.checked = false
+    chkWap20.checked = false
 
     const fx = {
       fast() {
