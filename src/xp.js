@@ -333,12 +333,13 @@ const ScavengerCamp = {
     const elStarGroup = document.createElement('div')
     elStarGroup.className = 'sh-star'
 
-    if (star === '6s') {
-      star = 6
-    }
-
     if (star == 6) {
       elStarGroup.className += ' clr-amber'
+    }
+
+    if (star === '6s') {
+      elStarGroup.className += ' clr-purple'
+      star = 6
     }
 
     for (let i = 0; i < star; i++) {
