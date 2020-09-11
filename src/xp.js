@@ -42,6 +42,7 @@ const ScavengerCamp = {
       scavType: document.querySelectorAll('input[name="scav-type"]'),
       chkBonus: document.getElementById('chk-scav-bonus'),
       btnBonus: document.getElementById('btn-scav-bonus'),
+      iptGoal: document.getElementById('ipt-goal'),
       modalAddMember: new UI.Modal('modal-addmember'),
       total: document.getElementById('total')
     }
@@ -80,6 +81,24 @@ const ScavengerCamp = {
       if (this.state.countMember) {
         this.calculate()
       }
+    }
+
+    this.el.iptGoal.onkeyup = e => {
+      const el = e.target || e.currentTarget
+      let value = el.value
+      const m = value.toLowerCase().match(/^(\d*\.?\d+)?([mk])$/)
+
+      if (m) {
+        if (m[2] === 'm') {
+          value = parseFloat(m[1]) * 1000000
+        } else if (m[2] === 'k') {
+          value = parseFloat(m[1]) * 1000
+        } else {
+          return
+        }
+      }
+
+      console.log(parseInt(value))
     }
 
     return this
@@ -175,8 +194,8 @@ const ScavengerCamp = {
     eInputXp.onkeyup = e => {
       const el = e.target || e.currentTarget
 
-      if (el.value > 9999) {
-        el.value = 9999
+      if (el.value > 99999) {
+        el.value = 99999
       }
 
       this.state.input.xp = parseInt(el.value, 10)
@@ -191,15 +210,9 @@ const ScavengerCamp = {
     // Button add to camp
     const eBtnAddtoCamp = document.getElementById('btn-addtocamp')
 
-    eBtnAddtoCamp.onclick = () => {
-      if (this.state.countMember > 5) {
-        return
-      }
-
-      this.addToCamp({ ...this.state.input })
-      this.el.modalAddMember.hide()
-      this.clearForm()
-    }
+    /*eBtnAddtoCamp.onclick = () => {
+      this.submitForm()
+    }*/
 
     // Button close modal
     const eBtnCloseModal = document.getElementById('btn-close-md')
@@ -230,6 +243,20 @@ const ScavengerCamp = {
   setMaxLevel() {
     this.state.maxLevel =
       DB.maxLevel[`s${this.state.input.star}`][`t${this.state.input.tier}`]
+  },
+
+  submitForm(e) {
+    e.preventDefault()
+
+    if (this.state.countMember > 5) {
+      return
+    }
+
+    this.addToCamp({ ...this.state.input })
+    this.el.modalAddMember.hide()
+    this.clearForm()
+
+    return false
   },
 
   addToCamp(data) {

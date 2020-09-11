@@ -128,3 +128,24 @@
   color: $amber;
   font-size: 2.4rem;
 }
+
+.goal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.4rem;
+  color: #616161;
+}
+
+.remaining {
+  flex: 1 1 auto;
+  text-align: right;
+  padding: 0 0.4rem;
+  color: #616161;
+
+  .remaining-point {
+    color: #b71c1c;
+  }
+}
+
+
