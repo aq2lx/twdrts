@@ -233,7 +233,7 @@ const AdrenalineRush = {
       },
 
       strong() {
-        elWap8All.classList.add('hide')
+        elWap8All.classList.remove('hide')
         elWap20.classList.add('hide')
       },
 
