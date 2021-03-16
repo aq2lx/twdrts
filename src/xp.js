@@ -210,10 +210,11 @@ const ScavengerCamp = {
 
     // Button add to camp
     const eBtnAddtoCamp = document.getElementById('btn-addtocamp')
+    const formAdd = document.getElementById('form-add')
 
-    /*eBtnAddtoCamp.onclick = () => {
-      this.submitForm()
-    }*/
+    formAdd.onsubmit = (e) => {
+      this.submitForm(e)
+    }
 
     // Button close modal
     const eBtnCloseModal = document.getElementById('btn-close-md')
@@ -661,4 +662,4 @@ const ScavengerCamp = {
   }
 }
 
-export { ScavengerCamp }
+ScavengerCamp.init()

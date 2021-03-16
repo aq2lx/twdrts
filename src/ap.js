@@ -482,4 +482,4 @@ const AdrenalineRush = {
   }
 }
 
-export { AdrenalineRush }
+AdrenalineRush.init()
