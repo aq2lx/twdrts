@@ -1,19 +1,18 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/app.js',
     xp: './src/xp.js',
     ap: './src/ap.js'
   },
   output: {
     path: path.resolve(__dirname, 'docs'),
     filename: '[name].[contenthash].js',
-    library: '[name]'
+    library: '[name]',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js'],
@@ -41,16 +40,16 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
-  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),
+
+    new CleanWebpackPlugin(),
+
     ...['index', 'xp', 'ap', '404'].map((x) => {
       return new HtmlWebpackPlugin({
-        inject: false,
+        chunks: [x],
         filename: `${x}.html`,
         template: `src/${x}.html`
       })

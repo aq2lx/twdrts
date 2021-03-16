@@ -1,5 +1,6 @@
 import UI from './UI'
 
+import './sass/app.scss'
 import './sass/ap.scss'
 
 const settings = {

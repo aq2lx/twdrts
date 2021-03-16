@@ -1,6 +1,7 @@
 import DB from './db.json'
 import UI from './UI'
 
+import './sass/app.scss'
 import './sass/xp.scss'
 
 const ScavengerCamp = {
