@@ -409,7 +409,7 @@ const AdrenalineRush = {
   },
 
   getAPPercentage(recharge, percent) {
-    return Math.ceil((recharge * parseInt(percent, 10)) / 100)
+    return Math.ceil(((recharge + 1) * parseInt(percent, 10)) / 100)
   },
 
   //Calculate
